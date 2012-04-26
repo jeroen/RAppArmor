@@ -5,8 +5,8 @@
 #include <sys/apparmor.h>
 #include <errno.h>
 
-void aa_change_profile_wrapper (int *ret, char *profile) {
-  *ret = aa_change_profile (profile);
+void aa_change_profile_wrapper (int *ret, char **profile) {
+  *ret = aa_change_profile (*profile);
   if(ret != 0){
     *ret = errno;
   }
