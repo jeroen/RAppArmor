@@ -1,0 +1,34 @@
+#include <tunables/global>
+
+profile myprofile {
+
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+
+    capability kill,
+    capability net_bind_service,
+    capability setgid,
+    capability setuid,
+    capability sys_tty_config,
+
+    / rw,
+    /** mrwlkix,
+
+	^myhat {
+	
+	    #include <abstractions/base>
+	    #include <abstractions/nameservice>
+	
+	    deny /etc/passwd rwx,
+	
+	    capability kill,
+	    capability net_bind_service,
+	    capability setgid,
+	    capability setuid,
+	    capability sys_tty_config,
+	
+	    / rw,
+	    /** mrwlkix,
+	}
+
+}
