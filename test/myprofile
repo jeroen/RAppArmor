@@ -2,33 +2,35 @@
 
 profile myprofile {
 
-    #include <abstractions/base>
-    #include <abstractions/nameservice>
+	#include <abstractions/base>
+	#include <abstractions/nameservice>
 
-    capability kill,
-    capability net_bind_service,
-    capability setgid,
-    capability setuid,
-    capability sys_tty_config,
+	capability kill,
+	capability net_bind_service,
+	capability setgid,
+	capability setuid,
+	capability sys_tty_config,
 
-    / rw,
-    /** mrwlkix,
+	/ rw,
+	/** mrwlkix,
+
+	deny /etc/passwd rwx,
 
 	^myhat {
-	
-	    #include <abstractions/base>
-	    #include <abstractions/nameservice>
-	
-	    deny /etc/passwd rwx,
-	
-	    capability kill,
-	    capability net_bind_service,
-	    capability setgid,
-	    capability setuid,
-	    capability sys_tty_config,
-	
-	    / rw,
-	    /** mrwlkix,
-	}
 
+		#include <abstractions/base>
+		#include <abstractions/nameservice>
+	
+		capability kill,
+		capability net_bind_service,
+		capability setgid,
+		capability setuid,
+		capability sys_tty_config,
+
+		/ rw,
+		/** mrwlkix,
+		
+		deny /etc/passwd rwx,
+		deny /etc/group rwx,		
+	}
 }
