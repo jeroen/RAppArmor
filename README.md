@@ -1,7 +1,7 @@
 rApparmor
 =========
 
-Apparmor interface to R. 
+R interface to some AppArmor functions. 
 
 To Install:
 
