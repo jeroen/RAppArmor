@@ -14,7 +14,7 @@ profile myprofile {
 	/ rw,
 	/** mrwlkix,
 
-	deny /etc/passwd rwx,
+	audit deny /etc/passwd rwx,
 
 	^myhat {
 
@@ -30,7 +30,7 @@ profile myprofile {
 		/ rw,
 		/** mrwlkix,
 		
-		deny /etc/passwd rwx,
-		deny /etc/group rwx,		
+		audit deny /etc/passwd rwx,
+		audit deny /etc/group rwx,		
 	}
 }
