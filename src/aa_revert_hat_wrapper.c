@@ -7,8 +7,8 @@
 
 void aa_revert_hat_wrapper (int *ret, unsigned long* magic_token) {
   printf("Trying to revert AppArmor Hat...\n");
-  char *nothing;    
-  *ret = aa_change_hat (nothing,  (long) magic_token);  
+  char *nothing;
+  *ret = aa_change_hat (nothing, *magic_token);
   if(ret != 0){
     *ret = errno;
   }  
