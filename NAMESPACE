@@ -1,1 +1,3 @@
-exportPattern("^[[:alpha:]]+") 
+export(aa_change_hat)
+export(aa_change_profile)
+export(aa_revert_hat)

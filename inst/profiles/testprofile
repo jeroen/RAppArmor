@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile myprofile {
+profile testprofile {
 
 	#include <abstractions/base>
 	#include <abstractions/nameservice>
@@ -16,7 +16,7 @@ profile myprofile {
 
 	audit deny /etc/passwd rwx,
 
-	^myhat {
+	^testhat {
 
 		#include <abstractions/base>
 		#include <abstractions/nameservice>

@@ -1,7 +1,7 @@
 rApparmor
 =========
 
-R interface to some AppArmor functions. 
+R interface to some AppArmor functions. Only works on Linux distributions that support Apparmor, E.g. Ubuntu, Suse, Arch, etc.
 
 To Install:
 
@@ -15,7 +15,7 @@ To Install:
     
     #Install test profile:
     cd jeroenooms-rApparmor*
-    sudo cp test/myprofile /etc/apparmor.d
+    sudo cp test/testprofile /etc/apparmor.d
 
 To test, open R console (/usr/bin/R) and run the lines from test/test.R
 

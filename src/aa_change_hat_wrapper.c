@@ -6,7 +6,7 @@
 #include <errno.h>
 
 void aa_change_hat_wrapper (int *ret, char **subprofile, unsigned long* magic_token) {
-  printf("Setting Apparmor Hat...\n");  
+  Rprintf("Setting Apparmor Hat...\n");  
   *ret = aa_change_hat (*subprofile,  *magic_token);
   if(*ret != 0){
     *ret = errno;
