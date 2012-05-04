@@ -5,6 +5,8 @@ profile testprofile {
 	#include <abstractions/base>
 	#include <abstractions/nameservice>
 
+	change_profile -> testprofile,
+
 	capability kill,
 	capability net_bind_service,
 	capability setgid,

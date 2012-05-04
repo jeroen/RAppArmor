@@ -1,16 +1,14 @@
 \name{setuid}
-\alias{setgid}
+\alias{getuid}
 \alias{setuid}
-\title{Set User / Group Identity}
+\title{Get/Set UID}
 \usage{
   setuid(uid)
 }
 \arguments{
   \item{uid}{user ID}
-
-  \item{gid}{grou ID}
 }
 \description{
-  Wrappers for setuid and setgid calls in Linux
+  Wrappers for getuid and setuid in Linux.
 }
 

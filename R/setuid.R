@@ -1,11 +1,10 @@
-#' Set User / Group Identity
+#' Get/Set UID
 #' 
-#' Wrappers for setuid and setgid calls in Linux
+#' Wrappers for getuid and setuid in Linux.
 #' 
 #' @param uid user ID
-#' @param gid grou ID
-#' @aliases setgid
-#' @export setuid setgid
+#' @aliases getuid
+#' @export setuid getuid
 setuid <- function(uid){
 	uid <- as.integer(uid);
 	ret <- integer(1);
@@ -14,11 +13,8 @@ setuid <- function(uid){
 	invisible();	
 }
 
-
-setgid <- function(gid){
-	uid <- as.integer(gid);
+getuid <- function(){
 	ret <- integer(1);
-	output <- .C('setuid_wrapper', ret, gid, PACKAGE="rApparmor")
-	if(output[[1]] != 0) stop("Failed to setgid to: ", gid, ".\nError: ", output[[1]]);	
-	invisible();	
+	output <- .C('getuid_wrapper', ret, PACKAGE="rApparmor")
+	return(output[[1]]);
 }
