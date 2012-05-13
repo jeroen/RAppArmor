@@ -10,7 +10,7 @@
     RLIMIT_SIGPENDING, RLIMIT_STACK)
 }
 \arguments{
-  \item{...}{stuff to pass to eval(...)}
+  \item{...}{arguments passed on to eval(...)}
 
   \item{uid}{integer or name of linux user.}
 
@@ -66,17 +66,27 @@
   Evaluate in a sandboxed environment.
 }
 \details{
-  This function creates a fork, and then sets rlimits, uid,
-  gid, priority and apparmor profile, and then evaluates
-  the expression inside this fork. After evaluation
-  returns, the fork is killed. If the timeout is reached
-  the fork is also killed and an error is thrown.
+  This function creates a fork, and then sets any rlimits,
+  uid, gid, priority, apparmor profile where specified, and
+  then evaluates the expression inside the fork. After
+  evaluation returns, the fork is killed. If the timeout is
+  reached the fork is also killed and an error is thrown.
+
+  Evaluation of an expression through secure.eval should
+  never have any side effects on the current R session.
+  This also means that if the code does e.g. assignments to
+  the global environment, sets options(), these will get
+  lost, as we explicitly want to prevent this. However, if
+  the expression saves any files (where allowed by
+  apparmor), these will still be available after the
+  evaluation finishes.
 
   Note that if the initial process does not have superuser
   rights, rlimits can only be decreased and setuid/setgid
-  might not work.
-
-  Some of the rlimits can also be specified inside of the
-  apparmor profile.
+  might not work. In this case, specifying an RLIMIT higher
+  than the current value will result in an error. Some of
+  the rlimits can also be specified inside of the apparmor
+  profile. When a rlimit is set both in the profile and
+  through R, the more restrictive one will be effective.
 }
 
