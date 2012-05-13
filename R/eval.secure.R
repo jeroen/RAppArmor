@@ -2,6 +2,18 @@
 #' 
 #' Evaluate in a sandboxed environment.
 #' 
+#' This function creates a fork, and then sets rlimits, uid, gid,
+#' priority and apparmor profile, and then evaluates the expression
+#' inside this fork. After evaluation returns, the fork is killed. 
+#' If the timeout is reached the fork is also killed and an error is
+#' thrown.  
+#' 
+#' Note that if the initial process does not have superuser rights, 
+#' rlimits can only be decreased and setuid/setgid might not work.
+#' 
+#' Some of the rlimits can also be specified inside of the apparmor 
+#' profile.
+#' 
 #' @param ... stuff to pass to eval(...)
 #' @param uid integer or name of linux user.
 #' @param gid integer or name of linux group.
@@ -9,9 +21,26 @@
 #' @param profile AppArmor security profile. Has to be preloaded.
 #' @param timeout timeout in seconds.
 #' @param silent passed on to mcparallel()
+#' @param RLIMIT_AS hard limit passed on to rlimit_as()
+#' @param RLIMIT_CORE hard limit passed on to rlimit_core()
+#' @param RLIMIT_CPU hard limit passed on to rlimit_cpu()
+#' @param RLIMIT_DATA hard limit passed on to rlimit_data()
+#' @param RLIMIT_FSIZE hard limit passed on to rlimit_fsize()
+#' @param RLIMIT_MEMLOCK hard limit passed on to rlimit_memlock()
+#' @param RLIMIT_MSGQUEUE hard limit passed on to rlimit_msgqueue()
+#' @param RLIMIT_NICE hard limit passed on to rlimit_nice()
+#' @param RLIMIT_NOFILE hard limit passed on to rlimit_nofile()
+#' @param RLIMIT_NPROC hard limit passed on to rlimit_nproc()
+#' @param RLIMIT_RTPRIO hard limit passed on to rlimit_rtprio()
+#' @param RLIMIT_RTTIME hard limit passed on to rlimit_rttime()
+#' @param RLIMIT_SIGPENDING hard limit passed on to rlimit_sigpending()
+#' @param RLIMIT_STACK hard limit passed on to rlimit_stack()
 #' @import parallel tools
 #' @export
-eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=TRUE){	
+eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=TRUE,
+	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
+	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, 
+	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){	
 
 	#convert linux username to gid
 	if(!missing(gid) && is.character(gid)){
@@ -25,6 +54,20 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=TRU
 	
 	#Do everything in a fork
 	myfork <- mcparallel({
+		if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS);
+		if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE);
+		if(!missing(RLIMIT_CPU)) rlimit_cpu(RLIMIT_CPU);
+		if(!missing(RLIMIT_DATA)) rlimit_data(RLIMIT_DATA);
+		if(!missing(RLIMIT_FSIZE)) rlimit_fsize(RLIMIT_FSIZE);
+		if(!missing(RLIMIT_MEMLOCK)) rlimit_memlock(RLIMIT_MEMLOCK);
+		if(!missing(RLIMIT_MSGQUEUE)) rlimit_msgqueue(RLIMIT_MSGQUEUE);
+		if(!missing(RLIMIT_NICE)) rlimit_nice(RLIMIT_NICE);
+		if(!missing(RLIMIT_NOFILE)) rlimit_nofile(RLIMIT_NOFILE);
+		if(!missing(RLIMIT_NPROC)) rlimit_nproc(RLIMIT_NPROC);
+		if(!missing(RLIMIT_RTPRIO)) rlimit_rtprio(RLIMIT_RTPRIO);
+		if(!missing(RLIMIT_RTTIME)) rlimit_rttime(RLIMIT_RTTIME);
+		if(!missing(RLIMIT_SIGPENDING)) rlimit_sigpending(RLIMIT_SIGPENDING);
+		if(!missing(RLIMIT_STACK)) rlimit_stack(RLIMIT_STACK);
 		if(!missing(priority)) setpriority(priority);
 		if(!missing(gid)) setgid(gid);
 		if(!missing(uid)) setuid(uid);		
