@@ -1,0 +1,37 @@
+\name{rlimit_sigpending}
+\alias{rlimit_sigpending}
+\title{Limit signal queue}
+\usage{
+  rlimit_sigpending(hardlim, softlim = hardlim, pid = 0)
+}
+\arguments{
+  \item{hardlim}{number of signals}
+
+  \item{softlim}{number of signals}
+
+  \item{pid}{id of the target process}
+}
+\description{
+  Specifies the limit on the number of signals that may be
+  queued for the real user ID of the calling process.
+}
+\details{
+  Specifies the limit on the number of signals that may be
+  queued for the real user ID of the calling process. Both
+  standard and real-time signals are counted for the
+  purpose of checking this limit. However, the limit is
+  only enforced for sigqueue(3); it is always possible to
+  use kill(2) to queue one instance of any of the signals
+  that are not already queued to the process.
+}
+\seealso{
+  Other rlimit: \code{\link{rlimit_as}},
+  \code{\link{rlimit_core}}, \code{\link{rlimit_cpu}},
+  \code{\link{rlimit_data}}, \code{\link{rlimit_fsize}},
+  \code{\link{rlimit_memlock}},
+  \code{\link{rlimit_msgqueue}}, \code{\link{rlimit_nice}},
+  \code{\link{rlimit_nofile}}, \code{\link{rlimit_nproc}},
+  \code{\link{rlimit_rtprio}}, \code{\link{rlimit_rttime}},
+  \code{\link{rlimit_stack}}
+}
+
