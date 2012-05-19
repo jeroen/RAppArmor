@@ -26,9 +26,9 @@
 #' @param uid integer or name of linux user.
 #' @param gid integer or name of linux group.
 #' @param priority priority. Value between -20 and 20. 
-#' @param profile AppArmor security profile. Has to be preloaded.
+#' @param profile AppArmor security profile. Has to be preloaded by Linux.
 #' @param timeout timeout in seconds.
-#' @param silent passed on to mcparallel()
+#' @param silent suppress output on stdout. See mcparallel().
 #' @param RLIMIT_AS hard limit passed on to rlimit_as()
 #' @param RLIMIT_CORE hard limit passed on to rlimit_core()
 #' @param RLIMIT_CPU hard limit passed on to rlimit_cpu()
@@ -45,7 +45,7 @@
 #' @param RLIMIT_STACK hard limit passed on to rlimit_stack()
 #' @import parallel tools
 #' @export
-eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=TRUE,
+eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FALSE,
 	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
 	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, 
 	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){	

@@ -1,0 +1,35 @@
+#include <tunables/global>
+
+profile r-base {
+        #include <abstractions/base>
+        #include <abstractions/nameservice>
+
+        /bin/cat rix,
+        /bin/dash rix,
+        /bin/mv rix,
+        /bin/rm rix,
+        /bin/sed rix,
+        /bin/uname rix,
+        /bin/cp rix,
+        /etc/R/ r,
+        /etc/R/* r,
+        /etc/resolv.conf r,
+        /etc/xml/* r,
+        /tmp/** rw,
+        /usr/bin/R rix,
+        /usr/bin/zip rix,
+        /usr/lib/R/bin/* rix,
+        /usr/bin/texi2dvi px,
+        /usr/bin/wc rix,
+        /usr/lib{,32,64}/** mr,
+        /usr/lib{,32,64}/R/bin/exec/R rix,
+        /usr/local/lib/R/** mr,
+        /usr/share/R/** r,
+        /usr/share/ca-certificates/** r,
+
+        /usr/local/lib/R/site-library/ r,
+        /usr/local/lib/R/site-library/** mr,
+        /usr/lib/R/site-library/ r,
+        /usr/lib/R/site-library/** mr,
+}
+
