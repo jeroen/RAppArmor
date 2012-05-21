@@ -1,7 +1,7 @@
 Package: rApparmor
 Type: Package
 Title: rApparmor
-Version: 0.1.2
+Version: 0.2.0
 Date: 2012-05-02
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
