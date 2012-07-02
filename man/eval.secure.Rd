@@ -3,7 +3,7 @@
 \title{Secure evaluation}
 \usage{
   eval.secure(..., uid, gid, priority, profile,
-    timeout = 60, silent = TRUE, RLIMIT_AS, RLIMIT_CORE,
+    timeout = 60, silent = FALSE, RLIMIT_AS, RLIMIT_CORE,
     RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
     RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE,
     RLIMIT_NPROC, RLIMIT_RTPRIO, RLIMIT_RTTIME,
@@ -19,11 +19,12 @@
   \item{priority}{priority. Value between -20 and 20.}
 
   \item{profile}{AppArmor security profile. Has to be
-  preloaded.}
+  preloaded by Linux.}
 
   \item{timeout}{timeout in seconds.}
 
-  \item{silent}{passed on to mcparallel()}
+  \item{silent}{suppress output on stdout. See
+  mcparallel().}
 
   \item{RLIMIT_AS}{hard limit passed on to rlimit_as()}
 

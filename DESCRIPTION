@@ -1,19 +1,9 @@
-Package: rApparmor
+Package: RAppArmor
 Type: Package
-Title: rApparmor
+Title: RAppArmor
 Version: 0.2.0
-Date: 2012-05-02
+Date: 2012-07-02
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
-Description: R interfaces to AppArmor C functions.
+Description: R interfaces to Linux and AppArmor C functions.
 License: AGPL
-Collate:
-    'aa_change_hat.R'
-    'aa_change_profile.R'
-    'eval.secure.R'
-    'onLoad.R'
-    'setgid.R'
-    'setpriority.R'
-    'setuid.R'
-    'userinfo.R'
-    'rlimits.R'

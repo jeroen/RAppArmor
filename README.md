@@ -1,4 +1,4 @@
-rApparmor
+RAppArmor
 =========
 
 R interface to some AppArmor functions. Only works on Linux distributions that support Apparmor, E.g. Ubuntu, Suse, Arch, etc.
@@ -11,10 +11,10 @@ To Install:
     
     #Install:
     sudo apt-get install r-base libapparmor-dev
-    sudo R CMD INSTALL jeroenooms-rApparmor*
+    sudo R CMD INSTALL jeroenooms-RAppArmor*
     
     #Install test profile:
-    cd jeroenooms-rApparmor*
+    cd jeroenooms-RAppArmor*
     sudo cp test/testprofile /etc/apparmor.d
 
 To test, open R console (/usr/bin/R) and run the lines from test/test.R
