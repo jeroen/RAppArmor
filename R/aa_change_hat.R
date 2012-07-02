@@ -21,7 +21,7 @@ aa_change_hat <- function(subprofile, magic_token){
 	}
 	magic_token <- as.integer(magic_token);
 	ret <- integer(1);
-	output <- .C('aa_change_hat_wrapper', ret, subprofile, magic_token, PACKAGE="rApparmor")
+	output <- .C('aa_change_hat_wrapper', ret, subprofile, magic_token, PACKAGE="RAppArmor")
 	if(output[[1]] != 0) stop("Failed to change hats to: ", subprofile, ".\nError: ", output[[1]]);
 	invisible();
 }
@@ -29,7 +29,7 @@ aa_change_hat <- function(subprofile, magic_token){
 aa_revert_hat <- function(magic_token){
 	magic_token <- as.integer(magic_token);
 	ret <- integer(1);
-	output <- .C('aa_revert_hat_wrapper', ret, magic_token, PACKAGE="rApparmor")
+	output <- .C('aa_revert_hat_wrapper', ret, magic_token, PACKAGE="RAppArmor")
 	if(output[[1]] != 0) stop("Failed to revert hat.\nError: ", output[[1]]);
 	invisible();	
 }

@@ -5,7 +5,7 @@
 #' @export
 getpriority <- function(){
 	ret <- integer(1);
-	output <- .C('getpriority_wrapper', ret, PACKAGE="rApparmor");
+	output <- .C('getpriority_wrapper', ret, PACKAGE="RAppArmor");
 	val <- output[[1]];
 	if(val > 1000) stop("Failed to get priority.\nError: ", val-10000);	
 	return(val);
@@ -20,7 +20,7 @@ getpriority <- function(){
 setpriority <- function(prio){
 	prio <- as.integer(prio);
 	ret <- integer(1);
-	output <- .C('setpriority_wrapper', ret, prio, PACKAGE="rApparmor");
+	output <- .C('setpriority_wrapper', ret, prio, PACKAGE="RAppArmor");
 	if(output[[1]] != 0) stop("Failed to set priority to: ", prio, ".\nError: ", output[[1]]);	
 	return(getpriority());
 }

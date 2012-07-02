@@ -11,7 +11,7 @@
 #' }
 aa_change_profile <- function(profile){
 	ret <- integer(1);
-	output <- .C('aa_change_profile_wrapper', ret, profile, PACKAGE="rApparmor")
+	output <- .C('aa_change_profile_wrapper', ret, profile, PACKAGE="RAppArmor")
 	if(output[[1]] != 0) stop("Failed to change profile to: ", profile, ".\nError: ", output[[1]]);	
 	invisible();	
 }

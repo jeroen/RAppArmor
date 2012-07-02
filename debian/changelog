@@ -1,0 +1,6 @@
+rapparmor (0.4.0-precise0) precise; urgency=low
+
+  * Build for Ubuntu Precise.
+
+ -- Jeroen Ooms <jeroen@opencpu.org>  Mon, 02 July 2012 12:00:00 -0600
+

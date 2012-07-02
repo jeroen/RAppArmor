@@ -6,8 +6,8 @@ R interface to some AppArmor functions. Only works on Linux distributions that s
 To Install:
 
     #Download the package:
-    wget https://github.com/jeroenooms/rApparmor/zipball/master -O rApparmor.zip
-    unzip rApparmor.zip
+    wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip
+    unzip RAppArmor.zip
     
     #Install:
     sudo apt-get install r-base libapparmor-dev

@@ -3,7 +3,7 @@
 #sudo service apparmor restart
 
 #Load library
-library(rApparmor);
+library(RAppArmor);
 
 #test unconstrained
 result <- read.table("/etc/passwd")

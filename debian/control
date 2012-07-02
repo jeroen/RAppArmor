@@ -1,0 +1,11 @@
+Source: rapparmor
+Section: gnu-r
+Priority: optional
+Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
+Build-Depends: debhelper (>= 7.0.0), r-base-dev (>= 2.14.0), cdbs, libapparmor-dev
+Standards-Version: 3.9.3
+ 
+Package: r-cran-rapparmor
+Architecture: any
+Depends: ${shlibs:Depends}, ${shlibs:Misc}, r-base-core (>= 2.14.0), libapparmor1
+Description: R interfaces to Linux and AppArmor security stuff.

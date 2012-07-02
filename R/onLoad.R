@@ -1,3 +1,3 @@
 .onLoad <-function (lib, pkg)   {
-	library.dynam("rApparmor", pkg, lib)
+	library.dynam("RAppArmor", pkg, lib)
 }

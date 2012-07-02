@@ -1,9 +1,9 @@
 Package: RAppArmor
 Type: Package
 Title: RAppArmor
-Version: 0.2.0
+Version: 0.4.0
 Date: 2012-07-02
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
-Description: R interfaces to Linux and AppArmor C functions.
+Description: R interfaces to Linux and AppArmor security stuff.
 License: AGPL

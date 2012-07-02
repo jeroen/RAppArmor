@@ -352,10 +352,10 @@ rlimit_wrapper <- function(resource, hardlim = NULL, softlim = NULL, pid = 0){
 		softlim <- -999;
 	}
 	pid <- as.integer(pid);	
-	hardlim <- as.integer(hardlim);
-	softlim <- as.integer(softlim);
+	hardlim <- as.double(hardlim);
+	softlim <- as.double(softlim);
 	ret <- integer(1);
-	output <- .C(resource, ret, hardlim, softlim, pid, PACKAGE="rApparmor")
+	output <- .C(resource, ret, hardlim, softlim, pid, PACKAGE="RAppArmor")
 	if(output[[1]] != 0) stop("Failed to set ", resource, "\nError: ", output[[1]]);	
 	invisible();	
 }

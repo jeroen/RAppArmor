@@ -9,98 +9,105 @@
 #include <errno.h>
 
 //declare main function
-void rlimit_wrapper(int, int*, int*, int*, int*);
+void rlimit_wrapper(int, int*, double*, double*, int*);
 
 //declare wrappers for R functions
-void rlimit_as(int*, int*, int*, int*);
-void rlimit_core(int*, int*, int*, int*);
-void rlimit_cpu(int*, int*, int*, int*);
-void rlimit_data(int*, int*, int*, int*);
-void rlimit_fsize(int*, int*, int*, int*);
-void rlimit_memlock(int*, int*, int*, int*);
-void rlimit_msgqueue(int*, int*, int*, int*);
-void rlimit_nice(int*, int*, int*, int*);
-void rlimit_nofile(int*, int*, int*, int*);
-void rlimit_nproc(int*, int*, int*, int*);
-void rlimit_rtprio(int*, int*, int*, int*);
-void rlimit_rttime(int*, int*, int*, int*);
-void rlimit_sigpending(int*, int*, int*, int*);
-void rlimit_stack(int*, int*, int*, int*);
+void rlimit_as(int*, double*, double*, int*);
+void rlimit_core(int*, double*, double*, int*);
+void rlimit_cpu(int*, double*, double*, int*);
+void rlimit_data(int*, double*, double*, int*);
+void rlimit_fsize(int*, double*, double*, int*);
+void rlimit_memlock(int*, double*, double*, int*);
+void rlimit_msgqueue(int*, double*, double*, int*);
+void rlimit_nice(int*, double*, double*, int*);
+void rlimit_nofile(int*, double*, double*, int*);
+void rlimit_nproc(int*, double*, double*, int*);
+void rlimit_rtprio(int*, double*, double*, int*);
+void rlimit_rttime(int*, double*, double*, int*);
+void rlimit_sigpending(int*, double*, double*, int*);
+void rlimit_stack(int*, double*, double*, int*);
 
 
 //wrappers for R functions:
-void rlimit_as (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_as (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_AS:\n");
 	rlimit_wrapper(RLIMIT_AS, ret, hardlim, softlim, pid);
 }
 
-void rlimit_core (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_core (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_CORE:\n");
 	rlimit_wrapper(RLIMIT_CORE, ret, hardlim, softlim, pid);
 }
 
-void rlimit_cpu (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_cpu (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_CPU:\n");
 	rlimit_wrapper(RLIMIT_CPU, ret, hardlim, softlim, pid);
 }
 
-void rlimit_data (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_data (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_DATA:\n");
 	rlimit_wrapper(RLIMIT_DATA, ret, hardlim, softlim, pid);
 }
 
-void rlimit_fsize (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_fsize (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_FSIZE:\n");
 	rlimit_wrapper(RLIMIT_FSIZE, ret, hardlim, softlim, pid);
 }
 
-void rlimit_memlock (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_memlock (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_MEMLOCK:\n");
 	rlimit_wrapper(RLIMIT_MEMLOCK, ret, hardlim, softlim, pid);
 }
 
-void rlimit_msgqueue (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_msgqueue (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_MSGQUEUE:\n");
 	rlimit_wrapper(RLIMIT_MSGQUEUE, ret, hardlim, softlim, pid);
 }
 
-void rlimit_nice (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_nice (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_NICE:\n");
 	rlimit_wrapper(RLIMIT_NICE, ret, hardlim, softlim, pid);
 }
 
-void rlimit_nofile (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_nofile (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_NOFILE:\n");
 	rlimit_wrapper(RLIMIT_NOFILE, ret, hardlim, softlim, pid);
 }
 
-void rlimit_nproc (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_nproc (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_NPROC:\n");
 	rlimit_wrapper(RLIMIT_NPROC, ret, hardlim, softlim, pid);
 }
 
-void rlimit_rtprio (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_rtprio (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_RTPRIO:\n");
 	rlimit_wrapper(RLIMIT_RTPRIO, ret, hardlim, softlim, pid);
 }
 
-void rlimit_rttime (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_rttime (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_RTTIME:\n");
 	rlimit_wrapper(RLIMIT_RTTIME, ret, hardlim, softlim, pid);
 }
 
-void rlimit_sigpending (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_sigpending (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_SIGPENDING:\n");
 	rlimit_wrapper(RLIMIT_SIGPENDING, ret, hardlim, softlim, pid);
 }
 
-void rlimit_stack (int *ret, int *hardlim, int *softlim, int *pid) {
+void rlimit_stack (int *ret, double *hardlim, double *softlim, int *pid) {
     Rprintf("RLIMIT_STACK:\n");
 	rlimit_wrapper(RLIMIT_STACK, ret, hardlim, softlim, pid);
 }
 
 //main function that calls out to Linux Kernel.
-void rlimit_wrapper(int resource, int *ret, int *hardlim, int *softlim, int *pid){
+void rlimit_wrapper(int resource, int *ret, double *hardlim_double, double *softlim_double, int *pid){
+
+  //create (long) integer pointers
+  long hardlim_int = (long) *hardlim_double;
+  long *hardlim = &hardlim_int;
+
+  long softlim_int = (long) *softlim_double;
+  long *softlim = &softlim_int;
 
   // target process
   pid_t mypid;

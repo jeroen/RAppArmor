@@ -1,5 +1,5 @@
 #load lib
-library(rApparmor)
+library(RAppArmor)
 
 #current limit
 rlimit_as();
