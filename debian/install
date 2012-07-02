@@ -1,1 +1,1 @@
-inst/profiles/* /etc/apparmor.d/r/
+inst/profiles/* /etc/apparmor.d/
