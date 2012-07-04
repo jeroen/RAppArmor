@@ -5,6 +5,9 @@ set -e
 case "$1" in
   remove | abort-install)
     :
+      rm -f /etc/apparmor.d/disable/usr.bin.r
+      rm -f /etc/apparmor.d/usr.bin.r
+      rm -Rf /etc/apparmor.d/rapparmor*
       service apparmor restart
     ;;
   purge | disappear | upgrade | failed-upgrade | abort-upgrade)

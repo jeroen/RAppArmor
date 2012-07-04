@@ -1,4 +1,4 @@
-## Before you begin:
+## Before you begin: make sure 'testprofile' is loaded'
 #sudo cp inst/profiles/testprofile /etc/apparmor.d
 #sudo service apparmor restart
 

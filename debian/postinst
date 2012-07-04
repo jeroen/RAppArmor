@@ -5,7 +5,8 @@ set -e
 case "$1" in
   configure)
     :
-		service apparmor restart
+    	service apparmor restart
+    	aa-disable usr.bin.r
     ;;
   abort-upgrade | abort-remove | abort-deconfigure)
     :

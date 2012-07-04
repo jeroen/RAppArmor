@@ -17,6 +17,7 @@
 #' @param pid id of the target process.
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_as <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_as', hardlim, softlim, pid);
@@ -32,6 +33,7 @@ rlimit_as <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_core <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_core', hardlim, softlim, pid);
@@ -60,6 +62,7 @@ rlimit_core <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_cpu <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_cpu', hardlim, softlim, pid);
@@ -80,6 +83,7 @@ rlimit_cpu <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_data <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_data', hardlim, softlim, pid);
@@ -102,6 +106,7 @@ rlimit_data <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_fsize <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_fsize', hardlim, softlim, pid);
@@ -137,6 +142,7 @@ rlimit_fsize <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_memlock <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_memlock', hardlim, softlim, pid);
@@ -172,6 +178,7 @@ rlimit_memlock <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_msgqueue <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_msgqueue', hardlim, softlim, pid);
@@ -195,6 +202,7 @@ rlimit_msgqueue <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_nice <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_nice', hardlim, softlim, pid);
@@ -216,6 +224,7 @@ rlimit_nice <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_nofile <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_nofile', hardlim, softlim, pid);
@@ -237,6 +246,7 @@ rlimit_nofile <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_nproc <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_nproc', hardlim, softlim, pid);
@@ -256,6 +266,7 @@ rlimit_nproc <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_rtprio <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_rtprio', hardlim, softlim, pid);
@@ -291,6 +302,7 @@ rlimit_rtprio <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_rttime <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_rttime', hardlim, softlim, pid);
@@ -314,6 +326,7 @@ rlimit_rttime <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_sigpending <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_sigpending', hardlim, softlim, pid);
@@ -338,6 +351,7 @@ rlimit_sigpending <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param pid id of the target process
 #' @export
 #' @family rlimit
+#' @example examples/limits.R
 rlimit_stack <- function(hardlim, softlim=hardlim, pid = 0){
 	if(missing(hardlim)) hardlim <- NULL;
 	rlimit_wrapper('rlimit_stack', hardlim, softlim, pid);
