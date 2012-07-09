@@ -1,6 +1,6 @@
 LIBFILE=$(whereis libapparmor.so | grep -oh " [a-zA-Z0-9/]*libapparmor.so ")
 
-if [ -z "$LIBFILE" ]    # string1 has not been declared or initialized.
+if [ -z "$LIBFILE" ]
 then
   echo "libapparmor.so not found. Make sure libapparmor-dev is installed."
   exit 1
