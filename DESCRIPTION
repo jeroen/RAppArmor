@@ -1,7 +1,7 @@
 Package: RAppArmor
 Type: Package
 Title: RAppArmor
-Version: 0.4.0
+Version: 0.5.0
 Date: 2012-07-02
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
