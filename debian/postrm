@@ -8,7 +8,7 @@ case "$1" in
       rm -f /etc/apparmor.d/disable/usr.bin.r
       rm -f /etc/apparmor.d/usr.bin.r
       rm -Rf /etc/apparmor.d/rapparmor*
-      service apparmor restart
+      service apparmor restart || true
     ;;
   purge | disappear | upgrade | failed-upgrade | abort-upgrade)
     :

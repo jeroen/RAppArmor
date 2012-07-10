@@ -1,4 +1,3 @@
-#include <tunables/global>
 profile r-user {
 	#include <abstractions/base>
 	#include <abstractions/nameservice>
