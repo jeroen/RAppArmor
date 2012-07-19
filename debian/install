@@ -1,1 +1,1 @@
-inst/profiles/* /etc/apparmor.d/
+inst/profiles/debian/* /etc/apparmor.d/
