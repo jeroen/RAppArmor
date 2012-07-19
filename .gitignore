@@ -1,8 +1,9 @@
 *.o
 *.so
 .project
+.texclipse
 *~
-*/documen.synctex.gz
+*/document.synctex.gz
 */tmp
 */tmp/*
 
