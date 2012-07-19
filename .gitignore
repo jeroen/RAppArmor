@@ -2,3 +2,8 @@
 *.so
 .project
 *~
+*/documen.synctex.gz
+*/tmp
+*/tmp/*
+
+
