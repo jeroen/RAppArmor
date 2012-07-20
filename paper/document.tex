@@ -74,13 +74,14 @@ packages and a huge active community, it is fair to say that the project has
 matured to a production-ready computation tool. However, one thing that is
 somewhat surprising is that the way in which \proglang{R} is used, has hardly
 changed since its initial design. Even though internet access, public
-cloud computing, live and open data and scientific super computers have transformed
-the landscape of data analysis, \proglang{R} is still almost exclusively used
-as an end-user tool, running on the local machine of the researcher, operated
-through the interactive console. This seems somewhat of a missed opportunity.
-The demand for data analysis tools has never been higher, and many open source
-systems and software stacks could benefit greatly from the high quality
-analytical capabilities that \proglang{R} has to offer.
+cloud computing \citep{armbrust2010view}, live and open data and scientific
+super computers have transformed the landscape of data analysis, \proglang{R}
+is still almost exclusively used as an end-user tool, running on the local
+machine of the researcher, operated through the interactive console. This seems
+somewhat of a missed opportunity. The demand for data analysis tools has never
+been higher, and many open source systems and software stacks could benefit
+greatly from the high quality analytical capabilities that \proglang{R} has to
+offer.
 
 One reason developers are reluctant to build on R are concerns regarding
 security and management of shared hardware resources. Reliable software systems
@@ -639,11 +640,11 @@ using something along the lines of the following:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-tar xzvf RAppArmor_0.4.0.tar.gz
+tar xzvf RAppArmor_0.5.0.tar.gz
 cd RAppArmor/
 debuild -uc -us
 cd ..
-sudo dpkg -i r-cran-rapparmor_0.4.0-precise4_amd64.deb
+sudo dpkg -i r-cran-rapparmor_0.5.0-precise0_amd64.deb
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -671,7 +672,7 @@ e.g:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-sudo R CMD INSTALL RAppArmor_0.4.0.tar.gz
+sudo R CMD INSTALL RAppArmor_0.5.0.tar.gz
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -681,8 +682,8 @@ profiles need to be copied to the \texttt{apparmor.d} directory:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-sudo cp -Rf /usr/local/lib/R/site-library/RAppArmor/profiles/debian/*
-/etc/apparmor.d/
+cd /usr/local/lib/R/site-library/RAppArmor/
+sudo cp -Rf profiles/debian/* /etc/apparmor.d/
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -1268,31 +1269,48 @@ this permission.
 \section{Concluding remarks}
 
 In this paper the reader was introduced to some potential security issues
-related to the use of the \proglang{R} software. We hope to have raised some
+related to the use of the \proglang{R} software. We hope to have raised 
 awareness that security is an increasingly important concern for the
 \proglang{R} user, but also that addressing this issue could open doors to new
 applications of the software. The \pkg{RAppArmor} package was introduced as an
-example that demonstrates how some security issues could be addressed on
-\texttt{Linux} systems.
+example that demonstrates how some security issues could be addressed using
+facilities from the operating system, in this case \texttt{Linux}. This
+implementation provides a starting point for creating a sandbox in \proglang{R},
+but as was emphasized throughout the paper, it is still up to the administrator
+to actually design security policies that are appropriate for a certain
+application or system.
 
-Our implementation should prevent malicious activity, but this is just one way
-to do it. Another method that might be interesting is provided by 
-\texttt{Linux CGroups}. These could provide a finer degree of control of allocation and security using
-hierarchical process groups. A completely different direction might be offered
-by \texttt{renjin} \citep{renjin}, a JVM-based Interpreter for the R Language.
-If R code can be executed though the \texttt{JVM}, we might be able to use some
-tools from the \texttt{Java} community to solve the same problems.
+Our package uses the \texttt{AppArmor} software from the \texttt{Linux} kernel,
+which works for us, but this is just one way to approach the issue.
+\texttt{Linux} has two other mandatory access control systems that are worth
+exploring: \texttt{TOMOYO} and \texttt{SELinux}. Especially the latter is known
+to be very sophisticated, but also extremely hard to set up. Other more recent
+technology that might be interesting is provided by \texttt{Linux CGroups}.
+Using \texttt{CGroups}, control of allocation and security can be managed using
+hierarchical process groups. The upcoming \texttt{LXC} (Linux Containers) build
+on top of \texttt{CGroups} to provide virtual environments which have their own
+process and network space. A completely different direction is suggested by
+\texttt{renjin} \citep{renjin}, a \texttt{JVM}-based Interpreter for the R
+Language. If R code can be executed though the \texttt{JVM}, we might be able to
+use some tools from the \texttt{Java} community to address similar issues.
+Finally we curious to see what the \texttt{BSD} community has to offer in this
+area, as \texttt{BSD} distributions are known to have a lot of emphasis on
+security in the design of the operating system.
 
-However, no matter which tools are used, security profiling always comes down to
-balancing \emph{regular use} and \emph{malicious use}. This has a big human aspect to it, and is can be a
-learning process in itself. It might not be until you actually put an application in
-production that you start getting complains from users that their favorite
-package is not working, or that you find out that some users are abusing the
-system in a way that you could not have foreseen. 
+However, no matter which tools are used, security always comes down to the trade
+off between \emph{use} and \emph{abuse}. This has a major social aspect to it,
+and is a learning process in itself. A balance has to be found between providing
+enough freedom to use facilities as desired, yet avoid undesired activity. Apart
+from the technical parameters, a good balance also depends on factors like what
+exactly is considered undesired and how well you know your users. For example a
+job using 20 parallel cores might be considered as abusive by many
+administrators, but might actually be regular use for a MCMC simulation
+study on a supercomputer. Security policies are not unlike legal policies in the
+sense that creating a good one is an iterative process. It might not be until
+you actually put an application in production that you start getting complains
+from users that their favorite package is not working, or that you find out
+that some users are abusing the system in a way that was hard to foresee.
 
-Furthermore, security has to be implemented in a way that is practical. When the
-security policies disrupt the working flow or make it imposible to get anything
-done, most users will decide to not use any security at all. 
 
 
 \newpage
@@ -1532,12 +1550,12 @@ NULL
 >
 \end{CodeInput}
 \end{CodeChunk}
-However, this is actually a bit rough: because the kernel actually terminates
-the process after 5 seconds we have no control over what should happen, nor can
-we throw an informative error. A more elegant solution is to kill the process
-ourselves using the \texttt{timeout} argument from the \texttt{eval.secure}
-function. Because the actual job is processed in a fork, the parent process
-stays responsive, and is used to kill the child process.
+However, this is actually a bit of a harsh measure: because the kernel actually
+terminates the process after 5 seconds we have no control over what should
+happen, nor can we throw an informative error. Setting \texttt{RLIMIT\_CPU} is
+a bit like starting a job with a self-destruction timer. A more elegant
+solution is to terminate the process from \texttt{R} using the \texttt{timeout}
+argument from the \texttt{eval.secure} function. Because the actual job is processed in a fork, the parent process stays responsive, and is used to kill the child process.
 \begin{CodeChunk}
 \begin{CodeInput}
 > Sys.time()
@@ -1548,6 +1566,10 @@ Error: R call did not return within 5 seconds. Terminating process.
 [1] "2012-07-08 16:59:11 CEST"
 \end{CodeInput}
 \end{CodeChunk}
+
+One could even consider a Double Dutch solution by setting both \texttt{timeout}
+and a slightly higher value for \texttt{RLIMIT\_CPU}, so that if all else fails,
+the kernel will end up killing the process.
 
 \subsection{Fork Bomb}
 
