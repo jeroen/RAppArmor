@@ -63,3 +63,21 @@ Please read the latest draft of the [JSS article](https://github.com/jeroenooms/
 to understand how to use the software. 
 
 
+Using the software
+------------------
+
+Use the `eval.secure` function to dynamically evaluate a call under a certain AppArmor profile
+
+    eval.secure(list.files("/"), profile="r-user")
+    
+You can also add RLIMIT values:
+
+	A <- matrix(rnorm(1e7), 1e4);
+    B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 1000*1024*1024);
+    
+If R is running with superuser privileges, you can also evaluate a call as a certain user:
+
+    eval.secure(system('whoami', intern=TRUE), uid="jeroen")
+        
+
+    

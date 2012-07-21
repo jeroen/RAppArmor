@@ -1,4 +1,8 @@
-1) Install the latest version of Debian Wheezy
+AppArmor is currently only available in Debian "Testing". 
+For AppArmor to work on Debian, it needs to be version 2.7.103-4 or higher. 
+To activate AppArmor on Debian, run the following steps:
+
+1) Install the latest version of Debian Wheezy.
 
 2) Edit /boot/grub/menu.lst and add "apparmor=1 security=apparmor" to your boot line(s). E.g it will read:
 
@@ -11,4 +15,6 @@ initrd /initrd.img
 
 4) apt-get install apparmor apparmor-profiles
 
-5) copy profiles to /etc/apparmor.d/ and run: sudo service apparmor restart
+5) sudo service apparmor restart
+
+6) continue with regular install of R / RAppArmor
