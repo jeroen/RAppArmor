@@ -1,5 +1,5 @@
 @Manual{R-project,
-  title = {R: A Language and Environment for Statistical Computing},
+  title = {\R: A Language and Environment for Statistical Computing},
   author = {{R Development Core Team}},
   organization = {R Foundation for Statistical Computing},
   address = {Vienna, Austria},
@@ -9,7 +9,7 @@
 }
 
 @article{lang2000omegahat,
-  title={The omegahat environment: New possibilities for statistical computing},
+  title={The Omegahat Environment: New Possibilities for Statistical Computing},
   author={Lang, D.T.},
   journal={Journal of Computational and Graphical Statistics},
   pages={423--451},
@@ -17,59 +17,39 @@
   publisher={JSTOR}
 }
 
-@article{lang2007soaptype,
-  title={SOAPType-class 27},
-  author={Lang, D.T.},
-  journal={R documentation},
-  pages={27},
-  year={2007}
-}
-
-@misc{XMLRPC,
-  author = {Lang, D.T.},
-  year={2011},
-  title = {The XMLRPC package},
-  url = {http://www.omegahat.org/XMLRPC}
-}
 
 @misc{moreira2006rpy,
-  title={RPy (R from Python)},
+  title={\pkg{RPy}: \R from \Python},
   author={Moreira, W. and Warnes, G.R.},
   year={2006},
   url = {http://rpy.sourceforge.net/rpy/README},
-  publisher={Technical report}
 }
 
-@misc{lang2002calling,
-  title={Calling R from Java},
-  author={Lang, D.T.},
-  year={2002}
+@manual{gautier2008rpy2,
+  title={\pkg{rpy2}: A Aimple and Efficient Access to \R from \Python},
+  author={Gautier, L.},
+  year={2008},
+  url = {http://rpy.sourceforge.net/rpy2.html},
 }
 
-@article{urbanek2007rjava,
-  title={rJava: Low-level R to Java interface},
+@manual{urbanek2007rjava,
+  title={\pkg{rJava}: Low-level \R to \Java interface},
   author={Urbanek, S.},
   journal={R package version 0.5-1},
   url={http://www.rforge.net/rJava},
   year={2007}
 }
 
-@misc{RDCOM,
-  author = {Lang, D.T.},
-  year={2003},
-  Title = {The RDCOM Bundle},
-  url = {http://www.omegahat.org/RDCOMBundle}
-}
-
 @book{heiberger2009r,
-  title={R through Excel: A Spreadsheet Interface for Statistics, Data Analysis, and Graphics},
+  title={\R Through Excel: A Spreadsheet Interface for Statistics, Data Analysis, and Graphics},
   author={Heiberger, R.M. and Neuwirth, E.},
   year={2009},
-  publisher={Springer-Verlag New York Inc}
+  publisher={Springer-Verlag New York Inc},
+  url={http://www.springer.com/statistics/computational+statistics/book/978-1-4419-0051-7}
 }
 
 @Manual{RSXML,
-  title = {XML: Tools for parsing and generating XML within R and S-Plus.},
+  title = {\pkg{XML}: Tools for Parsing and Generating XML Within \R and \proglang{S-PLUS}.},
   author = {Duncan Temple Lang},
   year = {2010},
   note = {R package version 3.2-0},
@@ -77,21 +57,21 @@
 }
 
 @Manual{RJSONIO,
-  title = {RJSONIO: Serialize R objects to JSON, JavaScript Object Notation},
+  title = {\pkg{RJSONIO}: Serialize \R Objects to JSON, JavaScript Object Notation},
   author = {Duncan Temple Lang},
-  note = {R package version 0.95-0},
-  year = {2011}
+  note = {R package version 0.98-0},
+  year = {2012}
 }
 
 @article{lang2007r,
-  title={R as a Web Client--the RCurl package},
+  title={\R as a Web Client -- the \pkg{RCurl} package},
   author={Lang, D.T.},
   journal={Journal of Statistical Software, http://www. jstatsoft. org},
   year={2007}
 }
 
 @article{eddelbuettel2011rcpp,
-  title={Rcpp: Seamless R and C++ integration},
+  title={\pkg{Rcpp}: Seamless \R and \Cpp Integration},
   author={Eddelbuettel, D. and Fran{\c{c}}ois, R.},
   journal={Journal of Statistical Software},
   volume={40},
@@ -102,7 +82,7 @@
 }
 
   @Manual{RInside,
-    title = {RInside: C++ classes to embed R in C++ applications},
+    title = {\pkg{RInside}: \Cpp Classes to Embed \R in \Cpp Applications},
     author = {Dirk Eddelbuettel and Romain Francois},
     year = {2011},
     note = {R package version 0.2.4},
@@ -110,7 +90,7 @@
   }
 
   @Manual{JRI,
-    title = {JRI - Java/R Interface},
+    title = {\pkg{JRI} - \Java - \R Interface},
     author = {Simon Urbanek},
     year = {2011},
     note = {JRI is now part of rJava},
@@ -118,7 +98,7 @@
   }
 
   @Manual{littler,
-    title = {littler: a scripting front-end for GNU R},
+    title = {\pkg{littler}: A Scripting Front-end for GNU \R},
     author = {Jeffrey Horner and Dirk Eddelbuettel},
     year = {2011},
     note = {littler version 0.1.5},
@@ -126,14 +106,14 @@
   }
 
   @Manual{rapache,
-	title = {rApache: Web application development with R and Apache.},
+	title = {\pkg{rApache}: Web Application Development with \R and Apache.},
 	author = {Jeffrey Horner},
 	year = {2011},
 	url = {http://www.rapache.net/},
 }
 
   @Manual{Rserve,
-    title = {Rserve: Binary R server},
+    title = {\pkg{Rserve}: Binary \R server},
     author = {Simon Urbanek},
     year = {2011},
     note = {R package version 0.6-5},
@@ -141,23 +121,26 @@
   }
 
   @Manual{JGR,
-    title = {JGR: JGR - Java Gui for R},
+    title = {\pkg{JGR}: A \Java Gui for \R},
     author = {Markus Helbig and Simon Urbanek and Ian Fellows},
     year = {2011},
     note = {R package version 1.7-7},
     url = {http://CRAN.R-project.org/package=JGR},
   }
-
-  @Manual{Deducer,
-    title = {Deducer: Deducer},
-    author = {Ian Fellows},
-    year = {2011},
-    note = {R package version 0.4-4},
-    url = {http://CRAN.R-project.org/package=Deducer},
-  }
+  
+@article{Deducer,
+  author =	"Ian Fellows",
+  title =	"\pkg{Deducer}: A Data Analysis GUI for \R",
+  journal =	"Journal of Statistical Software",
+  year = 2012,
+  volume =	"49",
+  number =	"8",
+  pages =	"1--15",
+  URL =  	"http://www.jstatsoft.org/v49/i08",
+}  
 
   @article{van2009stage,
-  title={Stage line diagram: An age-conditional reference diagram for tracking development},
+  title={Stage Line Diagram: An Age-conditional Reference Diagram for Tracking Development},
   author={van Buuren, S. and Ooms, J.C.L.},
   journal={Statistics in medicine},
   volume={28},
@@ -168,7 +151,7 @@
 }
 
 @Manual{yeroon,
-title = {yeroon.net/ggplot2: A web interface for the R package ggplot2},
+title = {ggplot web application: A Web Interface for the \R Package ggplot2},
 author = {Ooms, J.C.L.},
 year = {2010},
 note = {Version 0.2},
@@ -176,14 +159,14 @@ url = {http://rweb.stat.ucla.edu/ggplot2},
 }
 
 @Manual{stockplot,
-title = {stockplot: a web interface for plotting historical stock values.},
+title = {Stockplot web application: A Web Interface for Plotting Historical Stock Values.},
 author = {Ooms, J.C.L.},
 year = {2009},
 url = {http://rweb.stat.ucla.edu/stockplot},
 }
 
 @manual{yeroonlme4,
-title = {yeroon.net/lme4: A web interface for the R package lme4},
+title = {lme4 web application: A Web Interface for the \R Package \pkg{lme4}},
 author = {Ooms, J.C.L.},
 year = {2010},
 url = {http://rweb.stat.ucla.edu/lme4}
@@ -191,15 +174,15 @@ url = {http://rweb.stat.ucla.edu/lme4}
 
 @book{ggplot2,
 author = {Hadley Wickham},
-title = {ggplot2: elegant graphics for data analysis},
-publisher = {Springer New York},
+title = {\pkg{ggplot2}: Elegant Graphics for Data Analysis},
+publisher = {Springer-Verlag New York},
 year = {2009},
 isbn = {978-0-387-98140-6},
 url = {http://had.co.nz/ggplot2/book},
 }
 
 @Manual{lme4,
-  title = {lme4: Linear mixed-effects models using S4 classes},
+  title = {\pkg{lme4}: Linear Mixed-Effects Models Using S4 Classes},
   author = {Douglas Bates and Martin Maechler and Ben Bolker},
   year = {2011},
   note = {R package version 0.999375-39},
@@ -207,24 +190,36 @@ url = {http://had.co.nz/ggplot2/book},
 }
 
 @article{dahl2008rinruby,
-  title={Rinruby: Accessing the r interpreter from pure ruby},
-  author={Dahl, D.B. and Crawford, S.},
-  journal={Journal of Statistical Software},
-  volume={29},
-  number={4},
-  pages={1--18},
-  year={2008}
+  author =	"David B. Dahl and Scott Crawford",
+  title =	"\pkg{RinRuby}: Accessing the \R Interpreter from Pure Ruby",
+  journal =	"Journal of Statistical Software",
+  volume =	"29",
+  number =	"4",
+  pages =	"1--18",
+  day =  	"20",
+  month =	"1",
+  year = 	"2009",
+  CODEN =	"JSSOBK",
+  ISSN = 	"1548-7660",
+  bibdate =	"2008-11-26",
+  URL =  	"http://www.jstatsoft.org/v29/i04",
+  accepted =	"2008-11-26",
+  acknowledgement = "",
+  keywords =	"",
+  submitted =	"2008-07-03",
 }
 
+
+
 @manual{covingtonred,
-  title={The Red-R Framework for Integrated Discovery},
+  title={The \pkg{Red-R} Framework for Integrated Discovery},
   author={Covington, K.R. and Parikh, A.},
   year={2011},
   url={http://www.red-r.org/system/files/RedRMain.pdf}
 }
 
 @article{king2007introduction,
-  title={An introduction to the Dataverse Network as an infrastructure for data sharing},
+  title={An Introduction to the Dataverse Network as an Infrastructure for Data Sharing},
   author={King, G.},
   journal={Sociological Methods \& Research},
   volume={36},
@@ -235,14 +230,14 @@ url = {http://had.co.nz/ggplot2/book},
 }
 
 @manual{StatET,
-  title={StatET: Eclipse based IDE for R},
+  title={\pkg{StatET}: Eclipse based IDE for \R},
   author={Stephan Wahlbrink},
   year={2009},
   url={http://www.walware.de/goto/statet}
 }
 
 @article{leisch2002sweave,
-  title={Sweave. Dynamic generation of statistical reports using literate data analysis.},
+  title={\pkg{Sweave}: Dynamic Generation of Statistical Reports Using Literate Data Analysis.},
   author={Leisch, F.},
   year={2002},
   journal={Proceedings of CompStat 2002},
@@ -250,14 +245,14 @@ url = {http://had.co.nz/ggplot2/book},
 }
 
 @book{knuth1992literate,
-  title={Literate programming},
+  title={Literate Programming},
   author={Knuth, D.E. and Stanford University. Computer Science Dept},
   year={1992},
   publisher={Citeseer}
 }
 
 @Manual{roxygen,
-  title = {roxygen: Literate Programming in R},
+  title = {\pkg{roxygen}: Literate Programming in \R},
   author = {Peter Danenberg and Manuel Eugster},
   year = {2009},
   note = {R package version 0.1-2},
@@ -280,36 +275,37 @@ url = {http://had.co.nz/ggplot2/book},
    note = "[Online; accessed 21-October-2011]"
  }
 
-@article{torvalds2010git,
-  title={GIT-fast version control system},
+@manual{torvalds2010git,
+  title={GIT: Fast Version Control System},
   author={Torvalds, L. and Hamano, JC},
-  journal={URL http://git-scm. com},
+  url={http://git-scm.com},
   year={2010}
 }
 
+
 @manual{opencpu,
-  title={OpenCPU: Producing and Reproducing Results},
+  title={\pkg{OpenCPU}: Producing and Reproducing Results},
   author={Jeroen Ooms},
   year={2011},
   url={http://www.opencpu.org}
 }
 
 @phdthesis{fielding2000architectural,
-  title={Architectural styles and the design of network-based software architectures},
+  title={Architectural Styles and the Design of Network-based Software Architectures},
   author={Fielding, R.T.},
   year={2000},
   school={Citeseer}
 }
 
 @article{fielding1999rfc,
-  title={RFC 2616: Hypertext transfer protocol--HTTP/1.1},
+  title={RFC 2616: Hypertext Transfer Protocol--HTTP/1.1},
   author={Fielding, R. and Gettys, J. and Mogul, J. and Frystyk, H. and Masinter, L. and Leach, P. and Berners-Lee, T.},
   journal={The Internet Society},
   year={1999}
 }
 
 @article{menasce2003web,
-  title={Web server software architectures},
+  title={Web Server Software Architectures},
   author={Menasce, D.A.},
   journal={Internet Computing, IEEE},
   volume={7},
@@ -320,7 +316,7 @@ url = {http://had.co.nz/ggplot2/book},
 }
 
 @Manual{multicore,
-    title = {multicore: Parallel processing of R code on machines with multiple cores or CPUs},
+    title = {\pkg{multicore}: Parallel Processing of \R Code on Machines with Multiple Cores or CPUs},
     author = {Simon Urbanek},
     year = {2011},
     note = {R package version 0.1-7},
@@ -328,7 +324,7 @@ url = {http://had.co.nz/ggplot2/book},
   }
 
 @article{bauer2006paranoid,
-  title={Paranoid penguin: an introduction to Novell AppArmor},
+  title={Paranoid Penguin: an Introduction to Novell \AppArmor},
   author={Bauer, M.},
   journal={Linux Journal},
   volume={2006},
@@ -371,25 +367,37 @@ url = {http://had.co.nz/ggplot2/book},
 
 @manual{batesusing,
   year = { 2004 },
-  title={Using R on Debian: Past, Present, and Future},
-  author={Bates, D. and Eddelbuettel, D}
+  title={Using \R on Debian: Past, Present, and Future},
+  author={Bates, D. and Eddelbuettel, D},
+  note = {UseR 2004},
+  url = {http://www.r-project.org/conferences/useR-2004/abstracts/Eddelbuettel+Bates+Gebhardt.pdf}
 }
 
 @manual{sandboxR,
-  title={sandboxR: filtering "malicious" calls},
+  title={The \pkg{sandboxR} package: Filtering "malicious" Calls in \R},
   author={Gergely Daroczi},
   year={2012},
   url= {https://github.com/daroczig/sandboxR}
 }
 
 @article{banfield1999rweb,
-  title={Rweb: Web-based statistical analysis},
-  author={Banfield, J.},
-  journal={Journal of Statistical Software},
-  volume={4},
-  number={i01},
-  year={1999},
-  publisher={American Statistical Association}
+  author =	"Jeff Banfield",
+  title =	"\pkg{Rweb}: Web-based Statistical Analysis",
+  journal =	"Journal of Statistical Software",
+  volume =	"4",
+  number =	"1",
+  pages =	"1--15",
+  day =  	"12",
+  month =	"3",
+  year = 	"1999",
+  CODEN =	"JSSOBK",
+  ISSN = 	"1548-7660",
+  bibdate =	"1999-03-12",
+  URL =  	"http://www.jstatsoft.org/v04/i01",
+  accepted =	"1999-03-12",
+  acknowledgement = "",
+  keywords =	"",
+  submitted =	"1998-03-24",
 }
 
 @manual{linuxrlimit,
@@ -407,93 +415,95 @@ url = {http://had.co.nz/ggplot2/book},
 }
 
 @manual{cloudstat,
-  url={http://www.cloudstat.org/},
+  title={Cloudstat: Analyze Big Data With \R in the Cloud},
+  url={http://www.cloudstat.org},
   year={2012},
-  author={Cloudstat}
+  author={Kai Chew}
 }
 
 @article{apparmor,
-  title={Paranoid penguin: an introduction to Novell AppArmor},
+  title={Paranoid Penguin: an Introduction to Novell \AppArmor},
   author={Bauer, M.},
   journal={Linux Journal},
   volume={2006},
   number={148},
   pages={13},
   year={2006},
-  publisher={Specialized Systems Consultants, Inc.}
+  publisher={Specialized Systems Consultants, Inc.},
+  url={www.linuxjournal.com/article/9036}
 }
 
 @article{selinux,
-  title={Implementing SELinux as a Linux security module},
+  title={Implementing SELinux as a \Linux Security Module},
   author={Smalley, S. and Vance, C. and Salamon, W.},
   journal={NAI Labs Report},
   volume={1},
   pages={43},
-  year={2001}
+  year={2001},
+  url={http://www.nsa.gov/research/_files/publications/implementing_selinux.pdf}
 }
 
 @inproceedings{tomoyo,
-  title={Task oriented management obviates your onus on Linux},
+  title={Task Oriented Management Obviates Your Onus on \Linux},
   author={Harada, T. and Horie, T. and Tanaka, K.},
   booktitle={Linux Conference},
+  url={http://sourceforge.jp/projects/tomoyo/document/lc2004-en.pdf},
   year={2004}
 }
 
 @manual{renjin,
-  title={Renjin: JVM-based Interpreter for R},
+  title={\pkg{Renjin}: JVM-based Interpreter for \R},
   url={http://code.google.com/p/renjin/},
   author={Alex Bertram},
   year={2012},
 }
 
 @inproceedings{dabbish2012social,
-  title={Social coding in GitHub: transparency and collaboration in an open software repository},
+  title={Social Coding in GitHub: Transparency and Collaboration in an Open Software Repository},
   author={Dabbish, L. and Stuart, C. and Tsay, J. and Herbsleb, J.},
   booktitle={Proceedings of the ACM 2012 conference on Computer Supported Cooperative Work},
   pages={1277--1286},
   year={2012},
-  organization={ACM}
-}
-
-@misc{torvalds2006git,
-  title={GIT-fast version control system},
-  author={Torvalds, L. and Hamano, JC},
-  year={2006}
+  organization={ACM},
+  url={http://dl.acm.org/citation.cfm?id=2145396}
 }
 
 @article{mirkovic2004taxonomy,
-  title={A taxonomy of DDoS attack and DDoS defense mechanisms},
+  title={A taxonomy of DDoS Attack and DDoS Defense Mechanisms},
   author={Mirkovic, J. and Reiher, P.},
   journal={ACM SIGCOMM Computer Communication Review},
   volume={34},
   number={2},
   pages={39--53},
   year={2004},
-  publisher={ACM}
+  publisher={ACM},
+  url={www.eecis.udel.edu/~sunshine/publications/ccr.pdf}
 }
 
 @inproceedings{abu2006multifaceted,
-  title={A multifaceted approach to understanding the botnet phenomenon},
+  title={A Multifaceted Approach to Understanding the Botnet Phenomenon},
   author={Abu Rajab, M. and Zarfoss, J. and Monrose, F. and Terzis, A.},
   booktitle={Proceedings of the 6th ACM SIGCOMM conference on Internet measurement},
   pages={41--52},
   year={2006},
-  organization={ACM}
+  organization={ACM},
+  url={conferences.sigcomm.org/imc/2006/papers/p4-rajab.pdf}
 }
 
 @article{armbrust2010view,
-  title={A view of cloud computing},
+  title={A View of Cloud Computing},
   author={Armbrust, M. and others},
   journal={Communications of the ACM},
   volume={53},
   number={4},
   pages={50--58},
   year={2010},
+  url ={http://dl.acm.org/citation.cfm?id=1721672},
   publisher={ACM}
 }
 
 @unpublished{ripleycran,
-  title= {The R Development Process},
+  title= {The \R Development Process},
   author = {Brian Ripley},
   year = {2011},
   note= {The R User Conference 2011},
@@ -502,7 +512,7 @@ url = {http://had.co.nz/ggplot2/book},
 
 @misc{ioccc,
   author = {IOCCC},
-  title = {The International Obfuscated C Code Contest},
+  title = {The International Obfuscated \C Code Contest},
   year = {2012},
   url = {http://www.ioccc.org}
 }

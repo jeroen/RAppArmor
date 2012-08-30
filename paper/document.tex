@@ -11,6 +11,8 @@
 \newcommand{\C}{\textsf{C}\xspace}
 \newcommand{\Cpp}{\textsf{C++}\xspace}
 \newcommand{\Fortran}{\textsf{Fortran}\xspace}
+\newcommand{\Python}{\textsf{Python}\xspace}
+\newcommand{\Ruby}{\textsf{Ruby}\xspace}
 
 \newcommand{\AppArmor}{\texttt{AppArmor}\xspace}
 \newcommand{\RAppArmor}{\pkg{RAppArmor}\xspace}
@@ -23,14 +25,14 @@
 \author{Jeroen Ooms\\UCLA Dept. of Statistics 
      %   \And Second Author\\Plus Affiliation
 }
-\title{The \RAppArmor package: Enforcing Security Policies in R using Dynamic
+\title{The \RAppArmor Package: Enforcing Security Policies in \R Using Dynamic
 Sandboxing on Linux}
 
 %% for pretty printing and a nice hypersummary also set:
 \Plainauthor{Jeroen Ooms} %% comma-separated
-\Plaintitle{The RAppArmor package: Enforcing Security Policies in R using Dynamic
+\Plaintitle{The RAppArmor Package: Enforcing Security Policies in R using Dynamic
 Sandboxing on Linux} %% without formatting
-\Shorttitle{The RAppArmor package} %% a short title (if
+\Shorttitle{The RAppArmor Package} %% a short title (if
 % necessary)
 
 
@@ -40,8 +42,8 @@ Sandboxing on Linux} %% without formatting
   scientific super computers, there is a great potential for making
   \R available through public or shared resources. This allows
   researchers to efficiently run code requiring a lot of cycles and memory,
-  or embed \R functionality into e.g. systems or web services.
-  However some important security concerns needs to be addressed before this
+  or embed \R functionality into e.g.\ systems or web services.
+  However some important security concerns need to be addressed before this
   can be put in production. The prime use case in the design of \R has
   always been single statistician running \R on the local machine
   through the interactive console. As a result there are practically no restrictions on
@@ -79,7 +81,8 @@ Sandboxing on Linux} %% without formatting
 
 \begin{document}
 
-\section{Security in R: Introduction and Motivation}
+\section[Security in R: Introduction and motivation]{Security in \R:
+Introduction and motivation}
 
 The \R project for statistical computing and graphics
 \citep{R-project} is currently one of the primary tool-kits for scientific
@@ -115,7 +118,7 @@ computing, which makes building on \R quite different from embedding
 other software or languages. We suspect that this might explain the limited
 adoption of \R as a computational back-end engine so far.
 
-\subsection{Security when using Contributed Code}
+\subsection{Security when using contributed code}
 
 
 Building systems on \R has been the main motivation for this research.
@@ -127,7 +130,7 @@ basis, dozens of packages and package updates submitted to the
 These packages contain code written in \R, \C, \Fortran, \Cpp, \Java, etc. It
 is practically impossible for the CRAN maintainers to do a thorough audit of the
 full code that is submitted, every time. Some packages even contain pre-compiled \Java code for which the source is not included at all. Furthermore, \R packages
-are not signed with a private key as is the case for e.g. packages in most
+are not signed with a private key as is the case for e.g.\ packages in most
 \Linux distributions, which makes it hard to verify the identity of the author. As
 CRAN packages are automatically build and installed on hundreds, maybe thousands
 of machines around the world, they form an interesting target for abuse.
@@ -135,7 +138,7 @@ Hence there could be a real risk of packages containing malicious code making
 their way unnoticed into CRAN. Risks are even greater for packages 
 distributed through channels without any form of code review, for example via
 email or through the increasingly popular Github repositories
-\citep{torvalds2006git,dabbish2012social}.
+\citep{torvalds2010git,dabbish2012social}.
 
 In summary, it is not overly paranoid of the \R user to be a bit
 cautious when installing and running contributed code downloaded from the
@@ -147,7 +150,7 @@ interfere with other activities on the machine. Making an effort to ensure
 \R is running safely with no unnecessary privileges can be reassuring 
 to both user and system administrator, and might one day prevent a lot of trouble.
 
-\subsection{Sandboxing the R environment}
+\subsection[Sandboxing the R environment]{Sandboxing the \R environment}
 
 
 This paper explores some of the potential problems, along with approaches and
@@ -180,7 +183,8 @@ different scenarios, and encourage those comfortable with other platforms or who
 use \R in different contexts to join the discussion and share their
 concerns, experiences and solutions.
 
-\section{Use-Cases and Concerns of Sandboxing R}
+\section[Use cases and concerns of sandboxing R]{Use cases and concerns of
+sandboxing \R}
 
 Let us start by taking a step back and put this research in perspective by
 describing some concrete use cases where security in \R could be a
@@ -189,13 +193,13 @@ be able to run \R code in a sandbox. The use cases are ordered by
 complexity and require increasingly advanced sandboxing methods.
 
 
-\subsubsection{Running Untrusted Code}
+\subsubsection{Running untrusted code}
 
 Suppose we found an \R package in our email or on the internet that
 looks interesting, but we are not quite sure who the author is, and if the
 package does not contain any malicious code. The package is too large for us to
 inspect all of the code manually, and furthermore it contains a library in a
-foreign language (e.g. \Cpp, \Fortran) for which we lack
+foreign language (e.g.\ \Cpp, \Fortran) for which we lack
 the knowledge and insight to really understand the code. Moreover, the
 programming style (or lack thereof) of the author can make it difficult to
 assess what exactly is going on \citep{ioccc}. Nevertheless we would like to
@@ -213,7 +217,7 @@ sandbox is flexible and unobtrusive enough to not interrupt our daily workflow,
 we could even make a habit out of using it every time we use contributed code
 (which for most users is every day).
 
-\subsubsection{Shared Resources}
+\subsubsection{Shared resources}
 
 Another use case could be a scenario where multiple users are sharing a single
 machine. For example, a system administrator at a university is managing a big
@@ -230,16 +234,16 @@ on the machine. Furthermore he wants to make sure that system resources are
 allocated in a fair way so that no single user can consume all memory or cpu on
 the system.
 
-\subsubsection{Embedded Systems and Services}
+\subsubsection{Embedded systems and services}
 
 There have been a number of efforts to facilitate integration of \R
 functionality into various 3rd party systems. Some examples of interfaces from
 popular general purpose languages are \texttt{RInside} \citep{RInside}, which
 embeds \R into \Cpp environments, and JRI/REngine \texttt{JRI} which
-embeds \R in \Java software. Similarly, rpy \citep{moreira2006rpy} provides a
-Python interface to R, and RinRuby is a Ruby library that integrates the
-\R interpreter in Ruby \citep{dahl2008rinruby}. Littler provides
-hash-bang (i.e. script starting with \texttt{\#!/some/path}) capability for
+embeds \R in \Java software \citep{JRI,urbanek2007rjava}. Similarly,
+\texttt{rpy} \citep{moreira2006rpy,gautier2008rpy2} provides a \Python interface to \R, and
+\texttt{RinRuby} is a \Ruby library that integrates the \R interpreter in Ruby
+\citep{dahl2008rinruby}. Littler provides hash-bang (i.e.\ script starting with \texttt{\#!/some/path}) capability for
 \R \citep{littler}. The Apache2 module RApache  (\texttt{mod\_R})
 \citep{rapache} makes it possible to run \R scripts from within the
 Apache2 web server. \cite{heiberger2009r} provide a series of tools to call
@@ -264,29 +268,29 @@ restrictions than the first two use cases. It encouraged us to explore more
 advanced methods than the conventional tools and has been the most central
 motivation of this research.
 
-\subsection{System Privileges and Hardware Resources}
+\subsection{System privileges and hardware resources}
 
 The use cases described above provide motivations and requirements for an
 \R sandbox. Two inter-related problems can be distinguished. The first
-one is preventing system abuse, i.e. use of the machine for malicious or
+one is preventing system abuse, i.e.\ use of the machine for malicious or
 undesired activities, or completely compromising the machine. The second
-problem is managing sharing of hardware resources, i.e. preventing excessive
+problem is managing sharing of hardware resources, i.e.\ preventing excessive
 use of resources by limiting the amount of memory, cpu, etc that a single user
 or process is allowed to consume.
 
-\subsubsection{System Abuse}
+\subsubsection{System abuse}
 
 The \R console gives the user direct access to the operating system
 and does not implement any privileges restrictions or access control policies to
 prevent malicious use. In fact, some of the basic functionality in \R actually
-assumes quite profound access to the system, e.g. read access to system files,
+assumes quite profound access to the system, e.g.\ read access to system files,
 or the privilege of running system shell commands. However, running 3rd
 party \R code without any restrictions can get us in serious
 trouble. For example, the code could call the \texttt{system()} function which
 provides an interface to the system shell. From here any system commands can be
 executed, which can potentially be harmful. But also innocent looking functions
 like \texttt{read.table} can be used to extract sensitive information from the
-system, e.g. \texttt{read.table("/etc/passwd")} will gives us a list of users
+system, e.g.\ \texttt{read.table("/etc/passwd")} will gives us a list of users
 on the system or \texttt{readLines("/var/log/syslog")} shows system log
 information.
 
@@ -320,7 +324,7 @@ universities or government institutions are frequently targeted with the goal
 of gathering confidential knowledge. This last aspect seems especially
 relevant, as \R is used frequently in these types of organizations.
 
-\subsubsection{Resource Restrictions}
+\subsubsection{Resource restrictions}
 
 The other category of problems is not so much related to deliberate abuse, and
 might even arise completely unintentionally. It involves problems requiring
@@ -332,7 +336,7 @@ and/or CPU, and does not finish executing unless manually terminated. When
 running \R on the local machine through the interactive console, the
 user will quickly recognize a function call that is not returning timely or is
 making the machine unresponsive. When this happens, we can easily interrupt the
-process prematurely by sending a \texttt{SIGINT}, i.e. pressing \texttt{CTRL+C}
+process prematurely by sending a \texttt{SIGINT}, i.e.\ pressing \texttt{CTRL+C}
 in \Linux or \texttt{ESC} in Windows. If this doesn't work we can open the task
 manager and tell the operating system to kill the process, and if worst comes
 to worst we can decide to reboot our machine.
@@ -355,9 +359,9 @@ login to the server and reset the application.
 
 This example is not an exception. The behavior of \R can sometimes be
 unpredictable, which is an aspect that is easily overlooked by
-(non-statistician) developers. When a system calls out to e.g. an \texttt{SQL}
+(non-statistician) developers. When a system calls out to e.g.\ an \texttt{SQL}
 or \texttt{PHP} script, the script usually runs without any problems and the
-time needed to process is proportional to the size of the data, i.e. the number
+time needed to process is proportional to the size of the data, i.e.\ the number
 of returned records returned by \texttt{SQL}. However, in an \R
 script, many things can go wrong, even though the script itself is perfectly
 fine. Algorithms might not converge, data might be rank-deficient, or missing
@@ -368,7 +372,8 @@ completion of \R jobs, especially if the data is dynamic. When using
 aspect into account and have a way of dealing with this that does not require
 manual intervention.
 
-\section{Different Approaches of Confining R}
+\section[Different approaches of confining R]{Different approaches of confining
+\R}
 
 The current section introduces some approaches of securing and sandboxing
 \R, with their advantages and limitations. They are reviewed in the
@@ -381,12 +386,12 @@ operating system. This will lead us to the introduction of the \RAppArmor
 package, which is described in the section \ref{rapparmor}.
 
 
-\subsection{Application Level Security: Predefined Services}
+\subsection{Application level security: Predefined services}
 
 The most common approach to preventing system abuse is simply to only allow a
 limited set of predefined services, that have been deployed by a trusted
 developer and cannot be abused. This is generally the case in websites
-containing dynamic content though e.g. \proglang{CGI} or \proglang{PHP} scripts.
+containing dynamic content though e.g.\ \proglang{CGI} or \proglang{PHP} scripts.
 Running arbitrary code is explicitly prevented and any possibility to do so
 anyway is considered a security hole. For example, we might want to expose the
 following function as a web service:
@@ -441,7 +446,7 @@ the entire system by specifying an overly complex model. Hence, restricting to
 predefined services does not quite guarantee smooth and timely completion of
 \R jobs.
 
-\subsubsection{Code Injection}
+\subsubsection{Code injection}
 
 Finally, there is still the risk of \emph{code injection}. Because \R
 is a very dynamic language, evaluations sometimes happen at unexpected places.
@@ -488,7 +493,7 @@ myarg <- gsub("[^a-zA-Z0-9]", "", myarg)
 \end{CodeChunk}
 
 
-\subsection{Sanitizing and Blacklisting}
+\subsection{Sanitizing and blacklisting}
 
 A less restrictive approach is to allow users to push custom \R code, but
 inspect the code before evaluating it to make sure it does not contain malicious calls.
@@ -542,7 +547,7 @@ Moreover, even when sanitizing of the code is successful, this method does not
 limit the use of hardware resources in any way. Hence, additional methods are
 still required to prevent excessive use of resources in a public environment.
 
-\subsection{Sandboxing on the Level of the Opering System}
+\subsection{Sandboxing on the level of the operating system}
 
 One can argue that managing resources and privileges is something that
 is outside the domain of the \R software, and is better left to the
@@ -584,7 +589,7 @@ behave somewhat OS specific, abstracting away technicalities and providing
 similar functionality on different systems. But for now we limit ourselves to
 systems based on the \Linux kernel.
 
-\section{The RAppArmor package}
+\section[The RAppArmor package]{The \RAppArmor package}
 \label{rapparmor}
 
 The current section describes some security concepts and how an \R process can
@@ -626,7 +631,7 @@ to be avoided for security reasons. This new approach to scientific computing li
 at the core of the \texttt{OpenCPU} framework \citep{opencpu}, which exposes a
 public HTTP API to run and share \R code on a central server.
 
-\subsection{AppArmor Profiles}
+\subsection[AppArmor profiles]{\AppArmor profiles}
 
 The security policies are defined in profiles are the core of the \AppArmor
 software. A profile is a set of rules in a text file using \AppArmor syntax. The
@@ -634,7 +639,7 @@ software. A profile is a set of rules in a text file using \AppArmor syntax. The
 on the appropriate process. A brief introduction to the \AppArmor syntax is
 given in section \ref{syntax}. The appendix of this paper contains some example
 profiles that ship with the \RAppArmor package to get the user started.
-When the package is installed through the Debian/Ubuntu installer (e.g. using
+When the package is installed through the Debian/Ubuntu installer (e.g.\ using
 \texttt{apt-get}) the profiles are automatically copied to
 \texttt{/etc/apparmor.d/rapparmor.d/}. Because profiles define file access
 permissions based the location of files and directories on the file system,
@@ -662,7 +667,7 @@ administrator to determine which security policy is appropriate for a certain
 system and context. The example profiles are a good starting point, but should
 be fine-tuned for specific applications.
 
-\subsection{Automatic Installation}
+\subsection{Automatic installation}
 
 The \RAppArmor package consists of an \R package and a number of security
 profiles. On Ubuntu \Linux the package is most easily installed using the binary
@@ -694,7 +699,7 @@ The \texttt{r-cran-rapparmor} Ubuntu package will automatically install required
 dependencies and security profiles. The security profiles are installed in
 \texttt{/etc/appamor.d/rapparmor.d/}.
 
-\subsection{Manual Installation}
+\subsection{Manual installation}
 
 To install the package on a distribution for which no installation package is
 available, one might need a manual installation. To build the package manually
@@ -745,7 +750,7 @@ This should complete the installation. To verify if everything is working, start
 
 \begin{CodeChunk}
 \begin{CodeInput}
-library(RAppArmor)
+library("RAppArmor")
 aa_change_profile("r-base")
 \end{CodeInput}
 \end{CodeChunk}
@@ -753,7 +758,7 @@ aa_change_profile("r-base")
 If the code runs without any errors, the package has successfully been
 installed.
 
-\subsection{Linux Security Methods}
+\subsection[Linux security methods]{\Linux security methods}
 
 The \RAppArmor package interfaces to a number of \Linux system calls that
 are useful in the context of security and sandboxing. The advantage of calling
@@ -786,7 +791,7 @@ of the one-way security restrictions can be applied, and evaluations that
 happen inside \texttt{eval.secure} won't have any side effects on the main
 process.
 
-\subsection{Setting User and Group ID}
+\subsection{Setting user and group ID}
 
 One of the most basic security methods is running a process as a specific user.
 Especially within a system where the main process has superuser privileges
@@ -800,22 +805,22 @@ by their name, or as integer values as defined in the \texttt{/etc/passwd} file.
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> library(RAppArmor)
-> system('whoami')
+R> library("RAppArmor")
+R> system('whoami')
 root
-> getuid()
+R> getuid()
 [1] 0
-> getgid()
+R> getgid()
 [1] 0
-> setgid(1000)
+R> setgid(1000)
 Setting gid...
-> setuid(1000)
+R> setuid(1000)
 Setting uid...
-> getgid()
+R> getgid()
 [1] 1000
-> getuid()
+R> getuid()
 [1] 1000
-> system('whoami')
+R> system('whoami')
 jeroen
 \end{CodeInput}
 \end{CodeChunk}
@@ -826,11 +831,11 @@ of the secure evaluation.
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> eval(system('whoami', intern=TRUE))
+R> eval(system('whoami', intern=TRUE))
 [1] "root"
-> eval.secure(system('whoami', intern=TRUE), uid=1000)
+R> eval.secure(system('whoami', intern=TRUE), uid=1000)
 [1] "jeroen"
-> eval(system('whoami', intern=TRUE))
+R> eval(system('whoami', intern=TRUE))
 [1] "root"
 \end{CodeInput}
 \end{CodeChunk}
@@ -853,12 +858,12 @@ lower the priority of the process. In \RAppArmor the \texttt{getpriority} and
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> getpriority()
+R> getpriority()
 [1] 0
-> setpriority(10)
+R> setpriority(10)
 Setting priority...
 [1] 10
-> setpriority(5)
+R> setpriority(5)
 Setting priority...
 Error in setpriority(5) : Failed to set priority to: 5.
 Error: 13
@@ -870,10 +875,10 @@ with a certain priority without affecting the priority of the main \R session:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> eval.secure(system('nice', intern=T), priority=10)
+R> eval.secure(system('nice', intern=T), priority=10)
 Setting priority...
 [1] "10"
-> getpriority()
+R> getpriority()
 [1] 0
 \end{CodeInput}
 \end{CodeChunk}
@@ -933,22 +938,22 @@ arguments, it prints the current limits to \texttt{STDOUT}. \citep{linuxrlimit}
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> library(RAppArmor)
-> rlimit_as()
+R> library("RAppArmor")
+R> rlimit_as()
 RLIMIT_AS:
 Current limits: soft=-1; hard=-1
-> A <- rnorm(1e7)
-> rm(A)
-> gc()
+R> A <- rnorm(1e7)
+R> rm(A)
+R> gc()
          used (Mb) gc trigger (Mb) max used (Mb)
 Ncells 185467  5.0     407500 10.9   350000  9.4
 Vcells 176590  1.4    8743611 66.8 10182143 77.7
 >
-> rlimit_as(10*1024*1024)
+R> rlimit_as(10*1024*1024)
 RLIMIT_AS:
 Previous limits: soft=-1; hard=-1
 Current limits: soft=10485760; hard=10485760
-> A <- rnorm(1e7)
+R> A <- rnorm(1e7)
 Error: cannot allocate vector of size 76.3 Mb
 \end{CodeInput}
 \end{CodeChunk}
@@ -960,18 +965,18 @@ any side effects on the main process:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> library(RAppArmor)
-> A <- eval.secure(rnorm(1e7), RLIMIT_AS = 10*1024*1024);
+R> library("RAppArmor")
+R> A <- eval.secure(rnorm(1e7), RLIMIT_AS = 10*1024*1024);
 Error: cannot allocate vector of size 76.3 Mb
-> A <- rnorm(1e7)
+R> A <- rnorm(1e7)
 \end{CodeInput}
 \end{CodeChunk}
 
 The exact meaning of the different limits can be found in the \texttt{RAppArmor}
-package documentation (e.g. \texttt{?rlimit\_as}) or in the documentation of
+package documentation (e.g.\ \texttt{?rlimit\_as}) or in the documentation of
 the distribution \citep{ubunturlimit}.
 
-\subsection{Activating AppArmor profiles}
+\subsection[Activating AppArmor profiles]{Activating \AppArmor profiles}
 
 The \RAppArmor package implements three calls to the \Linux kernel related
 to applying \AppArmor profiles: \texttt{aa\_change\_profile},
@@ -1002,10 +1007,10 @@ to get started with \RAppArmor and test some security policies. However it
 should be emphasized that using \emph{hats} instead of \emph{profiles} is also a
 security risk and should be avoided in production settings. It is important to
 realize that if the code running in the sandbox can find a way of discovering
-the value of the \texttt{magic\_token} (e.g. from memory, command history or log
+the value of the \texttt{magic\_token} (e.g.\ from memory, command history or log
 files), it will be able to escape from the sandbox. Hence
 \texttt{aa\_change\_hat} should only be used to prevent general purpose
-malicious activity, e.g. when testing a new \R package. When hosting services
+malicious activity, e.g.\ when testing a new \R package. When hosting services
 or otherwise exposing an environment that might be specifically targeted,
 hackers could write code that attempts to find the magic token and revert the
 hat. Therefore it is recommended to only use \texttt{aa\_change\_profile} or
@@ -1023,38 +1028,38 @@ The \emph{testhat} denies access to both \texttt{/etc/passwd} and
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> library(RAppArmor);
-> result <- read.table("/etc/passwd")
+R> library("RAppArmor");
+R> result <- read.table("/etc/passwd")
 
-> aa_change_profile("testprofile")
+R> aa_change_profile("testprofile")
 Switching profiles...
-> passwd <- read.table("/etc/passwd")
+R> passwd <- read.table("/etc/passwd")
 Error in file(file, "rt") : cannot open the connection
 In addition: Warning message:
 In file(file, "rt") : cannot open file '/etc/passwd': Permission denied
-> group <- read.table("/etc/group")
+R> group <- read.table("/etc/group")
 
-> mytoken <- 13337;
-> aa_change_hat("testhat", mytoken);
+R> mytoken <- 13337;
+R> aa_change_hat("testhat", mytoken);
 Setting Apparmor Hat...
 
-> passwd <- read.table("/etc/passwd")
+R> passwd <- read.table("/etc/passwd")
 Error in file(file, "rt") : cannot open the connection
 In addition: Warning message:
 In file(file, "rt") : cannot open file '/etc/passwd': Permission denied
-> group <- read.table("/etc/group")
+R> group <- read.table("/etc/group")
 Error in file(file, "rt") : cannot open the connection
 In addition: Warning message:
 In file(file, "rt") : cannot open file '/etc/group': Permission denied
 
-> aa_revert_hat(mytoken);
+R> aa_revert_hat(mytoken);
 Reverting AppArmor Hat...
 
-> passwd <- read.table("/etc/passwd")
+R> passwd <- read.table("/etc/passwd")
 Error in file(file, "rt") : cannot open the connection
 In addition: Warning message:
 In file(file, "rt") : cannot open file '/etc/passwd': Permission denied
-> group <- read.table("/etc/group")
+R> group <- read.table("/etc/group")
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -1065,15 +1070,15 @@ single call, witout any side effects. The \texttt{eval.secure} function uses
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> out <- eval(read.table("/etc/passwd"))
-> nrow(out)
+R> out <- eval(read.table("/etc/passwd"))
+R> nrow(out)
 [1] 68
-> out <- eval.secure(read.table("/etc/passwd"), profile="testprofile")
+R> out <- eval.secure(read.table("/etc/passwd"), profile="testprofile")
 Error in file(file, "rt") : cannot open the connection
 \end{CodeInput}
 \end{CodeChunk}
 
-\subsection{AppArmor without RAppArmor}
+\subsection[AppArmor without RAppArmor]{\AppArmor without \RAppArmor}
 \label{usr.bin.r}
 
 The \RAppArmor package allows us to dynamically load an \AppArmor profile
@@ -1120,7 +1125,7 @@ we cannot use the \texttt{eval.secure} or \texttt{aa\_change\_profile} functions
 from the \RAppArmor package to change into a different profile, as this
 would be a security hole.
 
-\subsection{Learning using Complain Mode}
+\subsection{Learning using complain mode}
 
 Finally \AppArmor allows the administrator to set profiles in \emph{complain
 mode}, which is also called \emph{learning mode}.
@@ -1140,7 +1145,7 @@ suggesting new rules to be added to the profile. This is a nice way of
 debugging a profile, and figuring out which permissions exactly a program
 requires to do its work.
 
-\section[Profiling R]{Profiling \R: Defining Security Policies}
+\section[Profiling R: Defining security policies]{Profiling \R: Defining security policies}
 
 The ``hard'' part of the problem is actually profiling \R. With
 profiling we mean defining the policies: which files and directories should
@@ -1159,10 +1164,11 @@ certain privileges. We might even want to execute some parts of a process with
 tighter privileges than other parts. For example, within a web service, the
 service process should be able to write to system log files, which should not be
 writable by custom code from a user. We might also want to be more strict on
-some users than others, e.g. allow all users to run code, but only allow
+some users than others, e.g.\ allow all users to run code, but only allow
 privileged users to install a new package.
 
-\subsection{AppArmor Policy Configuration Syntax}
+\subsection[AppArmor policy configuration syntax]{\AppArmor policy configuration
+syntax}
 \label{syntax}
 
 The \emph{AppArmor policy configuration syntax} is used to define the access
@@ -1170,7 +1176,7 @@ control profiles in \AppArmor. Other mandatory access control systems
 might implement different functionality and require other syntax, but in the end
 they address mostly similar issues. \AppArmor is quite advanced and provides
 access control over many of the features and resources found in the \Linux
-kernel, e.g. file access, network rules, \Linux capability modes, mounting
+kernel, e.g.\ file access, network rules, \Linux capability modes, mounting
 rules, etc. All of these can be useful, but most of them are very application
 specific. Furthermore, the policy syntax has some meta functionality that
 allows for defining \emph{subprofiles}, and \emph{includes}.
@@ -1185,13 +1191,13 @@ defines a number of access modes on files and directories, of which the most
 important ones are:
 
 \begin{itemize}
-  \item[] \texttt{r} -- read file or directory
-  \item[] \texttt{w} -- write to file or directory
-  \item[] \texttt{m} -- load file in memory
-  \item[] \texttt{px} -- discrete profile execute of executable file
-  \item[] \texttt{cs} -- transition to subprofile for executing a file
-  \item[] \texttt{ix} -- inherit current profile for executing a file
-  \item[] \texttt{ux} -- unconfined execution of executable file (dangerous)
+  \item[] \texttt{r} -- read file or directory.
+  \item[] \texttt{w} -- write to file or directory.
+  \item[] \texttt{m} -- load file in memory.
+  \item[] \texttt{px} -- discrete profile execute of executable file.
+  \item[] \texttt{cs} -- transition to subprofile for executing a file.
+  \item[] \texttt{ix} -- inherit current profile for executing a file.
+  \item[] \texttt{ux} -- unconfined execution of executable file (dangerous).
 \end{itemize}
 
 Using this syntax we will present some example profiles for \R. Because the
@@ -1206,39 +1212,37 @@ are part of \texttt{r-base} and other packages that are used by \R, e.g.
 
 Appendix \ref{r-base} contains a profile that we have named \texttt{r-base}.
 It is a fairly basic and general profile. It grants read/load access to all
-files in common shared system directories, e.g. \texttt{/usr/lib,
+files in common shared system directories, e.g.\ \texttt{/usr/lib,
 /usr/local/lib, /usr/share}, etc. However, the default profile only grants
-write access inside \texttt{/tmp}, not in e.g. the home directory. Furhermore,
+write access inside \texttt{/tmp}, not in e.g.\ the home directory. Furthermore,
 \R is allowed to execute any of the shell commands in \texttt{/bin}
 or \texttt{/usr/bin} for which the program will inherit the restrictions.
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> library(RAppArmor)
-> aa_change_profile("r-base")
+R> library("RAppArmor")
+R> aa_change_profile("r-base")
 Switching profiles...
 
-> #These operations will be denied:
-> list.files("/")
+R> list.files("/")
 character(0)
-> list.files("~")
+R> list.files("~")
 character(0)
-> file.create("~/test")
+R> file.create("~/test")
 [1] FALSE
-> list.files("/tmp")
+R> list.files("/tmp")
 character(0)
-> install.packages("wordcloud")
+R> install.packages("wordcloud")
 Error opening file for reading: Permission denied
 
-> #These operations are permitted:
-> library(ggplot2);
-> setwd(tempdir())
-> pdf("test.pdf")
-> qplot(speed, dist, data=cars);
-> dev.off()
+R> library("ggplot2");
+R> setwd(tempdir())
+R> pdf("test.pdf")
+R> qplot(speed, dist, data=cars);
+R> dev.off()
 null device
           1
-> list.files()
+R> list.files()
 [1] "downloaded_packages"
 [2] "libloc_107_669a3e12.rds"
 [3] "libloc_118_46fd5f8e.rds"
@@ -1246,7 +1250,7 @@ null device
 [5] "pdf6d1117f7d683"
 [6] "repos_http%3a%2f%2fcran.stat.ucla.edu%2fsrc%2fcontrib.rds"
 [7] "test.pdf"
-> file.remove("test.pdf")
+R> file.remove("test.pdf")
 [1] TRUE
 \end{CodeInput}
 \end{CodeChunk}
@@ -1296,7 +1300,7 @@ in \texttt{/tmp}:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> eval.secure(install.packages("wordcloud", lib=tempdir()), profile="r-compile");
+R> eval.secure(install.packages("wordcloud", lib=tempdir()), profile="r-compile");
 trying URL 'http://cran.stat.ucla.edu/src/contrib/wordcloud_2.0.tar.gz'
 downloaded 36 Kb
 
@@ -1330,7 +1334,7 @@ designed to be a nice balance between security and freedom for day to day use of
 R. It extends the \texttt{r-compile} profile with some additional privileges
 with respect to the user's home directory. The variable \texttt{@\{HOME\}} is
 defined in the \texttt{tunables/global} include and matches the location of the
-user's home directory, i.e. \texttt{/home/jeroen} for a user named ``jeroen''.
+user's home directory, i.e.\ \texttt{/home/jeroen} for a user named ``jeroen''.
 The profile assumes that there is a directory named \R directly inside
 the home directory (e.g \texttt{/home/jeroen/R}), to which \R can read and
 write. Furthermore, \R can load and execute files in the directories
@@ -1427,7 +1431,7 @@ feedback through the \texttt{apparmor} mailing lists.
 
 
 \begin{appendices}
-\section{Example Profiles}
+\section{Example profiles}
 
 This appendix prints some of the example profiles that ship with the
 \RAppArmor package. To load them in \AppArmor, simply copy-paste the
@@ -1526,12 +1530,12 @@ profile r-user {
 
 
 
-\section{Security Unit Tests}
+\section{Security unit tests}
 
 This appendix prints a number of unit tests that contain malicious code and
 which should be prevented by any sandboxing tool.
 
-\subsection{Access System Files}
+\subsection{Access system files}
 
 Usually \R has no business in the system logs, and these are not included in the
 profiles. The codechunk below attempts to read the syslog file.
@@ -1546,13 +1550,13 @@ When executing this with a r-user profile, access to this file is denied,
 resulting in an error:
 \begin{CodeChunk}
 \begin{CodeInput}
-> eval.secure(readSyslog(), profile='r-user')
+R> eval.secure(readSyslog(), profile='r-user')
 Switching profiles...
 Error in file(con, "r") : cannot open the connection
 \end{CodeInput}
 \end{CodeChunk}
 
-\subsection{Access User Files}
+\subsection{Access user files}
 \label{creditcard}
 
 Access to system files can to some extend by prevented by running processes as
@@ -1584,7 +1588,7 @@ easy to post them to some server on the internet. For this reason the
 \texttt{{\raise.17ex\hbox{$\scriptstyle\sim$}}/R} directory.
 
 
-\subsection{Limit Memory}
+\subsection{Limiting memory}
 
 When a system or service is used by many users at the same time, it is important
 that we cap the memory that can be used by a single process. The following
@@ -1602,18 +1606,18 @@ When \R tries to allocate more memory than allowed, it will throw an error:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-> A <- eval.secure(memtest(), RLIMIT_AS = 1000*1024*1024)
+R> A <- eval.secure(memtest(), RLIMIT_AS = 1000*1024*1024)
 RLIMIT_AS:
 Previous limits: soft=-1; hard=-1
 Current limits: soft=1048576000; hard=1048576000
-> rm(A)
-> gc()
+R> rm(A)
+R> gc()
          used (Mb) gc trigger  (Mb) max used  (Mb)
 Ncells 193074 10.4     407500  21.8   350000  18.7
 Vcells 299822  2.3   17248096 131.6 20301001 154.9
 
 
-> A <- eval.secure(memtest(), RLIMIT_AS = 100*1024*1024)
+R> A <- eval.secure(memtest(), RLIMIT_AS = 100*1024*1024)
 RLIMIT_AS:
 Previous limits: soft=-1; hard=-1
 Current limits: soft=104857600; hard=104857600
@@ -1622,7 +1626,7 @@ Error: cannot allocate vector of size 76.3 Mb
 \end{CodeChunk}
 
 
-\subsection{Limit CPU Time}
+\subsection{Limiting CPU time}
 \label{cputime}
 
 Suppose we are hosting a web service and we want to kill jobs that do not finish
@@ -1645,15 +1649,15 @@ one is setting the \texttt{RLIMIT\_CPU} value. This will cause the kernel to
 kill the process after 5 seconds:
 \begin{CodeChunk}
 \begin{CodeInput}
-> Sys.time()
+R> Sys.time()
 [1] "2012-08-02 11:26:21 CEST"
-> x <- eval.secure(cputest(), RLIMIT_CPU=5)
+R> x <- eval.secure(cputest(), RLIMIT_CPU=5)
 RLIMIT_CPU:
 Previous limits: soft=-1; hard=-1
 Current limits: soft=5; hard=5
-> Sys.time()
+R> Sys.time()
 [1] "2012-08-02 11:26:26 CEST"
-> print(x)
+R> print(x)
 NULL
 \end{CodeInput}
 \end{CodeChunk}
@@ -1665,11 +1669,11 @@ solution is to terminate the process from \R using the \texttt{timeout}
 argument from the \texttt{eval.secure} function. Because the actual job is processed in a fork, the parent process stays responsive, and is used to kill the child process.
 \begin{CodeChunk}
 \begin{CodeInput}
-> Sys.time()
+R> Sys.time()
 [1] "2012-07-08 16:59:06 CEST"
-> eval.secure(cputest(), timeout=5)
+R> eval.secure(cputest(), timeout=5)
 Error: R call did not return within 5 seconds. Terminating process.
-> Sys.time()
+R> Sys.time()
 [1] "2012-07-08 16:59:11 CEST"
 \end{CodeInput}
 \end{CodeChunk}
@@ -1678,7 +1682,7 @@ One could even consider a Double Dutch solution by setting both \texttt{timeout}
 and a slightly higher value for \texttt{RLIMIT\_CPU}, so that if all else fails,
 the kernel will end up killing the process and its children.
 
-\subsection{Fork Bomb}
+\subsection{Fork bomb}
 
 A fork bomb is a process that spawns many child processes, which often results
 in the operating system getting stuck to a point where it has to be rebooted.
@@ -1697,7 +1701,7 @@ unresponsive. However, inside our sandbox we can use the \texttt{RLIMIT\_NPROC}
 to limit the number of processes the user is allowed to own:
 \begin{CodeChunk}
 \begin{CodeInput}
-> eval.secure(forkbomb(), RLIMIT_NPROC = 20)
+R> eval.secure(forkbomb(), RLIMIT_NPROC = 20)
 RLIMIT_NPROC:
 Previous limits: soft=39048; hard=39048
 Current limits: soft=20; hard=20
