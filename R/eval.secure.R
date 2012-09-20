@@ -103,7 +103,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FAL
 		
 		#set the process group
 		#to do: somehow prevent forks from modifying process group.
-		setpgid(verbose=verbose);
+		setpgid(verbose=FALSE);
 						
 		if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS, verbose=verbose);
 		if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE, verbose=verbose);

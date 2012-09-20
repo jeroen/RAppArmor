@@ -16,7 +16,9 @@
 }
 \description{
   CPU time limit in seconds. When the process reaches the
-  soft limit, it is sent a SIGXCPU signal.
+  soft limit, it is sent a SIGXCPU signal. Note that CPU
+  time is not the same as elapsed time. If a process is
+  waiting/idle, it will not hit the CPU time limit.
 }
 \details{
   CPU time limit in seconds. When the process reaches the

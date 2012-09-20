@@ -4,17 +4,19 @@ To activate AppArmor on Debian, run the following steps:
 
 1) Install the latest version of Debian Wheezy.
 
-2) Edit /boot/grub/menu.lst and add "apparmor=1 security=apparmor" to your boot line(s). E.g it will read:
+2) sudo apt-get update && sudo apt-get upgrade
+
+3) Edit /boot/grub/menu.lst and add "apparmor=1 security=apparmor" to your boot line(s). E.g it will read:
 
 title Default
 root (hd0)
 kernel /vmlinuz root=/dev/xvda1 ro apparmor=1 security=apparmor
 initrd /initrd.img
 
-3) Reboot
+4) Reboot
 
-4) apt-get install apparmor apparmor-profiles
+5) apt-get install apparmor apparmor-profiles
 
-5) sudo service apparmor restart
+6) sudo service apparmor restart
 
-6) continue with regular install of R / RAppArmor
+7) continue with regular install of R / RAppArmor

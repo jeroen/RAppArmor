@@ -1,11 +1,4 @@
-#' Get/Set pgid
-#' 
-#' Wrappers for getpgid and setpgid in Linux. The setpgid function sets
-#' the current process group id to equal the pid value.
-#' 
-#' @param verbose print some C output (TRUE/FALSE)
-#' @aliases getpgid
-#' @export setpgid getpgid
+### These are used internally to set the process group id.
 
 setpgid <- function(verbose=TRUE){
 	verbose <- as.integer(verbose);
