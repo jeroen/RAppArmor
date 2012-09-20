@@ -99,6 +99,11 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FAL
 	
 	#Do everything in a fork
 	myfork <- mcparallel({
+		
+		#set the process group
+		#to do: somehow prevent forks from modifying process group.
+		setpgid();
+						
 		if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS);
 		if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE);
 		if(!missing(RLIMIT_CPU)) rlimit_cpu(RLIMIT_CPU);
@@ -124,8 +129,13 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FAL
 	myresult <- mccollect(myfork, wait=FALSE, timeout=timeout);
 	
 	#kill fork
-	pskill(myfork$pid, SIGKILL);
-	mccollect();
+	kill(myfork$pid, SIGKILL);
+	
+	#kill process group
+	kill(-1* myfork$pid, SIGKILL);
+	
+	#clean up
+	mccollect(wait=FALSE);
 	
 	#timeout?
 	if(is.null(myresult)){
@@ -134,7 +144,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FAL
 	
 	output <- myresult[[1]]
 	#forks don't throw errors themselves
-	if(class(output) == "try-error"){
+	if(is(output, "try-error")){
 		#stop(myresult, call.=FALSE);
 		stop(attr(output, "condition"));
 	}	

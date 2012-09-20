@@ -1,10 +1,27 @@
 Package: RAppArmor
 Type: Package
 Title: RAppArmor
-Version: 0.5.0
-Date: 2012-07-28
+Version: 0.6.0
+Date: 2012-09-18
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
 Description: R interfaces to Linux and AppArmor security stuff.
 License: AGPL
-Imports: parallel, tools
+Imports:
+    parallel,
+    tools
+Collate:
+    'aa_change_hat.R'
+    'aa_change_profile.R'
+    'aa_find_mountpoint.R'
+    'aa_getcon.R'
+    'aa_is_enabled.R'
+    'eval.secure.R'
+    'onLoad.R'
+    'rlimits.R'
+    'setgid.R'
+    'setpgid.R'
+    'setpriority.R'
+    'setuid.R'
+    'userinfo.R'
+    'kill.R'
