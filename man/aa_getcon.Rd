@@ -2,7 +2,10 @@
 \alias{aa_getcon}
 \title{Get AppArmor confinement context for the current task}
 \usage{
-  aa_getcon()
+  aa_getcon(verbose = TRUE)
+}
+\arguments{
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \value{
   list with con and mode.

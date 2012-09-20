@@ -2,7 +2,8 @@
 \alias{rlimit_nofile}
 \title{Limit file descriptors}
 \usage{
-  rlimit_nofile(hardlim, softlim = hardlim, pid = 0)
+  rlimit_nofile(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{number greater than 1}
@@ -10,6 +11,8 @@
   \item{softlim}{number greater than 1}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Specifies a value one greater than the maximum file

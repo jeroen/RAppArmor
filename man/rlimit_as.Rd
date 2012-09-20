@@ -2,7 +2,8 @@
 \alias{rlimit_as}
 \title{Limit virtual memory}
 \usage{
-  rlimit_as(hardlim, softlim = hardlim, pid = 0)
+  rlimit_as(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{softlim}{soft limit in bytes.}
@@ -10,6 +11,8 @@
   \item{hardlim}{hard limit in bytes}
 
   \item{pid}{id of the target process.}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Limits the maximum size of the process's virtual memory

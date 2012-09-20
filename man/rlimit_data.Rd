@@ -2,7 +2,8 @@
 \alias{rlimit_data}
 \title{Limit data segment}
 \usage{
-  rlimit_data(hardlim, softlim = hardlim, pid = 0)
+  rlimit_data(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{size}
@@ -10,6 +11,8 @@
   \item{softlim}{size}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   The maximum size of the process's data segment

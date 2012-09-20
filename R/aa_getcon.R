@@ -9,14 +9,16 @@
 #' if a profile is being enforced that is overly strict, this 
 #' confinement lookup will fail as well :-)
 #' 
+#' @param verbose print some C output (TRUE/FALSE)
 #' @return list with con and mode.
 #' 
 #' @export
-aa_getcon <- function(){
+aa_getcon <- function(verbose=TRUE){
+	verbose <- as.integer(verbose)
 	ret <- integer(1);
 	con <- character(1);
 	mod <- character(1);
-	output <- .C('aa_getcon_wrapper', ret, con, mod, PACKAGE="RAppArmor")
+	output <- .C('aa_getcon_wrapper', ret, con, mod, verbose, PACKAGE="RAppArmor")
 	if(output[[1]] == 0){
 		return(list(con=output[[2]], mode=output[[3]]));
 	} else {

@@ -2,7 +2,8 @@
 \alias{rlimit_nproc}
 \title{Limit number of processes}
 \usage{
-  rlimit_nproc(hardlim, softlim = hardlim, pid = 0)
+  rlimit_nproc(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{number greater than 1}
@@ -10,6 +11,8 @@
   \item{softlim}{number greater than 1}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   The maximum number of processes (or, more precisely on

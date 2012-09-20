@@ -2,7 +2,8 @@
 \alias{rlimit_msgqueue}
 \title{Limit user message queue}
 \usage{
-  rlimit_msgqueue(hardlim, softlim = hardlim, pid = 0)
+  rlimit_msgqueue(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{number of bytes}
@@ -10,6 +11,8 @@
   \item{softlim}{number of bytes}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Specifies the limit on the number of bytes that can be

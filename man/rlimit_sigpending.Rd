@@ -2,7 +2,8 @@
 \alias{rlimit_sigpending}
 \title{Limit signal queue}
 \usage{
-  rlimit_sigpending(hardlim, softlim = hardlim, pid = 0)
+  rlimit_sigpending(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{number of signals}
@@ -10,6 +11,8 @@
   \item{softlim}{number of signals}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Specifies the limit on the number of signals that may be

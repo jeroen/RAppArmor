@@ -29,6 +29,7 @@
 #' @param profile AppArmor security profile. Has to be preloaded by Linux.
 #' @param timeout timeout in seconds.
 #' @param silent suppress output on stdout. See mcparallel().
+#' @param verbose print some C output (TRUE/FALSE)
 #' @param RLIMIT_AS hard limit passed on to rlimit_as()
 #' @param RLIMIT_CORE hard limit passed on to rlimit_core()
 #' @param RLIMIT_CPU hard limit passed on to rlimit_cpu()
@@ -82,7 +83,7 @@
 #'eval.secure(forkbomb(), RLIMIT_NPROC=10)
 #'}
 
-eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FALSE,
+eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FALSE, verbose=TRUE,
 	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
 	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, 
 	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){	
@@ -102,26 +103,26 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FAL
 		
 		#set the process group
 		#to do: somehow prevent forks from modifying process group.
-		setpgid();
+		setpgid(verbose=verbose);
 						
-		if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS);
-		if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE);
-		if(!missing(RLIMIT_CPU)) rlimit_cpu(RLIMIT_CPU);
-		if(!missing(RLIMIT_DATA)) rlimit_data(RLIMIT_DATA);
-		if(!missing(RLIMIT_FSIZE)) rlimit_fsize(RLIMIT_FSIZE);
-		if(!missing(RLIMIT_MEMLOCK)) rlimit_memlock(RLIMIT_MEMLOCK);
-		if(!missing(RLIMIT_MSGQUEUE)) rlimit_msgqueue(RLIMIT_MSGQUEUE);
-		if(!missing(RLIMIT_NICE)) rlimit_nice(RLIMIT_NICE);
-		if(!missing(RLIMIT_NOFILE)) rlimit_nofile(RLIMIT_NOFILE);
-		if(!missing(RLIMIT_NPROC)) rlimit_nproc(RLIMIT_NPROC);
-		if(!missing(RLIMIT_RTPRIO)) rlimit_rtprio(RLIMIT_RTPRIO);
-		if(!missing(RLIMIT_RTTIME)) rlimit_rttime(RLIMIT_RTTIME);
-		if(!missing(RLIMIT_SIGPENDING)) rlimit_sigpending(RLIMIT_SIGPENDING);
-		if(!missing(RLIMIT_STACK)) rlimit_stack(RLIMIT_STACK);
-		if(!missing(priority)) setpriority(priority);
-		if(!missing(gid)) setgid(gid);
-		if(!missing(uid)) setuid(uid);		
-		if(!missing(profile)) aa_change_profile(profile);
+		if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS, verbose=verbose);
+		if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE, verbose=verbose);
+		if(!missing(RLIMIT_CPU)) rlimit_cpu(RLIMIT_CPU, verbose=verbose);
+		if(!missing(RLIMIT_DATA)) rlimit_data(RLIMIT_DATA, verbose=verbose);
+		if(!missing(RLIMIT_FSIZE)) rlimit_fsize(RLIMIT_FSIZE, verbose=verbose);
+		if(!missing(RLIMIT_MEMLOCK)) rlimit_memlock(RLIMIT_MEMLOCK, verbose=verbose);
+		if(!missing(RLIMIT_MSGQUEUE)) rlimit_msgqueue(RLIMIT_MSGQUEUE, verbose=verbose);
+		if(!missing(RLIMIT_NICE)) rlimit_nice(RLIMIT_NICE, verbose=verbose);
+		if(!missing(RLIMIT_NOFILE)) rlimit_nofile(RLIMIT_NOFILE, verbose=verbose);
+		if(!missing(RLIMIT_NPROC)) rlimit_nproc(RLIMIT_NPROC, verbose=verbose);
+		if(!missing(RLIMIT_RTPRIO)) rlimit_rtprio(RLIMIT_RTPRIO, verbose=verbose);
+		if(!missing(RLIMIT_RTTIME)) rlimit_rttime(RLIMIT_RTTIME, verbose=verbose);
+		if(!missing(RLIMIT_SIGPENDING)) rlimit_sigpending(RLIMIT_SIGPENDING, verbose=verbose);
+		if(!missing(RLIMIT_STACK)) rlimit_stack(RLIMIT_STACK, verbose=verbose);
+		if(!missing(priority)) setpriority(priority, verbose=verbose);
+		if(!missing(gid)) setgid(gid, verbose=verbose);
+		if(!missing(uid)) setuid(uid, verbose=verbose);		
+		if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
 		eval(...);
 	}, silent=silent);	
 
@@ -129,10 +130,10 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FAL
 	myresult <- mccollect(myfork, wait=FALSE, timeout=timeout);
 	
 	#kill fork
-	kill(myfork$pid, SIGKILL);
+	kill(myfork$pid, SIGKILL, verbose=verbose);
 	
-	#kill process group
-	kill(-1* myfork$pid, SIGKILL);
+	#kill process group, in case of forks, etc.
+	kill(-1* myfork$pid, SIGKILL, verbose=FALSE);
 	
 	#clean up
 	mccollect(wait=FALSE);

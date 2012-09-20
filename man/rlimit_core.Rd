@@ -2,7 +2,8 @@
 \alias{rlimit_core}
 \title{Limit core size.}
 \usage{
-  rlimit_core(hardlim, softlim = hardlim, pid = 0)
+  rlimit_core(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{size}
@@ -10,6 +11,8 @@
   \item{softlim}{size}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Maximum size of core file. When 0 no core dump files are

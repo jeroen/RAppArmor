@@ -10,6 +10,7 @@ result <- read.table("/etc/passwd")
 
 #Try to change to a profile
 aa_change_profile("testprofile")
+aa_getcon();
 
 #test profile
 result <- try(read.table("/etc/passwd"), silent=TRUE) #deny
@@ -19,6 +20,7 @@ result <- read.table("/etc/group") #allow
 #Change to a hat within the profile, and change back
 mytoken <- 13337;
 aa_change_hat("testhat", mytoken);
+aa_getcon();
 
 #test hat
 result <- try(read.table("/etc/passwd"), silent=TRUE) #deny
@@ -28,6 +30,7 @@ if(class(result) != "try-error") stop("Hat should have denied access to /etc/gro
 
 #revert back
 aa_revert_hat(mytoken);
+aa_getcon();
 
 #test without hat
 result <- try(read.table("/etc/passwd"), silent=TRUE) #deny

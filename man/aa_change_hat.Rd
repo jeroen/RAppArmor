@@ -3,7 +3,7 @@
 \alias{aa_revert_hat}
 \title{Change hats}
 \usage{
-  aa_change_hat(subprofile, magic_token)
+  aa_change_hat(subprofile, magic_token, verbose = TRUE)
 }
 \arguments{
   \item{subprofile}{character string identifying the
@@ -11,6 +11,8 @@
 
   \item{magic_token}{a number that will be the key to
   revert out of the hat.}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   A hat is a subprofile which name starts with a '^'. The

@@ -2,7 +2,8 @@
 \alias{rlimit_nice}
 \title{Limit nice value.}
 \usage{
-  rlimit_nice(hardlim, softlim = hardlim, pid = 0)
+  rlimit_nice(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{priority value between -20 and 20}
@@ -10,6 +11,8 @@
   \item{softlim}{priority value between -20 and 20}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Specifies a ceiling to which the process's nice value can

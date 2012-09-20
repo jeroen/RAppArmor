@@ -2,7 +2,8 @@
 \alias{rlimit_fsize}
 \title{Limit size of files}
 \usage{
-  rlimit_fsize(hardlim, softlim = hardlim, pid = 0)
+  rlimit_fsize(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{size}
@@ -10,6 +11,8 @@
   \item{softlim}{size}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   The maximum size of files that the process may create.

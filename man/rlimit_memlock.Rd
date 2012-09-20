@@ -2,7 +2,8 @@
 \alias{rlimit_memlock}
 \title{Limit locked memory}
 \usage{
-  rlimit_memlock(hardlim, softlim = hardlim, pid = 0)
+  rlimit_memlock(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{number of bytes}
@@ -10,6 +11,8 @@
   \item{softlim}{number of bytes}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   The maximum number of bytes of memory that may be locked

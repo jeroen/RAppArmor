@@ -3,11 +3,12 @@
 \title{Secure evaluation}
 \usage{
   eval.secure(..., uid, gid, priority, profile,
-    timeout = 60, silent = FALSE, RLIMIT_AS, RLIMIT_CORE,
-    RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
-    RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE,
-    RLIMIT_NPROC, RLIMIT_RTPRIO, RLIMIT_RTTIME,
-    RLIMIT_SIGPENDING, RLIMIT_STACK)
+    timeout = 60, silent = FALSE, verbose = TRUE,
+    RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA,
+    RLIMIT_FSIZE, RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE,
+    RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC,
+    RLIMIT_RTPRIO, RLIMIT_RTTIME, RLIMIT_SIGPENDING,
+    RLIMIT_STACK)
 }
 \arguments{
   \item{...}{arguments passed on to eval(...)}
@@ -25,6 +26,8 @@
 
   \item{silent}{suppress output on stdout. See
   mcparallel().}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 
   \item{RLIMIT_AS}{hard limit passed on to rlimit_as()}
 

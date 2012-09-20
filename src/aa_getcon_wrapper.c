@@ -5,9 +5,12 @@
 #include <sys/apparmor.h>
 #include <errno.h>
 #include <string.h>
+#include <stdbool.h>
 
-void aa_getcon_wrapper (int *ret, char **con, char **mode) {
-  Rprintf("Getting task confinement information...\n"); 
+void aa_getcon_wrapper (int *ret, char **con, char **mode, bool *verbose) {
+  if(*verbose){
+	  Rprintf("Getting task confinement information...\n");
+  }
   
   // just to test if assignment works
   *mode = "";

@@ -2,7 +2,8 @@
 \alias{rlimit_stack}
 \title{Limit stack size.}
 \usage{
-  rlimit_stack(hardlim, softlim = hardlim, pid = 0)
+  rlimit_stack(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{size of stack}
@@ -10,6 +11,8 @@
   \item{softlim}{size of stack}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Limits the maximum size of the process stack, in bytes.

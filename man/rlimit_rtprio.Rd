@@ -2,7 +2,8 @@
 \alias{rlimit_rtprio}
 \title{Limit real-time priority}
 \usage{
-  rlimit_rtprio(hardlim, softlim = hardlim, pid = 0)
+  rlimit_rtprio(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{real time priority value}
@@ -10,6 +11,8 @@
   \item{softlim}{real time priority value}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Specifies a ceiling on the real-time priority

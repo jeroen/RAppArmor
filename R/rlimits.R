@@ -15,12 +15,13 @@
 #' @param softlim soft limit in bytes.
 #' @param hardlim hard limit in bytes
 #' @param pid id of the target process.
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_as <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_as <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_as', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_as', hardlim, softlim, pid, verbose);
 }
 
 #' Limit core size.
@@ -31,12 +32,13 @@ rlimit_as <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim size
 #' @param softlim size
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_core <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_core <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_core', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_core', hardlim, softlim, pid, verbose);
 }
 
 #' Limit CPU time
@@ -60,12 +62,13 @@ rlimit_core <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim cpu time in seconds
 #' @param softlim cpu time in seconds
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_cpu <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_cpu <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_cpu', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_cpu', hardlim, softlim, pid, verbose);
 }
 
 #' Limit data segment
@@ -81,12 +84,13 @@ rlimit_cpu <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim size
 #' @param softlim size
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_data <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_data <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_data', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_data', hardlim, softlim, pid, verbose);
 }
 
 
@@ -104,12 +108,13 @@ rlimit_data <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim size
 #' @param softlim size
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_fsize <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_fsize <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_fsize', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_fsize', hardlim, softlim, pid, verbose);
 }
 
 
@@ -140,12 +145,13 @@ rlimit_fsize <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim number of bytes
 #' @param softlim number of bytes
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_memlock <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_memlock <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_memlock', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_memlock', hardlim, softlim, pid, verbose);
 }
 
 
@@ -176,12 +182,13 @@ rlimit_memlock <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim number of bytes
 #' @param softlim number of bytes
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_msgqueue <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_msgqueue <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_msgqueue', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_msgqueue', hardlim, softlim, pid, verbose);
 }
 
 #' Limit nice value.
@@ -200,12 +207,13 @@ rlimit_msgqueue <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim priority value between -20 and 20
 #' @param softlim priority value between -20 and 20
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_nice <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_nice <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_nice', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_nice', hardlim, softlim, pid, verbose);
 }
 
 #' Limit file descriptors
@@ -222,12 +230,13 @@ rlimit_nice <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim number greater than 1
 #' @param softlim number greater than 1
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_nofile <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_nofile <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_nofile', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_nofile', hardlim, softlim, pid, verbose);
 }
 
 
@@ -244,12 +253,13 @@ rlimit_nofile <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim number greater than 1
 #' @param softlim number greater than 1
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_nproc <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_nproc <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_nproc', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_nproc', hardlim, softlim, pid, verbose);
 }
 
 
@@ -264,12 +274,13 @@ rlimit_nproc <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim real time priority value
 #' @param softlim real time priority value
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_rtprio <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_rtprio <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_rtprio', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_rtprio', hardlim, softlim, pid, verbose);
 }
 
 
@@ -300,12 +311,13 @@ rlimit_rtprio <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim time in microsec
 #' @param softlim time in microsec
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_rttime <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_rttime <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_rttime', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_rttime', hardlim, softlim, pid, verbose);
 }
 
 
@@ -324,12 +336,13 @@ rlimit_rttime <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim number of signals
 #' @param softlim number of signals
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_sigpending <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_sigpending <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_sigpending', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_sigpending', hardlim, softlim, pid, verbose);
 }
 
 
@@ -349,16 +362,18 @@ rlimit_sigpending <- function(hardlim, softlim=hardlim, pid = 0){
 #' @param hardlim size of stack
 #' @param softlim size of stack
 #' @param pid id of the target process
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
-rlimit_stack <- function(hardlim, softlim=hardlim, pid = 0){
+rlimit_stack <- function(hardlim, softlim=hardlim, pid = 0, verbose=TRUE){
 	if(missing(hardlim)) hardlim <- NULL;
-	rlimit_wrapper('rlimit_stack', hardlim, softlim, pid);
+	rlimit_wrapper('rlimit_stack', hardlim, softlim, pid, verbose);
 }
 
 
-rlimit_wrapper <- function(resource, hardlim = NULL, softlim = NULL, pid = 0){
+rlimit_wrapper <- function(resource, hardlim = NULL, softlim = NULL, pid = 0, verbose=TRUE){
+	verbose <- as.integer(verbose);
 	if(is.null(hardlim)) {
 		hardlim <- -999;
 	} 
@@ -369,7 +384,7 @@ rlimit_wrapper <- function(resource, hardlim = NULL, softlim = NULL, pid = 0){
 	hardlim <- as.double(hardlim);
 	softlim <- as.double(softlim);
 	ret <- integer(1);
-	output <- .C(resource, ret, hardlim, softlim, pid, PACKAGE="RAppArmor")
+	output <- .C(resource, ret, hardlim, softlim, pid, verbose, PACKAGE="RAppArmor")
 	if(output[[1]] != 0) stop("Failed to set ", resource, "\nError: ", output[[1]]);	
 	invisible();	
 }

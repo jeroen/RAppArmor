@@ -4,14 +4,16 @@
 #' Note that this generally is a one way process: most profiles explicitly prevent switching into another profile, otherwise it would defeat the purpose.
 #' 
 #' @param profile character string with the name of the profile.
+#' @param verbose print some C output (TRUE/FALSE)
 #' @export
 #' @examples  \dontrun{read.table("/etc/passwd");
 #' aa_change_profile("myprofile");
 #' read.table("/etc/passwd");
 #' }
-aa_change_profile <- function(profile){
+aa_change_profile <- function(profile, verbose=TRUE){
+	verbose <- as.integer(verbose)
 	ret <- integer(1);
-	output <- .C('aa_change_profile_wrapper', ret, profile, PACKAGE="RAppArmor")
+	output <- .C('aa_change_profile_wrapper', ret, profile, verbose, PACKAGE="RAppArmor")
 	if(output[[1]] == 0){
 		return(invisible())
 	} else{

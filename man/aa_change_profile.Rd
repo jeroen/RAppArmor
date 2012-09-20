@@ -2,11 +2,13 @@
 \alias{aa_change_profile}
 \title{Change profiles}
 \usage{
-  aa_change_profile(profile)
+  aa_change_profile(profile, verbose = TRUE)
 }
 \arguments{
   \item{profile}{character string with the name of the
   profile.}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   This function changes the current R process to an

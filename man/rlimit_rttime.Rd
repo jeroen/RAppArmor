@@ -2,7 +2,8 @@
 \alias{rlimit_rttime}
 \title{Limit real-time cpu}
 \usage{
-  rlimit_rttime(hardlim, softlim = hardlim, pid = 0)
+  rlimit_rttime(hardlim, softlim = hardlim, pid = 0,
+    verbose = TRUE)
 }
 \arguments{
   \item{hardlim}{time in microsec}
@@ -10,6 +11,8 @@
   \item{softlim}{time in microsec}
 
   \item{pid}{id of the target process}
+
+  \item{verbose}{print some C output (TRUE/FALSE)}
 }
 \description{
   Specifies a limit (in microseconds) on the amount of CPU

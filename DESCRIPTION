@@ -10,18 +10,3 @@ License: AGPL
 Imports:
     parallel,
     tools
-Collate:
-    'aa_change_hat.R'
-    'aa_change_profile.R'
-    'aa_find_mountpoint.R'
-    'aa_getcon.R'
-    'aa_is_enabled.R'
-    'eval.secure.R'
-    'onLoad.R'
-    'rlimits.R'
-    'setgid.R'
-    'setpgid.R'
-    'setpriority.R'
-    'setuid.R'
-    'userinfo.R'
-    'kill.R'
