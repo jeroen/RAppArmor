@@ -1,0 +1,4 @@
+0.6.0:
+ - using pgid to kill potential forks
+ - added verbose parameters to suppress C output
+ - bugfix when the output has multiple classes

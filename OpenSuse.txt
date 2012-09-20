@@ -1,0 +1,22 @@
+# OPENSUSE 12.1
+
+#AppArmor is installed (RPM package "libapparmor") and enabled by default
+
+#some tools
+sudo zypper install wget unzip make gcc
+
+#install apparmor stuff:
+sudo zypper install libapparmor-devel apparmor-profiles apparmor-utils
+
+#install R patched (we need at least R 2.14)
+sudo zypper addrepo -f http://download.opensuse.org/repositories/devel\:languages\:R\:patched/openSUSE_12.1 "R patched devel"
+sudo zypper install R-patched R-patched-devel
+
+#download RAppArmor
+wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip --no-check-certificate
+unzip RAppArmor.zip
+
+#install rapparmor
+sudo R CMD INSTALL jeroenooms-RAppArmor*
+
+zypper addrepo -f http://download.opensuse.org/repositories/devel\:languages\:R\:patched/openSUSE_12.1 "R patched devel"
