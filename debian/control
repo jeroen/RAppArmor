@@ -7,8 +7,8 @@ Standards-Version: 3.9.3
  
 Package: r-cran-rapparmor
 Architecture: any
-Depends: ${shlibs:Depends}, ${shlibs:Misc}, r-base-core (>= 2.14.0), libapparmor1, apparmor
+Depends: ${shlibs:Depends}, ${shlibs:Misc}, r-base-core (>= 2.14.0), libapparmor1, apparmor, apparmor-utils
 Description: R interfaces to Linux and AppArmor security stuff.
 	This package allows users of the R statistical programming system to dynamically run
-	secured R processes by setting ulimit and apparmor parameters of the processs. 
+	secured R processes by setting ulimit and apparmor parameters of the process. 
 	

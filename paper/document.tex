@@ -1711,14 +1711,30 @@ Error in mcfork() :
 \end{CodeChunk}
 Note that the process count is based on the \Linux user. Hence if the same
 \Linux user already has a number of other processes, which is usually the case for
-non-system users, the cap has to be higher than this number. Different
-processes owned by a single user can enforce different \texttt{NPROC} limits,
-however in the actual process count all active processes from the current user
-are taken into account. Therefore it might make sense to create a separate
-Linux system user that is only used to process \R jobs. That way
-\texttt{RLIMIT\_NPROC} actually corresponds to the number of concurrent \R processes. The \texttt{eval.secure}
-function has arguments \texttt{uid} and \texttt{gid} that can be used to switch
-Linux users before evaluating the call.
+non-system users, the cap has to be higher than this number. Also note
+that in some \Linux configurations, the root user is exempted from the
+\texttt{RLIMIT_NPROC} limit.
+
+Different processes owned by a single user can enforce different \texttt{NPROC}
+limits, however in the actual process count all active processes from the
+current user are taken into account. Therefore it might make sense to create a
+separate Linux system user that is only used to process \R jobs. That way
+\texttt{RLIMIT\_NPROC} actually corresponds to the number of concurrent \R
+processes. The \texttt{eval.secure} arguments \texttt{uid} and \texttt{gid}
+can be used to switch Linux users before evaluating the call. E.g to add a
+system user in \Linux, run:
+\begin{CodeChunk}
+\begin{CodeInput}
+sudo useradd testuser --system -U -d/tmp -c"RAppArmor Test User"
+\end{CodeInput}
+\end{CodeChunk}
+If the main \R process has superuser privileges, incoming call can be
+evaluated as follows:
+\begin{CodeChunk}
+\begin{CodeInput}
+eval.secure(run_job(), uid="testuser", RLIMIT_NPROC=10, timeout=60)
+\end{CodeInput}
+\end{CodeChunk}
 
 
 \end{appendices}
