@@ -1,4 +1,4 @@
-rapparmor (0.6.0-precise4) precise; urgency=low
+rapparmor (0.6.0-precise5) precise; urgency=low
 
   * Ubuntu build of the RAppArmor package for R.
 

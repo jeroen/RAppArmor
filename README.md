@@ -15,8 +15,8 @@ Support
 The package has been successfully build on:
 
 * Ubuntu 12.04 and up
-* Debian 7 and up
-* OpenSuse 12.1 and up
+* Debian 7 and up - [notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt)
+* OpenSuse 12.1 and up - [notes](https://raw.github.com/jeroenooms/RAppArmor/master/OpenSuse.txt)
 
 For Ubuntu and Debian there is a convenient installation package available. 
 

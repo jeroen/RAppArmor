@@ -1,5 +1,9 @@
-AppArmor is currently only available in Debian "Testing". 
-For AppArmor to work on Debian, it needs to be version 2.7.103-4 or higher. 
+NOTES ABOUT DEBIAN:
+
+- AppArmor is currently only available in Debian "Testing". 
+- For AppArmor to work on Debian, it needs to be version 2.7.103-4 or higher. This version ships with Debian 7 beta 2 and up. 
+- As for now, Debian does not support 'network rules' in AppArmor. Everything else works fine.
+
 To activate AppArmor on Debian, run the following steps:
 
 1) Install the latest version of Debian Wheezy.
@@ -15,7 +19,8 @@ initrd /initrd.img
 
 4) Reboot
 
-5) apt-get install apparmor apparmor-profiles
+5) sudo apt-get install r-base-dev
+   sudo apt-get install libapparmor-dev apparmor-utils   
 
 6) sudo service apparmor restart
 
