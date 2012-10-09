@@ -5,7 +5,7 @@
 #' @param prio priority value between -20 and 20 
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases getpriority
-#' @export
+#' @export setpriority getpriority
 
 setpriority <- function(prio, verbose=TRUE){
 	verbose <- as.integer(verbose);
