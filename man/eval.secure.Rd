@@ -3,7 +3,7 @@
 \title{Secure evaluation}
 \usage{
   eval.secure(..., uid, gid, priority, profile,
-    timeout = 60, silent = FALSE, verbose = TRUE,
+    timeout = 60, silent = FALSE, verbose = TRUE, affinity,
     RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA,
     RLIMIT_FSIZE, RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE,
     RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC,
@@ -28,6 +28,8 @@
   mcparallel().}
 
   \item{verbose}{print some C output (TRUE/FALSE)}
+
+  \item{affinity}{which cpu(s) to use. See setaffinity.}
 
   \item{RLIMIT_AS}{hard limit passed on to rlimit_as()}
 
