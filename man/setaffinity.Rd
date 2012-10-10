@@ -1,13 +1,14 @@
-\name{affinity_bind}
-\alias{affinity_bind}
-\alias{affinity_count}
+\name{setaffinity}
+\alias{getaffinity}
+\alias{getaffinity_count}
+\alias{setaffinity}
 \title{Process affinity manipulation}
 \usage{
-  affinity_bind(cpu, verbose = TRUE)
+  setaffinity(cpus, verbose = TRUE)
 }
 \arguments{
-  \item{cpu}{Which cpu core to restrict to. Value must be
-  number between 0 and detectCores()-1}
+  \item{cpus}{Which cpu cores to restrict to. Values must
+  be integers between 1 and ncores.}
 
   \item{verbose}{print some C output (TRUE/FALSE)}
 }
@@ -19,17 +20,20 @@
 \details{
   Setting a process afinity allows for restricting the
   process to only use certain cores in the machine. The
-  cores are indexed by the operating system as 0 to
-  detectCores()-1.
+  cores are indexed by the operating system as 1 to ncores.
+  One can lookup ncores using ncores().
 
   The function affinity_bind restricts the current process
-  to a certain cpu in the machine. The function
+  to a certain cores in the machine. The function
   affinity_count gives the number of cores that the current
   process has available.
 }
 \examples{
-affinity_count();
-affinity_bind(1); #restricts the process to core number 1.
-affinity_count();
+getaffinity();
+getaffinity_count();
+setaffinity(1); #restricts the process to core number 1.
+getaffinity();
+setaffinity(); #reset
+getaffinity();
 }
 

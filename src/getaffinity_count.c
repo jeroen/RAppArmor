@@ -7,9 +7,9 @@
 #include <errno.h>
 #include <stdbool.h>
 
-void affinity_bind (int *ret, int *cpu, bool *verbose) {
+void getaffinity_count (int *ret, int *cpus, bool *verbose) {
   if(*verbose){
-	  Rprintf("Binding process affinity to cpu...\n");
+	 Rprintf("Getting process affinity mask...\n");
   }
 
   //init the cpu mask
@@ -18,10 +18,13 @@ void affinity_bind (int *ret, int *cpu, bool *verbose) {
   //set the mask to hold no cpus
   CPU_ZERO(&mask); 
   
-  //add the requested cpu to the mask
-  CPU_SET(*cpu, &mask);
-   
-  *ret = sched_setaffinity(0, sizeof mask, &mask);
+  //read affinity 
+  *ret = sched_getaffinity(0, sizeof mask, &mask);
+
+  //count number of cores
+  *cpus = CPU_COUNT(&mask);
+
+  //return
   if(*ret != 0){
     *ret = errno;
   }

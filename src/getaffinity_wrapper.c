@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <stdbool.h>
 
-void affinity_count (int *ret, int *cpus, bool *verbose) {
+void getaffinity_wrapper(int *ret, int *cpus, int *length, bool *verbose) {
   if(*verbose){
 	 Rprintf("Getting process affinity mask...\n");
   }
@@ -20,9 +20,11 @@ void affinity_count (int *ret, int *cpus, bool *verbose) {
   
   //read affinity 
   *ret = sched_getaffinity(0, sizeof mask, &mask);
-
-  //count number of cores
-  *cpus = CPU_COUNT(&mask);
+  
+  //read values
+  for (int i = 0; i < *length; i++){
+    cpus[i] = CPU_ISSET(i, &mask);
+  }  
 
   //return
   if(*ret != 0){
