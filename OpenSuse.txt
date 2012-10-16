@@ -1,15 +1,21 @@
-# OPENSUSE 12.1
+# Install RAppArmor on OPENSUSE 12.1 / 12.2
+# Tested on EC2 with public AMI: http://blog.susestudio.com/2012/10/public-opensuse-122-amazon-ec2-amis.html
 
 #AppArmor is installed (RPM package "libapparmor") and enabled by default
+
+#update the os
+sudo zypper update
 
 #some tools
 sudo zypper install wget unzip make gcc
 
-#install apparmor stuff:
-sudo zypper install libapparmor-devel apparmor-profiles apparmor-utils
+#install apparmor dependencies:
+sudo zypper install libapparmor-devel apparmor-utils glibc-locale
+
+#Add repostitory -- MAKE SURE TO REPLACE 12.2 WITH APPROPRIATE VERSION
+sudo zypper addrepo -f http://download.opensuse.org/repositories/devel\:languages\:R\:patched/openSUSE_12.2 "R patched devel"
 
 #install R patched (we need at least R 2.14)
-sudo zypper addrepo -f http://download.opensuse.org/repositories/devel\:languages\:R\:patched/openSUSE_12.1 "R patched devel"
 sudo zypper install R-patched R-patched-devel
 
 #download RAppArmor
