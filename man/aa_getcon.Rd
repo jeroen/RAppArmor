@@ -22,4 +22,7 @@
   overly strict, this confinement lookup will fail as well
   :-)
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/aa_getcon.2.html
+}
 

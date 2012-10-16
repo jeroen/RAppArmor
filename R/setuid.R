@@ -5,6 +5,7 @@
 #' @param uid user ID
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases getuid
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/setuid.2.html
 #' @export setuid getuid
 setuid <- function(uid, verbose=TRUE){
 	verbose <- as.integer(verbose);

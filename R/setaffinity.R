@@ -5,14 +5,17 @@
 #'
 #' Setting a process afinity allows for restricting the process to only use certain cores in the machine. The 
 #' cores are indexed by the operating system as 1 to ncores. One can lookup ncores using ncores().
-#'
-#' The function affinity_bind restricts the current process to a certain cores in the machine. 
-#' The function affinity_count gives the number of cores that the current process has available.
+#' Calling setaffinity with no arguments resets the process to use any of the available cores.
+#' 
+#' Note that setaffinity is different from setting r_limit values in the sense that it is not a one-way process.
+#' An unprivileged user can change the process affinity to any value. In order to 'lock' an affinity value,
+#' one would have to manipulate Linux capability value for CAP_SYS_NICE.
 #' 
 #' @param cpus Which cpu cores to restrict to. Values must be integers between 1 and ncores.
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases getaffinity getaffinity_count
 #' @export setaffinity getaffinity getaffinity_count
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/sched_setaffinity.2.html
 #' @examples getaffinity();
 #' getaffinity_count();
 #' setaffinity(1); #restricts the process to core number 1.

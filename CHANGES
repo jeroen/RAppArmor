@@ -1,6 +1,8 @@
 0.7.0:
  - added setaffinity, getaffinity, getaffinity_count, nproc
+ - updated eval.secure to support affinity
  - updated URL and OS_type fields in DESCRIPTION
+ - added some references to the documentation
 
 0.6.0:
  - using pgid to kill potential forks

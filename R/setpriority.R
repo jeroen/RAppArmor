@@ -5,6 +5,7 @@
 #' @param prio priority value between -20 and 20 
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases getpriority
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/getpriority.2.html
 #' @export setpriority getpriority
 
 setpriority <- function(prio, verbose=TRUE){

@@ -4,6 +4,7 @@
 #' 
 #' @param gid group ID
 #' @param verbose print some C output (TRUE/FALSE)
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/setgid.2.html
 #' @aliases getgid
 #' @export setgid getgid
 

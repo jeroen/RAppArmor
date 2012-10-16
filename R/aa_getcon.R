@@ -11,6 +11,7 @@
 #' 
 #' @param verbose print some C output (TRUE/FALSE)
 #' @return list with con and mode.
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_getcon.2.html
 #' 
 #' @export
 aa_getcon <- function(verbose=TRUE){

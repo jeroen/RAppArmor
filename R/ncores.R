@@ -2,6 +2,7 @@
 #' 
 #' Get the number of cores available in the machine.
 #' 
+#' @references http://manpages.ubuntu.com/manpages/precise/man3/sysconf.3.html
 #' @export 
 ncores <- function(){
 	ret <- integer(1);

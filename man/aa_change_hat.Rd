@@ -29,4 +29,7 @@ aa_revert_hat(13337);
 read.table("/etc/group");
 }
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/aa_change_hat.2.html
+}
 

@@ -57,6 +57,9 @@ rlimit_sigpending(1e4);
 rlimit_stack(1000);
 rlimit_cpu(10);
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+}
 \seealso{
   Other rlimit: \code{\link{rlimit_as}},
   \code{\link{rlimit_core}}, \code{\link{rlimit_cpu}},

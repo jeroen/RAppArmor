@@ -6,6 +6,7 @@
 #' @param profile character string with the name of the profile.
 #' @param verbose print some C output (TRUE/FALSE)
 #' @export
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_change_profile.2.html
 #' @examples  \dontrun{read.table("/etc/passwd");
 #' aa_change_profile("myprofile");
 #' read.table("/etc/passwd");

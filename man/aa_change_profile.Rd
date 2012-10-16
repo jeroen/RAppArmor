@@ -22,4 +22,7 @@ aa_change_profile("myprofile");
 read.table("/etc/passwd");
 }
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/aa_change_profile.2.html
+}
 

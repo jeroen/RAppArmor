@@ -6,6 +6,7 @@
 #' @param uid integer specifying the uid of the user to lookup.
 #' @param gid integer specifying the gid to lookup.
 #' @return a parsed row from /etc/passwd
+#' @references http://manpages.ubuntu.com/manpages/precise/man5/passwd.5.html
 #' @export
 userinfo <- function(username, uid, gid){
 	allusers <- read.table("/etc/passwd", sep=":");

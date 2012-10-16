@@ -14,4 +14,7 @@
   Get/set the priority of the current process. High value
   is low priority. Only superusers can lower the value.
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/getpriority.2.html
+}
 

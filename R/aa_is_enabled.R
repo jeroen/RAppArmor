@@ -2,6 +2,7 @@
 #' 
 #' @param verbose print some C output (TRUE/FALSE)
 #' @return TRUE or FALSE 
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_find_mountpoint.2.html
 #' 
 #' @export
 aa_is_enabled <- function(verbose=TRUE){

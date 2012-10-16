@@ -6,6 +6,7 @@
 #' @param signal kill signal
 #' @param verbose print some C output (TRUE/FALSE)
 #' @export kill
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/kill.2.html
 
 kill <- function(pid, signal=SIGTERM, verbose=TRUE){
 	verbose <- as.integer(verbose)

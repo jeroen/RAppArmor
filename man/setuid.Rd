@@ -13,4 +13,7 @@
 \description{
   Wrappers for getuid and setuid in Linux.
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/setuid.2.html
+}
 

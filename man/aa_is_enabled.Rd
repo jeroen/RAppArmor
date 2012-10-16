@@ -13,4 +13,7 @@
 \description{
   Check if AppArmor is Enabled
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/aa_find_mountpoint.2.html
+}
 

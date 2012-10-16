@@ -13,4 +13,7 @@
 \description{
   Wrappers for getgid and setgid in Linux.
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/setgid.2.html
+}
 

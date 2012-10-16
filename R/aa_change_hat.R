@@ -9,6 +9,7 @@
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases aa_revert_hat
 #' @export aa_change_hat aa_revert_hat
+#' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_change_hat.2.html
 #' @examples \dontrun{aa_change_profile("myprofile");
 #' read.table("/etc/group");
 #' aa_change_hat("testhat", 13337);

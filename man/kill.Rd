@@ -14,4 +14,7 @@
 \description{
   Kill a process. Negative values kill a process group.
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man2/kill.2.html
+}
 

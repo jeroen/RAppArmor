@@ -20,4 +20,7 @@
   Function looks up uid, gid, and userinfo for a given
   username.
 }
+\references{
+  http://manpages.ubuntu.com/manpages/precise/man5/passwd.5.html
+}
 
