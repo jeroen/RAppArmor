@@ -24,5 +24,3 @@ unzip RAppArmor.zip
 
 #install rapparmor
 sudo R CMD INSTALL jeroenooms-RAppArmor*
-
-zypper addrepo -f http://download.opensuse.org/repositories/devel\:languages\:R\:patched/openSUSE_12.1 "R patched devel"
