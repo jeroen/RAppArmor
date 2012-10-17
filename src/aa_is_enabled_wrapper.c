@@ -8,8 +8,6 @@
 
 void aa_is_enabled_wrapper (int *ret, bool *verbose, char **ermsg) {
   
-  ermsg[0] = "gfoo";
-  
   if(*verbose){
 	  Rprintf("Checking Apparmor Status...\n");
   }
