@@ -1,3 +1,7 @@
+0.7.1:
+ - Added .onAttach diagnostics
+ - Added error messages to aa_getcon and aa_is_enabled.
+
 0.7.0:
  - added setaffinity, getaffinity, getaffinity_count, nproc
  - updated eval.secure to support affinity
