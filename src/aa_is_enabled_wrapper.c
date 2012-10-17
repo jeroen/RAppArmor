@@ -6,7 +6,10 @@
 #include <errno.h>
 #include <stdbool.h>
 
-void aa_is_enabled_wrapper (int *ret, bool *verbose) {
+void aa_is_enabled_wrapper (int *ret, bool *verbose, char **ermsg) {
+  
+  ermsg[0] = "gfoo";
+  
   if(*verbose){
 	  Rprintf("Checking Apparmor Status...\n");
   }
@@ -15,5 +18,13 @@ void aa_is_enabled_wrapper (int *ret, bool *verbose) {
     *ret = -999;
   } else {
     *ret = errno;
+    switch ( errno ) {
+      case ENOSYS: ermsg[0] = "ENOSYS"; break;
+      case ECANCELED: ermsg[0] = "ECANCELED"; break;
+      case ENOENT: ermsg[0] = "ENOENT"; break;
+      case ENOMEM: ermsg[0] = "ENOMEM"; break;
+      case EPERM: ermsg[0] = "EPERM"; break;
+      case EACCES: ermsg[0] = "EACCES"; break;
+    }    
   }
 }
