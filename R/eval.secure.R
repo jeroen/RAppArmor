@@ -45,7 +45,7 @@
 #' @param RLIMIT_RTTIME hard limit passed on to rlimit_rttime()
 #' @param RLIMIT_SIGPENDING hard limit passed on to rlimit_sigpending()
 #' @param RLIMIT_STACK hard limit passed on to rlimit_stack()
-#' @import parallel tools
+#' @import parallel tools methods
 #' @export
 #' @examples \dontrun{
 #'## Restricting file access ##

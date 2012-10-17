@@ -1,7 +1,7 @@
 NOTES ABOUT DEBIAN:
 
 - AppArmor is currently only available in Debian 7 (aka "Testing") Wheezy. 
-- For AppArmor to work on Debian, it needs to be version 2.7.103-4 or higher. This version ships with Debian 7 beta 2 and up. 
+- You need a recent version of Debian (and AppArmor). We tested with Debian 7 beta 2. 
 - As for now, Debian does not support 'network rules' in AppArmor. You might see warnings about this. Everything else works fine.
 
 To activate AppArmor on Debian, run the following steps:
@@ -11,21 +11,29 @@ To activate AppArmor on Debian, run the following steps:
 
 2) sudo apt-get update && sudo apt-get upgrade
 
-3) Enable the AppArmor LSM in the Linux Kernel. When using GRUB2, see here:
-   http://wiki.debian.org/AppArmor/Testing
-   
-   When using GRUB legacy, edit /boot/grub/menu.lst and add "apparmor=1 security=apparmor" to your boot line(s). E.g it will read:
+3) Enable the AppArmor LSM in the Linux Kernel (depending on your bootloader): 
 
-   title Default
-   root (hd0)
-   kernel /vmlinuz root=/dev/xvda1 ro apparmor=1 security=apparmor
-   initrd /initrd.img
+   * When booting form GRUB2 (default):
+      Edit /etc/default/grub, and set:
+      GRUB_CMDLINE_LINUX=" apparmor=1 security=apparmor"
+      
+      See also http://wiki.debian.org/AppArmor/Testing
+   
+   * When booting from legacy GRUB:
+      Edit /boot/grub/menu.lst and add "apparmor=1 security=apparmor" to your boot line(s). E.g it will read:
+
+      title Default
+      root (hd0)
+      kernel /vmlinuz root=/dev/xvda1 ro apparmor=1 security=apparmor
+      initrd /initrd.img
 
 4) Reboot
 
-5) sudo apt-get install r-base-dev
+5) Verify that AppArmor LSM is now enabled: sudo aa-status
+
+6) sudo apt-get install r-base-dev
    sudo apt-get install libapparmor-dev apparmor-utils   
 
-6) sudo service apparmor restart
+7) sudo service apparmor restart
 
-7) continue with regular install of R / RAppArmor
+8) continue with regular install of R / RAppArmor

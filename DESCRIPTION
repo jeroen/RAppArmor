@@ -12,4 +12,5 @@ BugReports: https://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
 Imports:
     parallel,
-    tools
+    tools,
+    methods

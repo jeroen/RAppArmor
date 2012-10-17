@@ -6,6 +6,7 @@
 		#aa_getcon failed. Probably LSM is disabled. 
 		errormessage <- attr(confinement, "condition")$message;
 		packageStartupMessage("Failed to lookup process confinement:\n", errormessage);
+		packageStartupMessage("Have a look at: sudo aa-status")
 	} else if(confinement$con == "unconfined"){
 		#process seems unconfined. Lets see if apparmor is enabled...
 		enabled <- try(aa_is_enabled(verbose=FALSE));
