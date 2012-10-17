@@ -13,7 +13,7 @@
 			#should never happen
 			packageStartupMessage("aa_is_enabled failed.")
 		} else if(enabled == TRUE){
-			packageStartupMessage("AppArmor is enabled.")
+			packageStartupMessage("AppArmor LSM is enabled.")
 			packageStartupMessage("Current profile: none (unconfined).")
 			packageStartupMessage("See ?aa_change_profile on how switch profiles.")
 		} else {
@@ -22,7 +22,7 @@
 			aa_is_enabled(verbose=TRUE);
 		}
 	} else {
-		packageStartupMessage("AppArmor is enabled.")
+		packageStartupMessage("AppArmor LSM is enabled.")
 		packageStartupMessage("Current profile: ", confinement$con, " (", confinement$mode, " mode)");
 	}		
 }

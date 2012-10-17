@@ -23,13 +23,13 @@ aa_getcon <- function(verbose=TRUE){
 	if(output[[1]] == 0){
 		return(list(con=output[[2]], mode=output[[3]]));
 	} else {
-		switch(output[[4]],
+		switch(as.character(output[[5]]),
 			"EINVAL" = stop("The apparmor kernel module is not loaded or the communication via the /proc/*/attr/file did not conform to protocol."),
 			"ENOMEM" = stop("Insufficient kernel memory was available."),
 			"EACCES" = stop("Access to the specified file/task was denied."),
 			"ENOENT" = stop("The specified file/task does not exist or is not visible."),
 			"ERANGE" = stop("The confinement data is to large to fit in the supplied buffer."),
-			stop("Unknown error: ", output[[4]])
+			stop("Unknown error: ", output[[5]])
 		);		
 	}
 }
