@@ -1,7 +1,12 @@
 .onAttach <- function(libname, pkgname){
-	#note: aa_is_enabled will return an error when a profile is in enforce mode.
-	confinement <- try(aa_getcon(verbose=FALSE));		
-	if(confinement$con == "unconfined"){
+	#note: aa_is_enabled requires more privileges than aa_getcon.
+	#so it is safer to rely on aa_getcon to lookup the current situation
+	confinement <- try(aa_getcon(verbose=FALSE), silent=TRUE);	
+	if(is(confinement, "try-error")){
+		errormessage <- attr(confinement, "condition")$message;
+		packageStartupMessage("Failed to lookup process confinement:\n", message);
+		return();
+	} else if(confinement$con == "unconfined"){
 		#process seems unconfined. Lets see if apparmor is enabled at all.
 		enabled <- try(aa_is_enabled(verbose=FALSE));
 		if(is(enabled, "try-error")){

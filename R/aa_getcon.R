@@ -19,13 +19,17 @@ aa_getcon <- function(verbose=TRUE){
 	ret <- integer(1);
 	con <- character(1);
 	mod <- character(1);
-	output <- .C('aa_getcon_wrapper', ret, con, mod, verbose, PACKAGE="RAppArmor")
+	output <- .C('aa_getcon_wrapper', ret, con, mod, verbose, ermsg = "", PACKAGE="RAppArmor")
 	if(output[[1]] == 0){
 		return(list(con=output[[2]], mode=output[[3]]));
 	} else {
-		switch(as.character(output[[1]]),
-			"13" = stop("Permission denied to lookup confinement information. Most likely a profile is already being enforced which does not grant access to the current process attributes."),
-			stop("Failed to get confinement information. Error:", output[[1]])
-		);
+		switch(output[[4]],
+			"EINVAL" = stop("The apparmor kernel module is not loaded or the communication via the /proc/*/attr/file did not conform to protocol."),
+			"ENOMEM" = stop("Insufficient kernel memory was available."),
+			"EACCES" = stop("Access to the specified file/task was denied."),
+			"ENOENT" = stop("The specified file/task does not exist or is not visible."),
+			"ERANGE" = stop("The confinement data is to large to fit in the supplied buffer."),
+			stop("Unknown error: ", output[[4]])
+		);		
 	}
 }
