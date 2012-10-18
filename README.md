@@ -14,23 +14,22 @@ Support
 
 The package has been successfully build on:
 
-* Ubuntu 12.04 and up
-* Debian 7 and up - [notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt)
-* OpenSuse 12.1 and up - [notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
+* Ubuntu 12.04 and up (recommended)
+* Debian 7 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt)
+* OpenSuse 12.1 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
 
-For Ubuntu and Debian there is a convenient installation package available. 
+For Ubuntu there is a convenient installation package available through launchpad. 
 
-Installation
-------------
+Installation on Ubuntu 12.04 and up
+-----------------------------------
 
-On Ubuntu the package is easily installed through launchpad:
+On Ubuntu the package is easily installed through launchpad (recommended):
 
     sudo add-apt-repository ppa:opencpu/rapparmor
     sudo apt-get update
     sudo apt-get install r-cran-rapparmor
 
-
-Alternatively, to manually install:
+Alternatively, too manually install on Ubuntu:
 
     #Download the package:
     wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip
@@ -46,6 +45,12 @@ Alternatively, to manually install:
     
     #Restart AppArmor
     sudo service apparmor restart
+    
+Installation on Debian / OpenSuse
+-----------------------------------    
+
+For Debian, see these [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt)
+For OpenSuse, see these [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
 
 
 Enforce/Disable
@@ -73,7 +78,7 @@ Use the `eval.secure` function to dynamically evaluate a call under a certain Ap
 You can also add RLIMIT values:
 
 	A <- matrix(rnorm(1e7), 1e4);
-    B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 1000*1024*1024);
+    B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 100*1024*1024);
     
 If R is running with superuser privileges, you can also evaluate a call as a certain user:
 

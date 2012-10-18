@@ -1,10 +1,12 @@
 NOTES ABOUT DEBIAN:
 
 - AppArmor is currently only available in Debian 7 (aka "Testing") Wheezy. 
-- You need a recent version of Debian (and AppArmor). We tested with Debian 7 beta 2. 
-- As for now, Debian does not support 'network rules' in AppArmor. You might see warnings about this. Everything else works fine.
+- You need a recent version of Debian Wheezy. We tested with Debian 7 beta 2. 
+- By default Debian does not boot with AppArmor support. We need to enable it in GRUB (see below).
+- As for now, Debian does not support 'network rules' in AppArmor. You might see warnings about this.
+- See also: http://wiki.debian.org/AppArmor/Testing
 
-To activate AppArmor on Debian, run the following steps:
+To get RAppArmor working on Debian 7, follow these steps:
 
 1) Install the latest version of Debian 7 Wheezy (e.g. beta2). 
    An installer can be found here: http://www.debian.org/devel/debian-installer/
@@ -36,4 +38,17 @@ To activate AppArmor on Debian, run the following steps:
 
 7) sudo service apparmor restart
 
-8) continue with regular install of R / RAppArmor
+8) Install the RAppArmor R package:
+
+   wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip
+   unzip RAppArmor.zip
+   sudo R CMD INSTALL jeroenooms-RAppArmor*
+    
+9) #Copy profiles
+   cd /usr/local/lib/R/site-library/RAppArmor/
+   sudo cp -Rf profiles/debian/* /etc/apparmor.d/
+    
+10)#Load the profiles into the kernel
+   sudo service apparmor restart
+
+   
