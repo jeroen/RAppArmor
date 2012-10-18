@@ -9,7 +9,7 @@ The R package RAppArmor interfaces to a number of security related methods in th
  * setting the affinity mask of the current process
  * doing all of the above dynamically for a single R call using the `eval.secure` function  
  
-This is useful for example if you want to host a public service for users to run R code, or if you are paranoid about running contributed code. 
+This is useful for example if you want to host a public service for users to run R code, or if you are paranoid about running contributed code on your machine. 
 
 
 Documentation
