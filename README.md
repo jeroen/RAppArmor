@@ -35,7 +35,7 @@ On Ubuntu the package is easily installed through launchpad (recommended):
     sudo apt-get update
     sudo apt-get install r-cran-rapparmor
 
-Alternatively, too manually install on Ubuntu:
+Alternatively, to manually install on Ubuntu:
 
     #Install dependencies:
     sudo apt-get install r-base-dev libapparmor-dev apparmor-utils
