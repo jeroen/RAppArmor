@@ -31,26 +31,27 @@ On Ubuntu the package is easily installed through launchpad (recommended):
 
 Alternatively, too manually install on Ubuntu:
 
-    #Download the package:
+    #Install dependencies:
+    sudo apt-get install r-base-dev libapparmor-dev apparmor-utils
+
+    #Download and install the package:
     wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip
     unzip RAppArmor.zip
-    
-    #Install:
-    sudo apt-get install r-base-dev libapparmor-dev apparmor
     sudo R CMD INSTALL jeroenooms-RAppArmor*
     
-    #Install test profile:
+    #Install the profiles
     cd /usr/local/lib/R/site-library/RAppArmor/
     sudo cp -Rf profiles/debian/* /etc/apparmor.d/
     
-    #Restart AppArmor
+    #Load the profiles into the kernel
     sudo service apparmor restart
     
 Installation on Debian / OpenSuse
 -----------------------------------    
 
-For Debian, see these [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt)
-For OpenSuse, see these [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
+For Debian, see [Debian install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt). 
+For OpenSuse, see these [Suse install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt).
+We haven't tested other distributions (yet).
 
 
 Enforce/Disable
