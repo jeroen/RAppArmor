@@ -13,7 +13,7 @@ Documentation
 -------------
 
 The most complete documentation can be found in the latest draft for the [JSS paper](https://github.com/jeroenooms/RAppArmor/raw/master/paper/document.pdf) for this package. 
-There is of course also the [PDF manual](cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) on CRAN. 
+There is of course also the [PDF manual](http://cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) on CRAN. 
 
 Support
 -------
