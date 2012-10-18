@@ -6,7 +6,7 @@ case "$1" in
   configure)
     :
     	service apparmor restart || true
-    	aa-disable usr.bin.r || true
+    	aa-disable usr.bin.r > /dev/null || true
     ;;
   abort-upgrade | abort-remove | abort-deconfigure)
     :

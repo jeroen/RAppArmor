@@ -39,8 +39,13 @@ On Ubuntu the package is easily installed through launchpad (recommended):
     sudo add-apt-repository ppa:opencpu/rapparmor
     sudo apt-get update
     sudo apt-get install r-cran-rapparmor
+    
+To uninstall the r-cran-rapparmor package (also recommended before upgrading):
 
-Alternatively, to manually install on Ubuntu:
+    sudo apt-get remove --purge r-cran-rapparmor
+
+
+Alternatively, to manually install RAppArmor on Ubuntu:
 
     #Install dependencies:
     sudo apt-get install r-base-dev libapparmor-dev apparmor-utils
