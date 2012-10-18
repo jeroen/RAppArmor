@@ -1,13 +1,19 @@
 RAppArmor
 =========
 
-The R package RAppArmor or its debianized version r-cran-rapparmor, interfaces to a number of security related 
-methods in the Linux kernel. 
+The R package RAppArmor interfaces to a number of security related methods in the Linux kernel. It supports the following functionality:
+
+ * loading and changing AppArmor profiles and hats
+ * setting RLIMIT values to restrict usage of memory, cpu, disk, etc
+ * switching uid/gid of the current process
+ * setting the affinity mask of the current process
+ * doing all of the above dynamically for a single R call using the `eval.secure` function  
 
 Documentation
 -------------
 
-The most complete documentation can be found in the latest draft for the [JSS paper](https://github.com/jeroenooms/RAppArmor/raw/master/paper/document.pdf) for this package.
+The most complete documentation can be found in the latest draft for the [JSS paper](https://github.com/jeroenooms/RAppArmor/raw/master/paper/document.pdf) for this package. 
+There is of course also the [PDF manual](cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) on CRAN. 
 
 Support
 -------
