@@ -5,11 +5,13 @@ The R package RAppArmor interfaces to a number of security related methods in th
 
  * loading and changing AppArmor profiles and hats to enforce advanced security policies
  * setting RLIMIT values to restrict usage of memory, cpu, disk, etc
+ * setting the process priority
  * switching uid/gid of the current process
  * setting the affinity mask of the current process
+ * calling an R command with a 'timeout' to kill if it does not return with in n seconds
  * doing all of the above dynamically for a single R call using the `eval.secure` function  
  
-This is useful for example if you want to host a public service for users to run R code, or if you are paranoid about running contributed code on your machine. 
+This can be useful for example if to host a public service for users to run R code, or if you are paranoid about running contributed code on your machine. 
 
 
 Documentation
