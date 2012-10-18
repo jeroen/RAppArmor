@@ -26,8 +26,8 @@ The package has been successfully build on:
 
 For Ubuntu there is a convenient installation package available through launchpad. 
 
-Installation on Ubuntu 12.04 and up
------------------------------------
+Installation on Ubuntu
+----------------------
 
 On Ubuntu the package is easily installed through launchpad (recommended):
 
