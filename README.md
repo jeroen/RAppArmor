@@ -3,7 +3,7 @@ RAppArmor
 
 The R package RAppArmor interfaces to a number of security related methods in the Linux kernel. It supports the following functionality:
 
- * loading and changing AppArmor profiles and hats
+ * loading and changing AppArmor profiles and hats to enforce advanced security policies
  * setting RLIMIT values to restrict usage of memory, cpu, disk, etc
  * switching uid/gid of the current process
  * setting the affinity mask of the current process
