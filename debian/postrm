@@ -5,9 +5,13 @@ set -e
 case "$1" in
   remove | abort-install)
     :
+
+      ### When removing these files manually they won't be reinstalled when 
+      ### the package is installed again later without purging
+      ### rm -f /etc/apparmor.d/usr.bin.r
+      ### rm -Rf /etc/apparmor.d/rapparmor*
+      
       rm -f /etc/apparmor.d/disable/usr.bin.r
-      rm -f /etc/apparmor.d/usr.bin.r
-      rm -Rf /etc/apparmor.d/rapparmor*
       service apparmor restart || true
     ;;
   purge | disappear | upgrade | failed-upgrade | abort-upgrade)
