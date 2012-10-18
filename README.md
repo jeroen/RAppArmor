@@ -8,6 +8,9 @@ The R package RAppArmor interfaces to a number of security related methods in th
  * switching uid/gid of the current process
  * setting the affinity mask of the current process
  * doing all of the above dynamically for a single R call using the `eval.secure` function  
+ 
+This is useful for example if you want to host a public service for users to run R code, or if you are paranoid about running contributed code. 
+
 
 Documentation
 -------------
@@ -92,4 +95,9 @@ If R is running with superuser privileges, you can also evaluate a call as a cer
     eval.secure(system('whoami', intern=TRUE), uid="jeroen")
         
 
-    
+Problems / Questions / Etc
+--------------------------
+
+For any problems, questions, suggestions on the installation or use of RAppArmor, please get in touch! 
+We are very interested in hearing if anything is unclear or not working as expected. 
+Either [post an issue on github](https://github.com/jeroenooms/RAppArmor/issues), or send an email to [the maintainer](https://github.com/jeroenooms/RAppArmor/blob/master/DESCRIPTION).   
