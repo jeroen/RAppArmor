@@ -3,7 +3,7 @@
 \title{Limit stack size.}
 \usage{
   rlimit_stack(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{size of stack}

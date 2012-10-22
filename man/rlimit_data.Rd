@@ -3,7 +3,7 @@
 \title{Limit data segment}
 \usage{
   rlimit_data(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{size}

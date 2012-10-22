@@ -21,12 +21,15 @@
   provides more limited security than a profile.
 }
 \examples{
-\dontrun{aa_change_profile("myprofile");
-read.table("/etc/group");
+\dontrun{
+aa_change_profile("testprofile");
+aa_getcon();
+test <- read.table("/etc/group");
 aa_change_hat("testhat", 13337);
-read.table("/etc/group");
+aa_getcon();
+test <- read.table("/etc/group");
 aa_revert_hat(13337);
-read.table("/etc/group");
+test <- read.table("/etc/group");
 }
 }
 \references{

@@ -3,7 +3,7 @@
 \title{Limit core size.}
 \usage{
   rlimit_core(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{size}

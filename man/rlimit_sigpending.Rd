@@ -3,7 +3,7 @@
 \title{Limit signal queue}
 \usage{
   rlimit_sigpending(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{number of signals}

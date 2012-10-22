@@ -3,7 +3,7 @@
 \title{Limit CPU time}
 \usage{
   rlimit_cpu(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{cpu time in seconds}
@@ -16,11 +16,22 @@
 }
 \description{
   CPU time limit in seconds. When the process reaches the
-  soft limit, it is sent a SIGXCPU signal. Note that CPU
-  time is not the same as elapsed time. If a process is
-  waiting/idle, it will not hit the CPU time limit.
+  soft limit, it is sent a SIGXCPU signal.
 }
 \details{
+  Note that CPU time is not the same as elapsed time. If a
+  process is waiting/idle, it will not count towards the
+  CPU time limit. See the example for ?rlimit_cpu. Use the
+  'timeout' parameter in ?eval.secure to limit the total
+  elapsed time for a function call.
+
+  Use rlimit_cpu only as a last-resort if-all-else-fails
+  method. When the cpu limit is hit, the kernel kills the
+  process without any warning. It is pretty much a ticking
+  timebomb that cannot be undone. When using eval.secure,
+  best practice is to make sure that the value for
+  rlimit_cpu is higher than timeout.
+
   CPU time limit in seconds. When the process reaches the
   soft limit, it is sent a SIGXCPU signal. The default
   action for this signal is to terminate the process.
@@ -36,34 +47,17 @@
   termination upon first receipt of SIGXCPU.)
 }
 \examples{
-#load lib
-library(RAppArmor)
+\dontrun{testfun <- function(){
+  Sys.sleep(3);
+  repeat{
+    svd(matrix(rnorm(1e6,1e3)));
+  }
+};
+#will be killed after 8 seconds (3s idle, 5s CPU):
+system.time(eval.secure(testfun(), RLIMIT_CPU=5));
 
-#current limit
-rlimit_as();
-
-#set hard limit
-rlimit_as(1e9);
-
-#set separate hard and soft limit. 
-rlimit_as(1e9, 1e8);
-
-#soft limits can be elevated
-rlimit_as(soft = 1e7);
-rlimit_as(soft = 1e9);
-
-#set other limits
-rlimit_core(1e9);
-rlimit_data(1e9);
-rlimit_fsize(1e9);
-rlimit_memlock(10000);
-rlimit_msgqueue(1e5);
-rlimit_nofile(10);
-rlimit_nproc(100);
-rlimit_rttime(1e9);
-rlimit_sigpending(1e4);
-rlimit_stack(1000);
-rlimit_cpu(10);
+#will be killed after 5 seconds
+system.time(eval.secure(testfun(), timeout=5));}
 }
 \references{
   http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html

@@ -1,5 +1,9 @@
 #' Check if AppArmor is Enabled
 #' 
+#' This function tries to lookup the status of AppArmor in the kernel. However,
+#' some confined profiles might not have enough privileges to lookup this status. 
+#' Also see aa_getcon().
+#' 
 #' @param verbose print some C output (TRUE/FALSE)
 #' @return TRUE or FALSE 
 #' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_find_mountpoint.2.html

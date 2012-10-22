@@ -10,12 +10,15 @@
 #' @aliases aa_revert_hat
 #' @export aa_change_hat aa_revert_hat
 #' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_change_hat.2.html
-#' @examples \dontrun{aa_change_profile("myprofile");
-#' read.table("/etc/group");
+#' @examples \dontrun{
+#' aa_change_profile("testprofile");
+#' aa_getcon();
+#' test <- read.table("/etc/group");
 #' aa_change_hat("testhat", 13337);
-#' read.table("/etc/group");
+#' aa_getcon();
+#' test <- read.table("/etc/group");
 #' aa_revert_hat(13337);
-#' read.table("/etc/group");
+#' test <- read.table("/etc/group");
 #' }
 aa_change_hat <- function(subprofile, magic_token, verbose=TRUE){
 	if(!is.character(subprofile) || length(subprofile) == 0){
@@ -25,7 +28,19 @@ aa_change_hat <- function(subprofile, magic_token, verbose=TRUE){
 	magic_token <- as.integer(magic_token);
 	ret <- integer(1);
 	output <- .C('aa_change_hat_wrapper', ret, subprofile, magic_token, verbose, PACKAGE="RAppArmor")
-	if(output[[1]] != 0) stop("Failed to change hats to: ", subprofile, ".\nError: ", output[[1]]);
+	if(output[[1]] != 0) {
+		ermsg <- errno(output[[1]]);
+		ermsg <- switch(ermsg,
+			EINVAL = "The apparmor kernel module is not loaded or the communication via the /proc/*/attr/current file did not conform to protocol",
+			ENOMEM = "Insufficient kernel memory was available.",
+			EPERM = "The calling application is not confined by apparmor. The hat you are trying to change to is not a subprofile of the current profile.",
+			ECHILD = "The application's profile has no hats defined for it.",
+			EACCES = "The specified subprofile does not exist in this profile or the process tried to change another process's domain.",
+			ENOENT = paste("Subprofile not found. Make sure your current profile contains a subprofile named: ^", subprofile, sep=""),
+			ermsg
+		);
+		stop("Failed to change hat\n", ermsg);
+	}
 	invisible();
 }
 
@@ -34,6 +49,17 @@ aa_revert_hat <- function(magic_token, verbose=TRUE){
 	magic_token <- as.integer(magic_token);
 	ret <- integer(1);
 	output <- .C('aa_revert_hat_wrapper', ret, magic_token, verbose, PACKAGE="RAppArmor")
-	if(output[[1]] != 0) stop("Failed to revert hat.\nError: ", output[[1]]);
+	if(output[[1]] != 0) {
+		ermsg <- errno(output[[1]]);
+		ermsg <- switch(ermsg,
+			EINVAL = "The apparmor kernel module is not loaded or the communication via the /proc/*/attr/current file did not conform to protocol",
+			ENOMEM = "Insufficient kernel memory was available.",
+			EPERM = "The calling application is not confined by apparmor.",
+			ECHILD = "The application's profile has no hats defined for it.",
+			EACCES = "The specified subprofile does not exist in this profile or the process tried to change another process's domain.",
+			ermsg
+		);
+		stop("Failed to revert hat\n", ermsg);
+	}
 	invisible();	
 }

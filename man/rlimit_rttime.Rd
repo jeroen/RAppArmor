@@ -3,7 +3,7 @@
 \title{Limit real-time cpu}
 \usage{
   rlimit_rttime(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{time in microsec}

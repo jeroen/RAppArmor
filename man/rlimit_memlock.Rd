@@ -3,7 +3,7 @@
 \title{Limit locked memory}
 \usage{
   rlimit_memlock(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{number of bytes}

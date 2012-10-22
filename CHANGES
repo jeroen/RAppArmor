@@ -1,3 +1,7 @@
+0.7.2:
+ - New internal function errno()
+ - Linux error messages for all calls (based on errno.h)
+
 0.7.1:
  - Added .onAttach diagnostics
  - Added error messages to aa_getcon and aa_is_enabled.

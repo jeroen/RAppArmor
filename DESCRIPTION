@@ -1,7 +1,7 @@
 Package: RAppArmor
 Type: Package
 Title: RAppArmor
-Version: 0.7.1
+Version: 0.7.2
 Date: 2012-10-16
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
@@ -10,6 +10,7 @@ License: AGPL
 URL: https://github.com/jeroenooms/RAppArmor#readme
 BugReports: https://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
+Suggests: testthat
 Imports:
     parallel,
     tools,

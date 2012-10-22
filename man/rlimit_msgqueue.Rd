@@ -3,7 +3,7 @@
 \title{Limit user message queue}
 \usage{
   rlimit_msgqueue(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{number of bytes}

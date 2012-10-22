@@ -4,11 +4,11 @@
 \alias{setaffinity}
 \title{Process affinity manipulation}
 \usage{
-  setaffinity(cpus, verbose = TRUE)
+  setaffinity(cpus, verbose = FALSE)
 }
 \arguments{
-  \item{cpus}{Which cpu cores to restrict to. Values must
-  be integers between 1 and ncores.}
+  \item{cpus}{Which cpu cores to restrict to. Must be
+  vector of integers between 1 and ncores.}
 
   \item{verbose}{print some C output (TRUE/FALSE)}
 }

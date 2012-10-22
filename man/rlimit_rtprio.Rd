@@ -3,7 +3,7 @@
 \title{Limit real-time priority}
 \usage{
   rlimit_rtprio(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{real time priority value}

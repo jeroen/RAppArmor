@@ -3,7 +3,7 @@
 \alias{setpriority}
 \title{Get/set process priority}
 \usage{
-  setpriority(prio, verbose = TRUE)
+  setpriority(prio, verbose = FALSE)
 }
 \arguments{
   \item{prio}{priority value between -20 and 20}

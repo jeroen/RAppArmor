@@ -11,7 +11,7 @@
 #' An unprivileged user can change the process affinity to any value. In order to 'lock' an affinity value,
 #' one would have to manipulate Linux capability value for CAP_SYS_NICE.
 #' 
-#' @param cpus Which cpu cores to restrict to. Values must be integers between 1 and ncores.
+#' @param cpus Which cpu cores to restrict to. Must be vector of integers between 1 and ncores.
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases getaffinity getaffinity_count
 #' @export setaffinity getaffinity getaffinity_count
@@ -24,8 +24,13 @@
 #' getaffinity();
 
 
-setaffinity <- function(cpus, verbose=TRUE){
+setaffinity <- function(cpus, verbose=FALSE){
 	verbose <- as.integer(verbose);
+	
+	#validate
+	if(!missing(cpus)){
+		stopifnot(is.numeric(cpus));
+	}
 	
 	#default is all cores
 	if(missing(cpus)){
@@ -44,23 +49,44 @@ setaffinity <- function(cpus, verbose=TRUE){
 
 	ret <- integer(1);
 	output <- .C('setaffinity_wrapper', ret, cpus, length, verbose, PACKAGE="RAppArmor");
-	if(output[[1]] != 0) stop("Failed to bind process to cpu: ", cpus, ".\nError: ", output[[1]]);	
+	
+	if(output[[1]] != 0) {
+		ermsg <- errno(output[[1]]);
+		ermsg <- switch(ermsg,
+			EFAULT = "Failed to set affinity. A supplied memory address was invalid.",
+			EINVAL = "Failed to set affinity. The affinity bit mask mask contains no processors that are currently physically on the system and permitted to the process according to any restrictions that may be imposed by the cpuset mechanism described in cpuset(7).",
+			EPERM = "Failed to set affinity. The calling process does not have appropriate privileges.",
+			ermsg
+		);
+		#we throw a warning, not an error
+		stop(ermsg);
+	}
 	invisible()
 }
 
 
-getaffinity_count <- function(verbose=TRUE){
+getaffinity_count <- function(verbose=FALSE){
 	
 	verbose <- as.integer(verbose);
 	ret <- integer(1);
 	cpus <- integer(1);
 	
 	output <- .C('getaffinity_count', ret, cpus, verbose, PACKAGE="RAppArmor");
-	if(output[[1]] != 0) stop("Failed to lookup affinity count");	
+	if(output[[1]] != 0) {
+		ermsg <- errno(output[[1]]);
+		ermsg <- switch(ermsg,
+			EFAULT = "A supplied memory address was invalid.",
+			EINVAL = "cpusetsize is smaller than the size of the affinity mask used by the kernel.",
+			EPERM = "The calling process does not have appropriate privileges.",
+			ermsg
+		);
+		#we throw a warning, not an error
+		stop("Failed to lookup affinity. ", ermsg);
+	}
 	return(output[[2]]);
 }
 
-getaffinity <- function(verbose=TRUE){
+getaffinity <- function(verbose=FALSE){
 	verbose <- as.integer(verbose);
 	
 	#we allocate twice as long as a vector just in case ncores() is wrong. 
@@ -69,7 +95,17 @@ getaffinity <- function(verbose=TRUE){
 	ret <- integer(1);
 	
 	output <- .C('getaffinity_wrapper', ret, cpus, length, verbose, PACKAGE="RAppArmor");
-	if(output[[1]] != 0) stop("Failed to bind process to cpu: ", cpus, ".\nError: ", output[[1]]);	
+	if(output[[1]] != 0) {
+		ermsg <- errno(output[[1]]);
+		ermsg <- switch(ermsg,
+			EFAULT = "A supplied memory address was invalid.",
+			EINVAL = "cpusetsize is smaller than the size of the affinity mask used by the kernel.",
+			EPERM = "The calling process does not have appropriate privileges.",
+			ermsg
+		);
+		#we throw a warning, not an error
+		stop("Failed to lookup affinity. ", ermsg);
+	}
 	return(which(as.logical(output[[2]])));
 }
 

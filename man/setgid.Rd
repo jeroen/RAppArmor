@@ -3,10 +3,10 @@
 \alias{setgid}
 \title{Get/Set GID}
 \usage{
-  setgid(gid, verbose = TRUE)
+  setgid(gid, verbose = FALSE)
 }
 \arguments{
-  \item{gid}{group ID}
+  \item{gid}{group ID. Must be integer.}
 
   \item{verbose}{print some C output (TRUE/FALSE)}
 }

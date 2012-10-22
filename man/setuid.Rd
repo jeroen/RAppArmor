@@ -6,7 +6,7 @@
   setuid(uid, verbose = TRUE)
 }
 \arguments{
-  \item{uid}{user ID}
+  \item{uid}{UID or username as specified in /etc/passwd}
 
   \item{verbose}{print some C output (TRUE/FALSE)}
 }

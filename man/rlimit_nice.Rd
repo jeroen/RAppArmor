@@ -3,7 +3,7 @@
 \title{Limit nice value.}
 \usage{
   rlimit_nice(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{priority value between -20 and 20}

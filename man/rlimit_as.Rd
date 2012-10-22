@@ -3,7 +3,7 @@
 \title{Limit virtual memory}
 \usage{
   rlimit_as(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{softlim}{soft limit in bytes.}

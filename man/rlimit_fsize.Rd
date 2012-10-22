@@ -3,7 +3,7 @@
 \title{Limit size of files}
 \usage{
   rlimit_fsize(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{size}

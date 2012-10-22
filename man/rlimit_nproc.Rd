@@ -3,7 +3,7 @@
 \title{Limit number of processes}
 \usage{
   rlimit_nproc(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{number greater than 1}

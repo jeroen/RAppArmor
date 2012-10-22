@@ -3,12 +3,12 @@
 \title{Secure evaluation}
 \usage{
   eval.secure(..., uid, gid, priority, profile,
-    timeout = 60, silent = FALSE, verbose = TRUE, affinity,
-    RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA,
-    RLIMIT_FSIZE, RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE,
-    RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC,
-    RLIMIT_RTPRIO, RLIMIT_RTTIME, RLIMIT_SIGPENDING,
-    RLIMIT_STACK)
+    timeout = 60, silent = FALSE, verbose = FALSE,
+    affinity, RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU,
+    RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
+    RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE,
+    RLIMIT_NPROC, RLIMIT_RTPRIO, RLIMIT_RTTIME,
+    RLIMIT_SIGPENDING, RLIMIT_STACK)
 }
 \arguments{
   \item{...}{arguments passed on to eval(...)}

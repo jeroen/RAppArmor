@@ -18,9 +18,9 @@
 \details{
   Note that in order for this function to do its work, it
   needs read access to the attributes of the current
-  process. Hence if a profile is being enforced that is
-  overly strict, this confinement lookup will fail as well
-  :-)
+  process. If aa_getcon fails with a permission denied
+  error, it might actually mean that the current process is
+  being confined with a very restrictive profile.
 }
 \references{
   http://manpages.ubuntu.com/manpages/precise/man2/aa_getcon.2.html

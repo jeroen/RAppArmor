@@ -3,7 +3,7 @@
 \title{Limit file descriptors}
 \usage{
   rlimit_nofile(hardlim, softlim = hardlim, pid = 0,
-    verbose = TRUE)
+    verbose = FALSE)
 }
 \arguments{
   \item{hardlim}{number greater than 1}

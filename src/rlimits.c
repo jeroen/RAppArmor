@@ -204,6 +204,11 @@ void rlimit_wrapper(int resource, int *ret, double *hardlim_double, double *soft
     *ret = errno;
     return;
   }  
+
+  //return current limits
+  *softlim_double = old.rlim_cur;
+  *hardlim_double = old.rlim_max;
+
   
   //print new limits
   if(*verbose){
