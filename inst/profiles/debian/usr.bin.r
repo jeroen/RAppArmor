@@ -1,3 +1,4 @@
+## Example global R policy profile.
 ## To active this profile, run: sudo aa-enforce usr.bin.r
 
 #include <tunables/global>
