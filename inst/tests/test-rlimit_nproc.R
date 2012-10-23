@@ -19,7 +19,8 @@ test_that("Fork bombs get mitgated and are properly cleaned up afterwards", {
 	for(i in 1:5){
 		expect_that(eval.secure(forkbomb(), RLIMIT_NPROC=300, uid=me), throws_error("unable to fork"))
 		expect_that(eval.secure(regular(), RLIMIT_NPROC=300, uid=me), is_a("matrix"))
-		Sys.sleep(0.2);
+		gc();
+		Sys.sleep(0.5);
 	}
 });
 

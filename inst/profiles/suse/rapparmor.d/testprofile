@@ -1,0 +1,36 @@
+profile testprofile {
+
+	#include <abstractions/base>
+	#include <abstractions/nameservice>
+
+	change_profile -> testprofile,
+
+	capability kill,
+	capability net_bind_service,
+	capability setgid,
+	capability setuid,
+	capability sys_tty_config,
+
+	/ rw,
+	/** mrwlkix,
+
+	audit deny /etc/passwd rwx,
+
+	^testhat {
+
+		#include <abstractions/base>
+		#include <abstractions/nameservice>
+	
+		capability kill,
+		capability net_bind_service,
+		capability setgid,
+		capability setuid,
+		capability sys_tty_config,
+
+		/ rw,
+		/** mrwlkix,
+		
+		audit deny /etc/passwd rwx,
+		audit deny /etc/group rwx,		
+	}
+}

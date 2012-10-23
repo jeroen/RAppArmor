@@ -1,0 +1,22 @@
+profile r-base {
+	#include <abstractions/base>
+	#include <abstractions/nameservice>
+	
+	@{PROC}/[0-9]*/attr/current r,	
+	
+	/bin/* rix,
+	/etc/R/ r,
+	/etc/R/* r,
+	/etc/fonts/** mr,
+	/etc/resolv.conf r,
+	/etc/xml/* r,
+	/tmp/** rw,
+	/usr/bin/* rix,
+	/usr/lib/R/bin/* rix,
+	/usr/lib{,32,64}/** mr,
+	/usr/lib{,32,64}/R/bin/exec/R rix,
+	/usr/local/lib/R/** mr,
+	/usr/local/share/** mr,
+	/usr/share/** mr,
+	/usr/share/ca-certificates/** r,
+}

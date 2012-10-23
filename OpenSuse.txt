@@ -24,3 +24,14 @@ unzip RAppArmor.zip
 
 #install rapparmor
 sudo R CMD INSTALL jeroenooms-RAppArmor*
+
+#install apparmor profiles
+sudo zypper install apparmor-profiles apparmor-utils
+
+#copy profiles (location depends on your architecture)
+cd /usr/lib/R/library/RAppArmor/ || cd /usr/lib64/R/library/RAppArmor/
+sudo cp -Rf profiles/suse/* /etc/apparmor.d/
+
+#restart apparmor
+rcapparmor restart
+sudo aa-disable usr.bin.r

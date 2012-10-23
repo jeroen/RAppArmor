@@ -50,5 +50,6 @@ To get RAppArmor working on Debian 7, follow these steps:
     
 10)#Load the profiles into the kernel
    sudo service apparmor restart
+   sudo aa-disable usr.bin.r
 
    
