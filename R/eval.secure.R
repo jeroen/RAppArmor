@@ -127,8 +127,15 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 		if(!missing(gid)) setgid(gid, verbose=verbose);
 		if(!missing(uid)) setuid(uid, verbose=verbose);		
 		if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
-		setinteractive(interactive);
-		options(device="pdf")
+		
+		#Set the child proc in batch mode to avoid problems when it gets killed:
+		if(interactive == FALSE){
+			setinteractive(FALSE);
+			options(device=pdf);
+			options(menu.graphics=FALSE);
+		}
+		
+		#evaluate expression
 		eval(...);
 	}, silent=silent);	
 
@@ -139,7 +146,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 	kill(myfork$pid, SIGKILL, verbose=verbose);
 	
 	#kill process group, in case of forks, etc.
-	kill(-1* myfork$pid, SIGKILL, verbose=FALSE);
+	kill(-1* myfork$pid, SIGKILL, verbose=verbose);
 	
 	#clean up
 	mccollect(wait=FALSE);

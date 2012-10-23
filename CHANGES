@@ -1,5 +1,10 @@
+0.7.4:
+ - added unittests function
+ - added stuff to prevent interactivity in eval.secure
+ - small fixes and renames
+
 0.7.3:
- - added setInteractive function
+ - added setinteractive function
  - added 'interactive' parameter to eval.secure
  - more unit tests
 

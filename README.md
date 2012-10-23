@@ -100,7 +100,16 @@ You can also add RLIMIT values:
 If R is running with superuser privileges, you can also evaluate a call as a certain user:
 
     eval.secure(system('whoami', intern=TRUE), uid="jeroen")
-        
+
+Unit Testing
+------------
+
+The RAppArmor package ships with some unit tests that can be used to check if things are working properly:
+
+    library(RAppArmor)
+    unittests();        
+    
+See the `?unittests` help page for more info.
 
 Problems / Questions / Etc
 --------------------------
