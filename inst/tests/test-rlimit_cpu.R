@@ -30,3 +30,17 @@ test_that("combine limit and cpu.", {
 	expect_that(unname(abs(out["elapsed"] - 2) < 0.2), is_true())
 	rm(out)
 });
+
+test_that("Raising the limit should not be possible for non-root users", {
+			
+	#force non-root
+	me <- ifelse(getuid() == 0, 1000, getuid());
+	
+	#test
+	for(mylim in c(2, 2e1, 2e2, 2e3)){
+		output <- list(hardlim = mylim/2, softlim = mylim/2);
+		expect_that(eval.secure(rlimit_cpu(mylim*2), RLIMIT_CPU = mylim, uid=me), throws_error("privilege"));
+		expect_that(eval.secure(rlimit_cpu(mylim/2), RLIMIT_CPU = mylim, uid=me), equals(output));	
+		rm(output)
+	}
+});

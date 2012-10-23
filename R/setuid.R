@@ -7,7 +7,7 @@
 #' @aliases getuid
 #' @references http://manpages.ubuntu.com/manpages/precise/man2/setuid.2.html
 #' @export setuid getuid
-setuid <- function(uid, verbose=TRUE){
+setuid <- function(uid, verbose=FALSE){
 	if(is.character(uid)){
 		uid <- userinfo(uid)$uid
 	}

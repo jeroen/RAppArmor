@@ -30,6 +30,7 @@
 #' @param timeout timeout in seconds.
 #' @param silent suppress output on stdout. See mcparallel().
 #' @param verbose print some C output (TRUE/FALSE)
+#' @param interactive TRUE/FALSE to enable/disable R interactive mode.
 #' @param affinity which cpu(s) to use. See setaffinity.
 #' @param RLIMIT_AS hard limit passed on to rlimit_as()
 #' @param RLIMIT_CORE hard limit passed on to rlimit_core()
@@ -84,7 +85,8 @@
 #'eval.secure(forkbomb(), RLIMIT_NPROC=10)
 #'}
 
-eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FALSE, verbose=FALSE, affinity,
+eval.secure <- function(..., uid, gid, priority, profile, timeout=60, 
+	silent=FALSE, verbose=FALSE, interactive=FALSE, affinity,
 	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
 	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, 
 	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){	
@@ -125,6 +127,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60, silent=FAL
 		if(!missing(gid)) setgid(gid, verbose=verbose);
 		if(!missing(uid)) setuid(uid, verbose=verbose);		
 		if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
+		setInteractive(interactive);
 		eval(...);
 	}, silent=silent);	
 

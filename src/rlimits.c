@@ -131,11 +131,12 @@ void rlimit_stack (int *ret, double *hardlim, double *softlim, int *pid, bool *v
 //main function that calls out to Linux Kernel.
 void rlimit_wrapper(int resource, int *ret, double *hardlim_double, double *softlim_double, int *pid, bool *verbose){
 
-  //create (long) integer pointers
+  //create (long) integers and pointers
+  //note: no point in making this long long. See man getrlimit under RLIMIT_AS
   long hardlim_int = (long) *hardlim_double;
-  long *hardlim = &hardlim_int;
-
   long softlim_int = (long) *softlim_double;
+  
+  long *hardlim = &hardlim_int;
   long *softlim = &softlim_int;
 
   // target process

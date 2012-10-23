@@ -3,7 +3,7 @@
 \alias{setuid}
 \title{Get/Set UID}
 \usage{
-  setuid(uid, verbose = TRUE)
+  setuid(uid, verbose = FALSE)
 }
 \arguments{
   \item{uid}{UID or username as specified in /etc/passwd}

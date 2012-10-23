@@ -22,6 +22,9 @@
 #' @example examples/limits.R
 rlimit_as <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 	if(missing(hardlim)) hardlim <- NULL;
+	if(!is.null(hardlim) && hardlim >= 2*1024*1024*1024){
+		warning("RLIMIT_AS can never be set higher than 2GB. See ?rlimit_as.")
+	}
 	rlimit_wrapper('rlimit_as', hardlim, softlim, pid, verbose);
 }
 

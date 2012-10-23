@@ -1,4 +1,10 @@
+0.7.3:
+ - added setInteractive function
+ - added 'interactive' parameter to eval.secure
+ - more unit tests
+
 0.7.2:
+ - Started adding unit tests
  - New internal function errno()
  - Linux error messages for all calls (based on errno.h)
 
