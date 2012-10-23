@@ -128,6 +128,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 		if(!missing(uid)) setuid(uid, verbose=verbose);		
 		if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
 		setInteractive(interactive);
+		options(device="pdf")
 		eval(...);
 	}, silent=silent);	
 
