@@ -11,7 +11,7 @@
 #' in the background.
 #' 
 #' @export
-unit_tests <- function(){
+unittests <- function(){
 	library(testthat);
 	test_package("RAppArmor");
 }

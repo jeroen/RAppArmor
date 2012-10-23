@@ -1,8 +1,8 @@
-\name{unit_tests}
-\alias{unit_tests}
+\name{unittests}
+\alias{unittests}
 \title{RAppArmor unit tests}
 \usage{
-  unit_tests()
+  unittests()
 }
 \description{
   This function loads the 'testthat' package and runs a

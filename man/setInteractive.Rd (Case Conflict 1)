@@ -1,8 +1,8 @@
-\name{setInteractive}
-\alias{setInteractive}
+\name{setinteractive}
+\alias{setinteractive}
 \title{Toggle interactive mode in R.}
 \usage{
-  setInteractive(interactivity)
+  setinteractive(interactivity)
 }
 \arguments{
   \item{interactivity}{interactivity flag. TRUE or FALSE.}

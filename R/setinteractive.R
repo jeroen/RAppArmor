@@ -5,7 +5,7 @@
 #' 
 #' @param interactivity interactivity flag. TRUE or FALSE.
 #' @export
-setInteractive <- function(interactivity){
+setinteractive <- function(interactivity){
   .Call('interactivity', interactivity, PACKAGE="RAppArmor")
 }
 
