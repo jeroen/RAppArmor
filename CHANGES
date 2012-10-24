@@ -1,3 +1,6 @@
+0.8.0:
+ - Bump version to signify release to CRAN.
+
 0.7.4:
  - added unittests function
  - added stuff to prevent interactivity in eval.secure
