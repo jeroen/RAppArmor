@@ -117,4 +117,6 @@ Problems / Questions / Etc
 
 For any problems, questions, suggestions on the installation or use of RAppArmor, please get in touch! 
 We are very interested in hearing if anything is unclear or not working as expected. 
-Either [post an issue on github](https://github.com/jeroenooms/RAppArmor/issues), or send an email to [the maintainer](https://github.com/jeroenooms/RAppArmor/blob/master/DESCRIPTION).   
+
+For general questions, post a question on [Stack Overflow](http://stackoverflow.com/questions/tagged/rapparmor) and tag it with `rapparmor`, `r` and `apparmor`.
+If you think you found a bug, either [post an issue on github](https://github.com/jeroenooms/RAppArmor/issues), or send an email to [the maintainer](https://github.com/jeroenooms/RAppArmor/blob/master/DESCRIPTION).   
