@@ -38,11 +38,8 @@ To get RAppArmor working on Debian 7, follow these steps:
 
 7) sudo service apparmor restart
 
-8) Install the RAppArmor R package:
-
-   wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip
-   unzip RAppArmor.zip
-   sudo R CMD INSTALL jeroenooms-RAppArmor*
+8) #Install the RAppArmor R package:
+   sudo R -e 'install.packages("RAppArmor", repos="http://cran.r-project.org")'
     
 9) #Copy profiles
    cd /usr/local/lib/R/site-library/RAppArmor/

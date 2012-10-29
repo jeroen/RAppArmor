@@ -18,12 +18,8 @@ sudo zypper addrepo -f http://download.opensuse.org/repositories/devel\:language
 #install R patched (we need at least R 2.14)
 sudo zypper install R-patched R-patched-devel
 
-#download RAppArmor
-wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip --no-check-certificate
-unzip RAppArmor.zip
-
-#install rapparmor
-sudo R CMD INSTALL jeroenooms-RAppArmor*
+#install RAppArmor
+sudo R -e 'install.packages("RAppArmor", repos="http://cran.r-project.org")'
 
 #install apparmor profiles
 sudo zypper install apparmor-profiles apparmor-utils

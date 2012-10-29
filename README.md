@@ -51,9 +51,7 @@ Alternatively, to manually install RAppArmor on Ubuntu:
     sudo apt-get install r-base-dev libapparmor-dev apparmor-utils
 
     #Download and install the package:
-    wget https://github.com/jeroenooms/RAppArmor/zipball/master -O RAppArmor.zip
-    unzip RAppArmor.zip
-    sudo R CMD INSTALL jeroenooms-RAppArmor*
+    sudo R -e 'install.packages("RAppArmor", repos="http://cran.r-project.org")'
     
     #Install the profiles
     cd /usr/local/lib/R/site-library/RAppArmor/
@@ -61,6 +59,9 @@ Alternatively, to manually install RAppArmor on Ubuntu:
     
     #Load the profiles into the kernel
     sudo service apparmor restart
+    
+    #To disable enforcing the global R profile
+    sudo aa-disable usr.bin.r
     
 Installation on Debian / OpenSuse
 -----------------------------------    
