@@ -24,18 +24,24 @@ test_that("changing hats", {
 
 test_that("basic profiles permissions", {
 	#list /
-	expect_that(length(eval.secure(list.files("/"))) > 0, is_true());
-	expect_that(length(eval.secure(list.files("/"), profile="r-base")) > 0, is_false());
-	expect_that(length(eval.secure(list.files("/"), profile="r-user")) > 0, is_false());
+	if(length(list.files("/")) > 0){
+		expect_that(length(eval.secure(list.files("/"))) > 0, is_true());
+		expect_that(length(eval.secure(list.files("/"), profile="r-base")) > 0, is_false());
+		expect_that(length(eval.secure(list.files("/"), profile="r-user")) > 0, is_false());
+	}
 	
 	#list /tmp
-	expect_that(length(eval.secure(list.files("/tmp"))) > 0, is_true());
-	expect_that(length(eval.secure(list.files("/tmp"), profile="r-base")) > 0, is_false());
-	expect_that(length(eval.secure(list.files("/tmp"), profile="r-user")) > 0, is_false());
+	if(length(list.files("/tmp")) > 0){
+		expect_that(length(eval.secure(list.files("/tmp"))) > 0, is_true());
+		expect_that(length(eval.secure(list.files("/tmp"), profile="r-base")) > 0, is_false());
+		expect_that(length(eval.secure(list.files("/tmp"), profile="r-user")) > 0, is_false());
+	}
 	
 	#list /home/user/
-	expect_that(length(eval.secure(list.files("~"))) > 0, is_true());
-	expect_that(length(eval.secure(list.files("~"), profile="r-base")) > 0, is_false());
-	expect_that(length(eval.secure(list.files("~"), profile="r-user")) > 0, is_true());	
+	if(length(list.files("~")) > 0){
+		expect_that(length(eval.secure(list.files("~"))) > 0, is_true());
+		expect_that(length(eval.secure(list.files("~"), profile="r-base")) > 0, is_false());
+		expect_that(length(eval.secure(list.files("~"), profile="r-user")) > 0, is_true());
+	}
 });
 

@@ -1,33 +1,32 @@
-# Install RAppArmor on OPENSUSE 12.1 / 12.2
+#!/bin/sh
+# Example shell script to install RAppArmor on OPENSUSE 12.1 / 12.2
 # Tested on EC2 with public AMI: http://blog.susestudio.com/2012/10/public-opensuse-122-amazon-ec2-amis.html
+# AppArmor is installed (RPM package "libapparmor") and enabled by default
 
-#AppArmor is installed (RPM package "libapparmor") and enabled by default
-
+### Step 1: Install a recent version of r-base-devel (if not yet done so)
 #update the os
-sudo zypper update
+zypper update -y
 
-#some tools
-sudo zypper install wget unzip make gcc
-
-#install apparmor dependencies:
-sudo zypper install libapparmor-devel apparmor-utils glibc-locale
-
-#Add repostitory -- MAKE SURE TO REPLACE 12.2 WITH APPROPRIATE VERSION
-sudo zypper addrepo -f http://download.opensuse.org/repositories/devel\:languages\:R\:patched/openSUSE_12.2 "R patched devel"
+#Add repostitory
+VERSION=$(grep VERSION /etc/SuSE-release | sed -e 's/VERSION = //')
+zypper addrepo -fG http://download.opensuse.org/repositories/devel\:languages\:R\:base/openSUSE_$VERSION "R base"
 
 #install R patched (we need at least R 2.14)
-sudo zypper install R-patched R-patched-devel
+zypper install -y r-base r-base-devel
+
+
+### Step 2: Install RAppArmor
+#install apparmor dependencies:
+zypper install -y libapparmor-devel apparmor-utils apparmor-profiles r-base-devel
 
 #install RAppArmor
-sudo R -e 'install.packages("RAppArmor", repos="http://cran.r-project.org")'
+R -e 'install.packages("RAppArmor", repos="http://cran.r-project.org")'
 
-#install apparmor profiles
-sudo zypper install apparmor-profiles apparmor-utils
-
-#copy profiles (location depends on your architecture)
+#copy profiles to /etc/apparmor.d/ (source location depends on your architecture)
 cd /usr/lib/R/library/RAppArmor/ || cd /usr/lib64/R/library/RAppArmor/
-sudo cp -Rf profiles/suse/* /etc/apparmor.d/
+cp -Rf profiles/suse/* /etc/apparmor.d/
 
 #restart apparmor
 rcapparmor restart
-sudo aa-disable usr.bin.r
+aa-disable usr.bin.r
+

@@ -1,0 +1,44 @@
+Ideas for (video) tutorials:
+
+Introduction to R and AppArmor (1/3)
+-------------------------------
+
+ - Why security? 
+  - Contributed Code.
+  - More control over hardware. 
+  - Services
+  
+ - Show the usr.r.bin profile
+  - try reading / /tmp /var/log/syslog, ~/Documents
+  - sudo aa-enforce usr.bin.r
+  - try again
+  
+
+The RAppArmor package (2/3)
+------------------------
+
+ - Switch dynamically into security profiles for part of the sandbox.
+ - aa_getcon, aa_change_profile, aa_change_hat, aa_is_enabled
+ - rlimit_as, rlimit_cpu, rlimit_nproc
+ - setpriority
+ - (root) setuid/setgid
+ - eval.secure: apply to a single evaluation, without side effects.
+ 
+
+Profile Design (3/3)
+--------------------
+
+ - AppArmor syntax
+ - debugging using kern.log, syslog 
+ - learning with aa-complain and aa-logprof (not perfect)
+ - Capabilities, network rules, etc  
+ - Compile/Mem/Exec permissions
+ 
+ 
+Application: simple reporting server
+------------------------------------
+ 
+ - Simple webserver with Rook, Knitr and RAppArmor
+ - Secure evaluation
+  
+
