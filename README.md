@@ -24,7 +24,7 @@ Video Tutorials
 ---------------
 
 A number of short "Introduction to RAppArmor" video tutorials is available to quickly get started with AppArmor and R and wrap your head around
-the basic concepts. Sit back and enjoy: [playlist on youtube](http://www.meetup.com/LAarea-R-usergroup/events/86563522/) 
+the basic concepts. Sit back and enjoy: [playlist on youtube](http://www.youtube.com/playlist?list=PL3ZKTMqqbMktzcWjXuQCWOYc-fMROs3cf&feature=view_all) 
 
 Support
 -------
