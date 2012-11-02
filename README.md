@@ -23,7 +23,6 @@ There is of course also the [PDF manual](http://cran.r-project.org/web/packages/
 Video Tutorials
 ---------------
 
-![video icon](http://www.harlequinfloors.com/us/en/files/images/video-icon.jpg "Video Icon")(http://www.google.com)
 A number of short "Introduction to RAppArmor" video tutorials is available to quickly get started with AppArmor and R and wrap your head around
 the basic concepts. Sit back and enjoy: [playlist on youtube](http://www.meetup.com/LAarea-R-usergroup/events/86563522/) 
 
