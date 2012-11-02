@@ -3,15 +3,37 @@ Ideas for (video) tutorials:
 Introduction to R and AppArmor (1/3)
 -------------------------------
 
+First of a couple of videos to introduce the RAppArmor package.
+
+The RAppArmor package is an R package for Linux to enforce security
+policies and hardware restrictions on R sessions.
+
+Available on CRAN and Github
+
+If you want to know more after watching this video
+Find references and installation instructions on the Github page.
+Also is a draft of a paper.
+
  - Why security? 
   - Contributed Code.
   - More control over hardware. 
   - Services
-  
- - Show the usr.r.bin profile
+
+Linux kernel loads profiles in the /etc/apparmor.d/ directory. 
+Show the usr.r.bin profile: path to R.
+whereis R => same path.
+
   - try reading / /tmp /var/log/syslog, ~/Documents
   - sudo aa-enforce usr.bin.r
   - try again
+  
+The AppArmor profile makes Linux enforce Mandatory access control.
+The process can only access resources explicitly named in the profile.
+This is not some trick in R. In fact, R doesn't even know it is being sandboxed.
+The Linux operating system is enforcing these restrictions. 
+
+Next video: dynamically apply these security policies to active R process.
+
   
 
 The RAppArmor package (2/3)
