@@ -5,7 +5,7 @@ Version: 0.8.1
 Date: 2012-11-20
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
-Description: R interfaces to Linux and AppArmor security stuff.
+Description: R interfaces to Linux and AppArmor security methods.
 License: AGPL
 URL: https://github.com/jeroenooms/RAppArmor#readme
 BugReports: https://github.com/jeroenooms/RAppArmor/issues
