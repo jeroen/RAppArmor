@@ -1,5 +1,6 @@
 0.8.2: 
  - modified license. 
+ - turned JSS paper into vignette
 
 0.8.1:
  - minor improvement to kill child of eval.secure
