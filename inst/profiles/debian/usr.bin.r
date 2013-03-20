@@ -13,6 +13,7 @@
 	capability sys_tty_config,
 	
 	@{HOME}/ r,
+  @{HOME}/.Rprofile r,
 	@{HOME}/R/ r,
 	@{HOME}/R/** rw,
 	@{HOME}/R/{i686,x86_64}-pc-linux-gnu-library/** mrwix,
@@ -21,6 +22,7 @@
 	@{PROC}/[0-9]*/attr/current r,
 	
 	/bin/* rix,
+	/dev/tty r,
 	/etc/R/ r,
 	/etc/R/* r,
 	/etc/fonts/** mr,

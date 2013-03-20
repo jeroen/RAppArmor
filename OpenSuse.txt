@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# NOTE: SUSE 11 is not supported. The Linux Kernel in Suse 11 is too old and lacks a essential functionality.
+#
 # Example shell script to install RAppArmor on OPENSUSE 12.1 / 12.2
 # Tested on EC2 with public AMI: http://blog.susestudio.com/2012/10/public-opensuse-122-amazon-ec2-amis.html
 # AppArmor is installed (RPM package "libapparmor") and enabled by default
@@ -17,7 +20,7 @@ zypper install -y r-base r-base-devel
 
 ### Step 2: Install RAppArmor
 #install apparmor dependencies:
-zypper install -y libapparmor-devel apparmor-utils apparmor-profiles r-base-devel
+zypper install -y make gcc libapparmor-devel apparmor-utils apparmor-profiles r-base-devel
 
 #install RAppArmor
 R -e 'install.packages("RAppArmor", repos="http://cran.r-project.org")'

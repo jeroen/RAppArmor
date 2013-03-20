@@ -1,3 +1,9 @@
+0.8.2: 
+ - modified license. 
+
+0.8.1:
+ - minor improvement to kill child of eval.secure
+
 0.8.0:
  - Bump version to signify release to CRAN.
 

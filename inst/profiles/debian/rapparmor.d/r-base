@@ -9,6 +9,7 @@ profile r-base {
 	@{PROC}/[0-9]*/attr/current r,	
 	
 	/bin/* rix,
+	/dev/tty r,	
 	/etc/R/ r,
 	/etc/R/* r,
 	/etc/fonts/** mr,
