@@ -88,8 +88,7 @@ Do disable enforcing of the standard policy run:
 
     sudo aa-disable usr.bin.r
 
-Please read the latest draft of the [JSS article](https://github.com/jeroenooms/RAppArmor/raw/master/paper/document.pdf)
-to understand how to use the software. 
+Please read the latest draft of the [JSS paper](http://arxiv.org/abs/1303.4808) to understand how to use the software. 
 
 
 Using the software
