@@ -26,6 +26,7 @@
   was named RLIMIT_OFILE on BSD.)
 }
 \examples{
+\dontrun{
 #load lib
 library(RAppArmor)
 
@@ -53,7 +54,8 @@ rlimit_nproc(100);
 rlimit_rttime(1e9);
 rlimit_sigpending(1e4);
 rlimit_stack(1000);
-rlimit_cpu(10);
+rlimit_cpu(60);
+}
 }
 \references{
   http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html

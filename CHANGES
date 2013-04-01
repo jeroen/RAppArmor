@@ -1,3 +1,6 @@
+0.8.3:
+ - wrapped rlimit examples in \dontrun{} blocks.
+ 
 0.8.2: 
  - modified license. 
  - turned JSS paper into vignette
