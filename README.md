@@ -17,7 +17,7 @@ This can be useful for example if to host a public service for users to run R co
 Documentation
 -------------
 
-The most complete documentation can be found in the latest draft for the [JSS paper](https://github.com/jeroenooms/RAppArmor/raw/master/paper/document.pdf) for this package. 
+The most complete documentation can be found in the latest draft for the [JSS paper](http://arxiv.org/abs/1303.4808) for this package. 
 There is of course also the [PDF manual](http://cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) on CRAN. 
 
 Video Tutorials
