@@ -48,8 +48,8 @@ On Ubuntu the package is easily installed through launchpad (recommended):
     
 To uninstall the r-cran-rapparmor package (also recommended before upgrading):
 
-    sudo apt-get remove --purge r-cran-rapparmor
-
+    sudo apt-get purge r-cran-rapparmor
+    sudo apt-get autoremove --purge
 
 Alternatively, to manually install RAppArmor on Ubuntu:
 
