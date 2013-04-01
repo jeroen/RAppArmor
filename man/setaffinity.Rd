@@ -33,12 +33,14 @@
   CAP_SYS_NICE.
 }
 \examples{
+\dontrun{
 getaffinity();
 getaffinity_count();
 setaffinity(1); #restricts the process to core number 1.
 getaffinity();
 setaffinity(); #reset
 getaffinity();
+}
 }
 \references{
   http://manpages.ubuntu.com/manpages/precise/man2/sched_setaffinity.2.html

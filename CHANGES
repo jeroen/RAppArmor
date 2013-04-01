@@ -1,5 +1,6 @@
 0.8.3:
  - wrapped rlimit examples in \dontrun{} blocks.
+ - wrapped setaffinity example in \dontrun() block.
  
 0.8.2: 
  - modified license. 

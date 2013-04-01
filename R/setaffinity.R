@@ -16,12 +16,14 @@
 #' @aliases getaffinity getaffinity_count
 #' @export setaffinity getaffinity getaffinity_count
 #' @references http://manpages.ubuntu.com/manpages/precise/man2/sched_setaffinity.2.html
-#' @examples getaffinity();
+#' @examples \dontrun{
+#' getaffinity();
 #' getaffinity_count();
 #' setaffinity(1); #restricts the process to core number 1.
 #' getaffinity();
 #' setaffinity(); #reset
 #' getaffinity();
+#' }
 
 
 setaffinity <- function(cpus, verbose=FALSE){
