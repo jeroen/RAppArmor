@@ -43,8 +43,8 @@ Installation on Ubuntu
 On Ubuntu the package is easily installed through launchpad (recommended). 
 There are two repositories: 
 
- * [opencpu/rapparmor](https://launchpad.net/~opencpu/+archive/rapparmor) use for version of R that ships with the Ubuntu.
- * [opencpu/rapparmor-dev](https://launchpad.net/~opencpu/+archive/rapparmor-dev) use with R 3.0.0.
+ * [opencpu/rapparmor](https://launchpad.net/~opencpu/+archive/rapparmor) build for version of R that ships with Ubuntu.
+ * [opencpu/rapparmor-dev](https://launchpad.net/~opencpu/+archive/rapparmor-dev) build for R 3.0.0.
  
 To install, run: 
 
