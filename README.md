@@ -40,9 +40,11 @@ For Ubuntu there is a convenient installation package available through launchpa
 Installation on Ubuntu
 ----------------------
 
-On Ubuntu the package is easily installed through launchpad (recommended):
+On Ubuntu the package is easily installed through launchpad (recommended). 
+There are two repositories: the package in [opencpu/rapparmor-dev](https://launchpad.net/~opencpu/+archive/rapparmor-dev) is built against R 3.0.0.
+The package in [opencpu/rapparmor](https://launchpad.net/~opencpu/+archive/rapparmor) is built with the version of R that ships with the Ubuntu. 
 
-    sudo add-apt-repository ppa:opencpu/rapparmor
+    sudo add-apt-repository ppa:opencpu/rapparmor-dev
     sudo apt-get update
     sudo apt-get install r-cran-rapparmor
     
