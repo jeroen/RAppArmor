@@ -1,0 +1,34 @@
+# it is not really python, but there is no R support on Travis CI yet
+language: python
+
+# environment variables
+env:
+  - R_LIBS_USER=~/R
+
+# install dependencies
+install:
+  - echo "deb http://cran.rstudio.com/bin/linux/ubuntu `lsb_release -cs`/"
+      | sudo tee /etc/apt/sources.list.d/cran.list
+  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+  - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/cran.list"
+      -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+  - sudo apt-add-repository -y ppa:marutter/c2d4u
+  - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/marutter-c2d4u-precise.list"
+      -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+  - sudo apt-get install --no-install-recommends r-base-dev apparmor-utils libapparmor-dev debhelper cdbs libapparmor-dev libapparmor1 apparmor apparmor-utils
+  - "[ ! -d ~/R ] && mkdir ~/R"
+  - R --version
+  - R -e '.libPaths(); sessionInfo()'
+  - Rscript -e 'install.packages("testthat", repos = "http://cran.rstudio.org")'
+
+# run tests
+script:
+  - debuild -us -uc
+
+# run check against R-devel
+after_script:
+  - sudo add-apt-repository -y ppa:marutter/rdev
+  - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/marutter-rdev-precise.list"
+      -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+  - sudo apt-get upgrade
+  - debuild -us -uc
