@@ -24,6 +24,9 @@ install:
 
 # try to install on stock R
 script:
+  - R CMD build .
+  - mv RAppArmor*.tar.gz ..
+  - R CMD check ../RAppArmor*.tar.gz
   - debuild --no-tgz-check -us -uc
   - sudo dpkg -i ../r-cran-rapparmor*.deb
 
@@ -34,8 +37,7 @@ after_script:
       -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
   - sudo apt-get upgrade
   - rm ../*.deb
+  - R CMD check ../RAppArmor_*.tar.gz
   - debuild clean
   - debuild --no-tgz-check -us -uc
   - sudo dpkg -i ../r-cran-rapparmor*.deb
-  - R CMD build .
-  - R CMD check RAppArmor_*.tar.gz
