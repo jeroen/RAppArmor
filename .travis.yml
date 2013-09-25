@@ -23,7 +23,7 @@ install:
 
 # run tests
 script:
-  - debuild -us -uc
+  - debuild --no-tgz-check -us -uc
 
 # run check against R-devel
 after_script:
@@ -31,4 +31,4 @@ after_script:
   - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/marutter-rdev-precise.list"
       -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
   - sudo apt-get upgrade
-  - debuild -us -uc
+  - debuild --no-tgz-check -us -uc
