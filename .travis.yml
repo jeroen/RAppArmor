@@ -15,7 +15,7 @@ install:
   - sudo apt-add-repository -y ppa:marutter/c2d4u
   - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/marutter-c2d4u-precise.list"
       -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
-  - sudo apt-get install --no-install-recommends r-base-dev apparmor-utils libapparmor-dev debhelper cdbs libapparmor-dev libapparmor1 apparmor apparmor-utils
+  - sudo apt-get install --no-install-recommends r-base-dev apparmor-utils libapparmor-dev debhelper devscripts cdbs libapparmor-dev libapparmor1 apparmor apparmor-utils
   - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
   - R -e '.libPaths(); sessionInfo()'
