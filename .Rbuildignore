@@ -4,3 +4,7 @@ README.md
 Makefile
 .travis.yml
 src/Makevars
+examples
+Debian-Wheezy.txt
+OpenSuse.txt
+Tutorials.txt
