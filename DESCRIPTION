@@ -12,13 +12,13 @@ BugReports: https://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
 SystemRequirements: libapparmor-dev, linux (>= 3.0)
 Description: This package implements R functions that interact with the Linux
-    kernel to apply security restrictions on an R process. The main feature is
-    to enforce mandatory access control (MAC) policies by applying an apparmor
-    profile. In addition, the package supports setting hardware limits
-    (rlimit), uid, gid, affinity and priority on the current process.
-    Everything in the package comes together using the highly flexible
-    eval.secure function, which can enforce hard security restrictions on a
-    single evaluation without side effects on the current process.
+    kernel to enforce security restrictions on an R process. Mandatory access
+    control (MAC) policies can be applied by loading an apparmor profiles. In
+    addition, the package can set hardware limits (rlimit), uid, gid, affinity
+    and priority of the current process, directly from within R. The high level
+    function eval.secure builds on these foundations to do dynamic sandboxing:
+    it evaluates a single expression under irreversible security restrictions
+    and hardware limits without any side effects on R session.
 Suggests:
     testthat
 Imports:
