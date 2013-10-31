@@ -6,5 +6,6 @@
 *.synctex.gz
 */tmp
 */tmp/*
-
-
+src/Makevars
+.Rproj.user
+RAppArmor.Rproj

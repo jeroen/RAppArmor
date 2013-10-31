@@ -1,16 +1,24 @@
 Package: RAppArmor
 Type: Package
-Title: RAppArmor
-Version: 0.8.3
-Date: 2013-04-01
+Title: Interfaces to Linux and AppArmor security methods.
+Version: 1.0.0
+Date: 2013-10-31
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
-Description: R interfaces to Linux and AppArmor security methods.
 License: BSD | GPL | Apache License
-URL: https://github.com/jeroenooms/RAppArmor#readme
+URL: http://www.jstatsoft.org/v55/i07/,
+    https://github.com/jeroenooms/RAppArmor#readme
 BugReports: https://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
 SystemRequirements: libapparmor-dev, linux (>= 3.0)
+Description: This package implements R functions that interact with the Linux
+    kernel to apply security restrictions on an R process. The main feature is
+    to enforce mandatory access control (MAC) policies by applying an apparmor
+    profile. In addition, the package supports setting hardware limits
+    (rlimit), uid, gid, affinity and priority on the current process.
+    Everything in the package comes together using the highly flexible
+    eval.secure function, which can enforce hard security restrictions on a
+    single evaluation without side effects on the current process.
 Suggests:
     testthat
 Imports:
