@@ -6,8 +6,8 @@ Date: 2013-10-31
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
 License: GPL | Apache License (== 2.0)
-URL: http://www.jstatsoft.org/v55/i07/,
-    https://github.com/jeroenooms/RAppArmor#readme
+URL: http://www.jstatsoft.org/v55/i07/
+    http://github.com/jeroenooms/RAppArmor#readme
 BugReports: https://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
 SystemRequirements: libapparmor-dev, linux (>= 3.0)
