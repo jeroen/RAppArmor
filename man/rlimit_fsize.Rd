@@ -26,7 +26,7 @@
   write(2), truncate(2)) fails with the error EFBIG.
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

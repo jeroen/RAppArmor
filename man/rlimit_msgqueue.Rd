@@ -40,7 +40,7 @@
   consume some system memory for bookkeeping overhead).
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

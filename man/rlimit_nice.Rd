@@ -28,7 +28,7 @@
   RLIM_INFINITY typically is the same as -1.)
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

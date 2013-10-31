@@ -30,7 +30,7 @@
   this resource is unlimited.
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

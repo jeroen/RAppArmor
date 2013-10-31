@@ -28,7 +28,7 @@
   that are not already queued to the process.
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

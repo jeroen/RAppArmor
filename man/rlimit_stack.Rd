@@ -27,7 +27,7 @@
   variables; for details, see execve(2).
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

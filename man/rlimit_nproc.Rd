@@ -25,7 +25,7 @@
   fork(2) fails with the error EAGAIN.
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

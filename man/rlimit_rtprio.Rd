@@ -23,7 +23,7 @@
   sched_setparam(2).
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

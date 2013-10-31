@@ -26,7 +26,7 @@
   was named RLIMIT_OFILE on BSD.)
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 

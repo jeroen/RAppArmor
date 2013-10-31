@@ -40,7 +40,7 @@
   may lock.
 }
 \examples{
-\\dontrun{
+\dontrun{
 #load lib
 library(RAppArmor)
 
