@@ -2,3 +2,48 @@
  - Remove setInteractive code. CRAN no longer allows this, and mcparallel now disables interactivity by default.
  - Added JSS PDF and CITATION files
  - Bump to 1.0.0 to official release with JSS publication.
+
+0.8.3:
+ - wrapped rlimit examples in \dontrun{} blocks.
+ - wrapped setaffinity example in \dontrun() block.
+ - updated and renamed vignette.
+ 
+0.8.2: 
+ - modified license. 
+ - turned JSS paper into vignette
+
+0.8.1:
+ - minor improvement to kill child of eval.secure
+
+0.8.0:
+ - Bump version to signify release to CRAN.
+
+0.7.4:
+ - added unittests function
+ - added stuff to prevent interactivity in eval.secure
+ - small fixes and renames
+
+0.7.3:
+ - added setinteractive function
+ - added 'interactive' parameter to eval.secure
+ - more unit tests
+
+0.7.2:
+ - Started adding unit tests
+ - New internal function errno()
+ - Linux error messages for all calls (based on errno.h)
+
+0.7.1:
+ - Added .onAttach diagnostics
+ - Added error messages to aa_getcon and aa_is_enabled.
+
+0.7.0:
+ - added setaffinity, getaffinity, getaffinity_count, nproc
+ - updated eval.secure to support affinity
+ - updated URL and OS_type fields in DESCRIPTION
+ - added some references to the documentation
+
+0.6.0:
+ - using pgid to kill potential forks
+ - added verbose parameters to suppress C output
+ - bugfix when the output has multiple classes
