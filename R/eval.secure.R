@@ -30,7 +30,6 @@
 #' @param timeout timeout in seconds.
 #' @param silent suppress output on stdout. See mcparallel().
 #' @param verbose print some C output (TRUE/FALSE)
-#' @param interactive TRUE/FALSE to enable/disable R interactive mode.
 #' @param affinity which cpu(s) to use. See setaffinity.
 #' @param RLIMIT_AS hard limit passed on to rlimit_as()
 #' @param RLIMIT_CORE hard limit passed on to rlimit_core()
@@ -48,6 +47,7 @@
 #' @param RLIMIT_STACK hard limit passed on to rlimit_stack()
 #' @import parallel tools methods
 #' @export
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
 #' @examples \dontrun{
 #'## Restricting file access ##
 #'eval.secure(list.files("/"))
@@ -86,7 +86,7 @@
 #'}
 
 eval.secure <- function(..., uid, gid, priority, profile, timeout=60, 
-	silent=FALSE, verbose=FALSE, interactive=FALSE, affinity,
+	silent=FALSE, verbose=FALSE, affinity,
 	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
 	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, 
 	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){	
@@ -129,11 +129,8 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 		if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
 		
 		#Set the child proc in batch mode to avoid problems when it gets killed:
-		if(interactive == FALSE){
-			setinteractive(FALSE);
-			options(device=pdf);
-			options(menu.graphics=FALSE);
-		}
+		options(device=pdf);
+		options(menu.graphics=FALSE);
 		
 		#evaluate expression
 		eval(...);
