@@ -1,0 +1,4 @@
+%\VignetteIndexEntry{JSS 55(7): Enforcing Security Policies Using Dynamic Sandboxing on Linux}
+\documentclass{article}
+\begin{document}
+\end{document}
