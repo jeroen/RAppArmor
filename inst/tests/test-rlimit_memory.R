@@ -1,15 +1,18 @@
+# Note: keep in mind that RLIMIT_AS is not effective when set to less than what 
+# has already been allocated in the current process. These tests will fail if 
+#
 context("memory limits")
 test_that("Memory limits apply and do not have side effects", {
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(1e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
+	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
 });
 
 test_that("Raising memory limit by non-root users", {
