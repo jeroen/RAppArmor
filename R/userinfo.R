@@ -6,7 +6,8 @@
 #' @param uid integer specifying the uid of the user to lookup.
 #' @param gid integer specifying the gid to lookup.
 #' @return a parsed row from /etc/passwd
-#' @references http://manpages.ubuntu.com/manpages/precise/man5/passwd.5.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{passwd} - \emph{the password file}. \url{http://manpages.ubuntu.com/manpages/precise/man5/passwd.5.html}.
 #' @export
 userinfo <- function(username, uid, gid){
 	allusers <- try(read.table("/etc/passwd", sep=":"));

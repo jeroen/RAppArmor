@@ -15,7 +15,8 @@
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases getaffinity getaffinity_count
 #' @export setaffinity getaffinity getaffinity_count
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/sched_setaffinity.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{sched_setaffinity} - \emph{set and get a process's CPU affinity mask}. \url{http://manpages.ubuntu.com/manpages/precise/man2/sched_setaffinity.2.html}.
 #' @examples \dontrun{
 #' getaffinity();
 #' getaffinity_count();

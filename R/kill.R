@@ -6,7 +6,8 @@
 #' @param signal kill signal
 #' @param verbose print some C output (TRUE/FALSE)
 #' @export kill
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/kill.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{kill} - \emph{send signal to a process}. \url{http://manpages.ubuntu.com/manpages/precise/man2/kill.2.html}.
 
 kill <- function(pid, signal=SIGTERM, verbose=TRUE){
 	verbose <- as.integer(verbose)

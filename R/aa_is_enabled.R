@@ -6,7 +6,8 @@
 #' 
 #' @param verbose print some C output (TRUE/FALSE)
 #' @return TRUE or FALSE 
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_find_mountpoint.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{aa_is_enabled} - \emph{determine if apparmor is available}. \url{http://manpages.ubuntu.com/manpages/precise/man2/aa_find_mountpoint.2.html}.
 #' 
 #' @export
 aa_is_enabled <- function(verbose=TRUE){

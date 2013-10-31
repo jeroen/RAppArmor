@@ -5,7 +5,8 @@
 #' @param uid UID or username as specified in /etc/passwd
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases getuid
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/setuid.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{setuid} - \emph{setuid - set user identity}. \url{http://manpages.ubuntu.com/manpages/precise/man2/setuid.2.html}.
 #' @export setuid getuid
 setuid <- function(uid, verbose=FALSE){
 	if(is.character(uid)){

@@ -9,7 +9,8 @@
 #' @param verbose print some C output (TRUE/FALSE)
 #' @aliases aa_revert_hat
 #' @export aa_change_hat aa_revert_hat
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/aa_change_hat.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{aa_change_hat} - \emph{change to or from a "hat" within a AppArmor profile}. \url{http://manpages.ubuntu.com/manpages/precise/man2/aa_change_hat.2.html}.
 #' @examples \dontrun{
 #' aa_change_profile("testprofile");
 #' aa_getcon();

@@ -4,8 +4,8 @@
 \usage{
   eval.secure(..., uid, gid, priority, profile,
     timeout = 60, silent = FALSE, verbose = FALSE,
-    interactive = FALSE, affinity, RLIMIT_AS, RLIMIT_CORE,
-    RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
+    affinity, RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU,
+    RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
     RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE,
     RLIMIT_NPROC, RLIMIT_RTPRIO, RLIMIT_RTTIME,
     RLIMIT_SIGPENDING, RLIMIT_STACK)
@@ -28,9 +28,6 @@
   mcparallel().}
 
   \item{verbose}{print some C output (TRUE/FALSE)}
-
-  \item{interactive}{TRUE/FALSE to enable/disable R
-  interactive mode.}
 
   \item{affinity}{which cpu(s) to use. See setaffinity.}
 
@@ -135,5 +132,11 @@ forkbomb <- function(){
 ## Forkbomb is mitigated ##
 eval.secure(forkbomb(), RLIMIT_NPROC=10)
 }
+}
+\references{
+  Jeroen Ooms (2013). The RAppArmor Package: Enforcing
+  Security Policies in {R} Using Dynamic Sandboxing on
+  Linux. \emph{Journal of Statistical Software}, 55(7),
+  1-34. \url{http://www.jstatsoft.org/v55/i07/}.
 }
 

@@ -16,7 +16,8 @@
 #' @param hardlim hard limit in bytes
 #' @param pid id of the target process.
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -37,7 +38,8 @@ rlimit_as <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim size
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -79,7 +81,8 @@ rlimit_core <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim cpu time in seconds
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @examples \dontrun{testfun <- function(){
@@ -112,7 +115,8 @@ rlimit_cpu <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim size
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -137,7 +141,8 @@ rlimit_data <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim size
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -175,7 +180,8 @@ rlimit_fsize <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim number of bytes
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -213,7 +219,8 @@ rlimit_memlock <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim number of bytes
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -239,7 +246,8 @@ rlimit_msgqueue <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim priority value between -20 and 20
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -263,7 +271,8 @@ rlimit_nice <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim number greater than 1
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -287,7 +296,8 @@ rlimit_nofile <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim number greater than 1
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -309,7 +319,8 @@ rlimit_nproc <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim real time priority value
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -347,7 +358,8 @@ rlimit_rtprio <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim time in microsec
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -373,7 +385,8 @@ rlimit_rttime <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim number of signals
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R
@@ -400,7 +413,8 @@ rlimit_sigpending <- function(hardlim, softlim=hardlim, pid = 0, verbose=FALSE){
 #' @param softlim size of stack
 #' @param pid id of the target process
 #' @param verbose print some C output (TRUE/FALSE)
-#' @references http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 #' @export
 #' @family rlimit
 #' @example examples/limits.R

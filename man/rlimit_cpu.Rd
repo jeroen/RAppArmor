@@ -60,7 +60,14 @@ system.time(eval.secure(testfun(), RLIMIT_CPU=5));
 system.time(eval.secure(testfun(), timeout=5));}
 }
 \references{
-  http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html
+  Jeroen Ooms (2013). The RAppArmor Package: Enforcing
+  Security Policies in {R} Using Dynamic Sandboxing on
+  Linux. \emph{Journal of Statistical Software}, 55(7),
+  1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+
+  Ubuntu Manpage: \code{getrlimit, setrlimit} -
+  \emph{get/set resource limits}.
+  \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 }
 \seealso{
   Other rlimit: \code{\link{rlimit_as}},

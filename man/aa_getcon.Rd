@@ -23,6 +23,13 @@
   being confined with a very restrictive profile.
 }
 \references{
-  http://manpages.ubuntu.com/manpages/precise/man2/aa_getcon.2.html
+  Jeroen Ooms (2013). The RAppArmor Package: Enforcing
+  Security Policies in {R} Using Dynamic Sandboxing on
+  Linux. \emph{Journal of Statistical Software}, 55(7),
+  1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+
+  Ubuntu Manpage: \code{aa_getcon} - \emph{get task
+  confinement information}.
+  \url{http://manpages.ubuntu.com/manpages/precise/man2/aa_getcon.2.html}.
 }
 
