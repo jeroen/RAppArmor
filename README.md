@@ -116,12 +116,12 @@ How to Cite
   
 To cite RAppArmor in publications use:
   
-	  Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in R Using Dynamic Sandboxing on Linux. Journal of
-	  Statistical Software, 55(7), 1-34. URL http://www.jstatsoft.org/v55/i07/.
+	  Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in R Using Dynamic Sandboxing
+    on Linux. Journal of Statistical Software, 55(7), 1-34. URL http://www.jstatsoft.org/v55/i07/.
   
 A BibTeX entry for LaTeX users is
   
-    @Article{,
+    @Article{RAppArmor,
       title = {The {RAppArmor} Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux},
       author = {Jeroen Ooms},
       journal = {Journal of Statistical Software},
@@ -136,9 +136,6 @@ A BibTeX entry for LaTeX users is
 Problems / Questions / Etc
 --------------------------
 
-For any problems, questions, suggestions on the installation or use of RAppArmor, please get in touch! 
-We are very interested in hearing if anything is unclear or not working as expected. 
+For any problems, questions, suggestions, please get in touch!
+Technical questions can be posted on [Stack Overflow](http://stackoverflow.com/questions/tagged/rapparmor). Make sure to add the following tags: `rapparmor`, `r`, `apparmor`. Bugs and feature requests can be posted on the [github issue page](https://github.com/jeroenooms/RAppArmor/issues). Or you can send an email to [the maintainer](https://github.com/jeroenooms/RAppArmor/blob/master/DESCRIPTION).
 
-For general help, post a question on [Stack Overflow](http://stackoverflow.com/questions/tagged/rapparmor) and add the following tags: `rapparmor`, `r`, `apparmor`.
-
-To report bugs, either [post an issue on github](https://github.com/jeroenooms/RAppArmor/issues), or send an email to [the maintainer](https://github.com/jeroenooms/RAppArmor/blob/master/DESCRIPTION).   
