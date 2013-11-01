@@ -89,14 +89,14 @@ Please have a look at the [JSS paper](http://www.jstatsoft.org/v55/i07/) to unde
 Quick start guide
 -----------------
 
-Use the `eval.secure` function to dynamically evaluate a call with a certain AppArmor profile or hardware limits:
+Use the [`eval.secure`](http://www.inside-r.org/packages/cran/RAppArmor/docs/eval.secure) function to dynamically evaluate a call with a certain AppArmor profile or hardware limits:
 
     list.files("/")
     eval.secure(list.files("/"), profile="r-user")
     
-To set hardware limits:
+To set hardware limits, use the `RLIMIT_XXX` arguments:
 
-	  A <- matrix(rnorm(1e7), 1e4);
+    A <- matrix(rnorm(1e7), 1e4);
     B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 100*1024*1024);
     
 Unit Testing
