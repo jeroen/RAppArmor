@@ -14,34 +14,31 @@ The R package RAppArmor interfaces to a number of security related methods in th
 This can be useful for example if to host a public service for users to run R code, or if you are paranoid about running contributed code on your machine. 
 
 
-Documentation
--------------
+Documentation / Tutorials
+-------------------------
 
-The most complete documentation can be found in the latest draft for the [JSS paper](http://arxiv.org/abs/1303.4808) for this package. 
-There is of course also the [PDF manual](http://cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) on CRAN. 
+The best sources to learn about RAppArmor:
 
-Video Tutorials
----------------
+ * [JSS paper](http://www.jstatsoft.org/v55/i07/) *(recommended)* - High level introduction to most important concepts and features
+ * [PDF manual](http://cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) - Auto generated PDF documentation.
+ * [Video Tutorials](http://www.youtube.com/playlist?list=PL3ZKTMqqbMktzcWjXuQCWOYc-fMROs3cf&feature=view_all) 3 short (10min) tutorials demonstrating core functionality.
 
-A number of short "Introduction to RAppArmor" video tutorials is available to quickly get started with AppArmor and R and wrap your head around
-the basic concepts. Sit back and enjoy: [playlist on youtube](http://www.youtube.com/playlist?list=PL3ZKTMqqbMktzcWjXuQCWOYc-fMROs3cf&feature=view_all) 
+OS Support
+----------
 
-Support
--------
+The package has been successfully build on the following Linux distributions:
 
-The package has been successfully build on:
-
-* Ubuntu 12.04 *(recommended)* and up
+* Ubuntu 12.04  and up *(recommended)*
 * Debian 7 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt)
 * OpenSuse 12.1 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
 
-For Ubuntu there is a convenient installation package available through launchpad. 
+For Ubuntu there is a convenient installation package available through launchpad (see below). 
+For Debian/OpenSuse the package needs to be built from source (see install notes).
 
 Installation on Ubuntu
 ----------------------
 
-On Ubuntu the package is easily installed through launchpad (recommended). 
-There are two repositories: 
+On Ubuntu the package is easily installed through launchpad (recommended). There are two repositories: 
 
  * [opencpu/rapparmor](https://launchpad.net/~opencpu/+archive/rapparmor) - build for version of R that ships with Ubuntu.
  * [opencpu/rapparmor-dev](https://launchpad.net/~opencpu/+archive/rapparmor-dev) - build for R 3.0.0.
@@ -55,9 +52,7 @@ To install, run:
 To uninstall the r-cran-rapparmor package (also recommended before upgrading):
 
     sudo apt-get purge r-cran-rapparmor
-    sudo apt-get autoremove --purge
     sudo ppa-purge ppa:opencpu/rapparmor-dev    
-    
 
 Alternatively, to manually install RAppArmor on Ubuntu:
 
@@ -77,14 +72,6 @@ Alternatively, to manually install RAppArmor on Ubuntu:
     #To disable enforcing the global R profile
     sudo aa-disable usr.bin.r
     
-Installation on Debian / OpenSuse
------------------------------------    
-
-For Debian, see [Debian install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt). 
-For OpenSuse, see these [Suse install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt).
-We haven't tested other distributions (yet).
-
-
 Enforce/Disable
 ---------------
 
@@ -96,25 +83,22 @@ Do disable enforcing of the standard policy run:
 
     sudo aa-disable usr.bin.r
 
-Please read the latest draft of the [JSS paper](http://arxiv.org/abs/1303.4808) to understand how to use the software. 
+Please have a look at the [JSS paper](http://www.jstatsoft.org/v55/i07/) to understand how to use the software. 
 
 
-Using the software
-------------------
+Quick start guide
+-----------------
 
-Use the `eval.secure` function to dynamically evaluate a call under a certain AppArmor profile
+Use the `eval.secure` function to dynamically evaluate a call with a certain AppArmor profile or hardware limits:
 
+    list.files("/")
     eval.secure(list.files("/"), profile="r-user")
     
-You can also add RLIMIT values:
+To set hardware limits:
 
-	A <- matrix(rnorm(1e7), 1e4);
+	  A <- matrix(rnorm(1e7), 1e4);
     B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 100*1024*1024);
     
-If R is running with superuser privileges, you can also evaluate a call as a certain user:
-
-    eval.secure(system('whoami', intern=TRUE), uid="jeroen")
-
 Unit Testing
 ------------
 
@@ -124,6 +108,30 @@ The RAppArmor package ships with some unit tests that can be used to check if th
     unittests();        
     
 See the `?unittests` help page for more info.
+
+How to Cite
+-----------
+
+
+  
+To cite RAppArmor in publications use:
+  
+	  Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in R Using Dynamic Sandboxing on Linux. Journal of
+	  Statistical Software, 55(7), 1-34. URL http://www.jstatsoft.org/v55/i07/.
+  
+A BibTeX entry for LaTeX users is
+  
+    @Article{,
+      title = {The {RAppArmor} Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux},
+      author = {Jeroen Ooms},
+      journal = {Journal of Statistical Software},
+      year = {2013},
+      volume = {55},
+      number = {7},
+      pages = {1--34},
+      url = {http://www.jstatsoft.org/v55/i07/},
+    }
+
 
 Problems / Questions / Etc
 --------------------------
