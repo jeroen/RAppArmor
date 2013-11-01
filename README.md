@@ -112,8 +112,6 @@ See the `?unittests` help page for more info.
 How to Cite
 -----------
 
-
-  
 To cite RAppArmor in publications use:
   
     Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in R Using Dynamic Sandboxing

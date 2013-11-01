@@ -8,17 +8,10 @@ Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
 License: GPL | Apache License (== 2.0)
 URL: http://www.jstatsoft.org/v55/i07/
     http://github.com/jeroenooms/RAppArmor#readme
-BugReports: https://github.com/jeroenooms/RAppArmor/issues
+BugReports: http://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
 SystemRequirements: libapparmor-dev, linux (>= 3.0)
-Description: This package implements R functions that interact with the Linux
-    kernel to enforce security restrictions on an R process. Mandatory access
-    control (MAC) policies can be applied by loading an apparmor profiles. In
-    addition, the package can set hardware limits (rlimit), uid, gid, affinity
-    and priority of the current process, directly from within R. The high level
-    function eval.secure builds on these foundations to do dynamic sandboxing:
-    it evaluates a single expression under irreversible security restrictions
-    and hardware limits without any side effects on R session.
+Description: This package implements R functions that interface to various methods in the Linux kernel related to enforcing security restrictions on a certain task (process). The package can apply mandatory access control (MAC) policies by loading an apparmor profile, and set hardware limits (rlimit), uid, gid, affinity and priority of the current process, directly from within R. The high level function eval.secure builds on these foundations to support dynamic sandboxing: it evaluates a single expression in a temporary fork with hard security restrictions and hardware limits without any side effects on the main R session. 
 Suggests:
     testthat
 Imports:
