@@ -116,7 +116,7 @@ How to Cite
   
 To cite RAppArmor in publications use:
   
-	  Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in R Using Dynamic Sandboxing
+    Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in R Using Dynamic Sandboxing
     on Linux. Journal of Statistical Software, 55(7), 1-34. URL http://www.jstatsoft.org/v55/i07/.
   
 A BibTeX entry for LaTeX users is
