@@ -52,8 +52,8 @@ To install, run:
 To uninstall the r-cran-rapparmor package (also recommended before upgrading):
 
     sudo apt-get purge r-cran-rapparmor
-    sudo ppa-purge ppa:opencpu/rapparmor-dev    
-
+    sudo ppa-purge ppa:opencpu/rapparmor-dev  
+    
 Alternatively, to manually install RAppArmor on Ubuntu:
 
     #Install dependencies:

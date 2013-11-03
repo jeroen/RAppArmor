@@ -14,3 +14,4 @@ vignettes/*.log
 vignettes/*.gz
 vignettes/*.tex
 .Rhistory
+^debian$

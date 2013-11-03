@@ -693,12 +693,13 @@ following:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-wget http://cran.r-project.org/src/contrib/RAppArmor_0.8.3.tar.gz
+sudo apt-get install libapparmor-dev devscripts
+wget http://cran.r-project.org/src/contrib/Archive/RAppArmor/RAppArmor_0.8.3.tar.gz
 tar xzvf RAppArmor_0.8.3.tar.gz
 cd RAppArmor/
 debuild -uc -us
 cd ..
-sudo dpkg -i r-cran-rapparmor_0.8.3-precise1_amd64.deb
+sudo dpkg -i r-cran-rapparmor_*.deb
 \end{CodeInput}
 \end{CodeChunk}
 

@@ -1,5 +1,6 @@
 1.0.0
  - Remove setInteractive code. CRAN no longer allows this, and mcparallel now disables interactivity by default.
+ - Move 'debian' dir from root into /tools/
  - Added JSS PDF and CITATION files
  - Bump to 1.0.0 to official release with JSS publication.
 

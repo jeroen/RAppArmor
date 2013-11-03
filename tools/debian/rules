@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+# 							-*- makefile -*-
+# debian/rules file for the Debian/GNU Linux r-cran-stabledist package
+# Copyright 2003-2011 by Dirk Eddelbuettel <edd@debian.org>
+
+include /usr/share/R/debian/r-cran.mk
