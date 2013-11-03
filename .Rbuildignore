@@ -8,10 +8,9 @@ examples
 Debian-Wheezy.txt
 OpenSuse.txt
 Tutorials.txt
-vignettes/*.bbl
-vignettes/*.bib
-vignettes/*.log
-vignettes/*.gz
-vignettes/*.tex
-.Rhistory
+^vignettes/.*.bbl$
+^vignettes/.*.log$
+^vignettes/.*.gz$
+^vignettes/.*.tex$
+^.Rhistory$
 ^debian$
