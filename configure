@@ -1,4 +1,4 @@
-LIBFILE=$(whereis libapparmor.so | grep -oh " [a-zA-Z0-9/]*libapparmor.so")
+LIBFILE=$(ldconfig -p | grep -oh " [a-zA-Z0-9/]*libapparmor.so$")
 
 if [ -z "$LIBFILE" ]
 then

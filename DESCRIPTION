@@ -1,8 +1,8 @@
 Package: RAppArmor
 Type: Package
 Title: Interfaces to Linux and AppArmor security methods.
-Version: 1.0.0
-Date: 2013-10-31
+Version: 1.0.1
+Date: 2013-12-16
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
 License: GPL | Apache License (== 2.0)
