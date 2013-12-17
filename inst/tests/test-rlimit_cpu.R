@@ -10,7 +10,7 @@ testfun <- function(){
 #timeout also counts idle time
 test_that("Timeout terminates process timely.", {
 	out <- system.time(try(eval.secure(testfun(), timeout=2), silent=TRUE));
-	expect_that(unname(abs(out["elapsed"] - 2) < 0.2), is_true())
+	expect_that(unname(out["elapsed"]) < 2.5, is_true())
 	rm(out)
 });
 
@@ -18,16 +18,16 @@ test_that("Timeout throws error", {
 	expect_that(eval.secure(testfun(), timeout=1), throws_error("Terminating process"))
 });
 
-#rlimit_cpu does not count idle time
+#rlimit_cpu does not count idle time, but after 5 sec it should be done usually
 test_that("RLIMIT_CPU terminates process timely.", {
 	out <- system.time(eval.secure(testfun(), RLIMIT_CPU=2));
-	expect_that(unname(abs(out["elapsed"] - 3) < 0.2), is_true())
+	expect_that(unname(out["elapsed"]) < 5, is_true())
 	rm(out)
 });
 
 test_that("combine limit and cpu.", {
 	out <- system.time(try(eval.secure(testfun(), timeout=2, RLIMIT_CPU=2), silent=TRUE));
-	expect_that(unname(abs(out["elapsed"] - 2) < 0.2), is_true())
+	expect_that(unname(out["elapsed"]) < 2.5, is_true())
 	rm(out)
 });
 
