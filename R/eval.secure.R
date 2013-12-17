@@ -8,12 +8,14 @@
 #' killed. If the timeout is reached the fork is also killed and an
 #' error is thrown.   
 #' 
-#' Evaluation of an expression through secure.eval should never have
-#' any side effects on the current R session. This also means that if 
-#' the code does e.g. assignments to the global environment, sets options(),
-#' these will get lost, as we explicitly want to prevent this. However, if 
-#' the expression saves any files (where allowed by apparmor), these will
-#' still be available after the evaluation finishes.  
+#' Evaluation of an expression through \code{\link{eval.secure}} has no
+#' side effects on the current R session. This also means that if any
+#' assignments to the global environment, options, or library loadings done
+#' inside the evaluation will get lost, as we explicitly want to prevent 
+#' this. Only the return value of the expression will be copied to the 
+#' main process. Also, if the sandboxed evaluation expression saves any 
+#' files to disk (where allowed by apparmor), these will be available
+#' after the evaluation finishes.  
 #' 
 #' Note that if the initial process does not have superuser rights, 
 #' rlimits can only be decreased and setuid/setgid might not work. In 
