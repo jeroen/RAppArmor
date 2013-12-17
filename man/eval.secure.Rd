@@ -4,88 +4,105 @@
 \usage{
   eval.secure(..., uid, gid, priority, profile,
     timeout = 60, silent = FALSE, verbose = FALSE,
-    affinity, RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU,
-    RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
-    RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE,
-    RLIMIT_NPROC, RLIMIT_RTPRIO, RLIMIT_RTTIME,
-    RLIMIT_SIGPENDING, RLIMIT_STACK)
+    affinity, closeAllConnections = TRUE, RLIMIT_AS,
+    RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE,
+    RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE, RLIMIT_NICE,
+    RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO,
+    RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK)
 }
 \arguments{
-  \item{...}{arguments passed on to eval(...)}
+  \item{...}{arguments passed on to \code{\link{eval}}.}
 
-  \item{uid}{integer or name of linux user.}
+  \item{uid}{integer or name of linux user. See
+  \code{\link{setuid}}.}
 
-  \item{gid}{integer or name of linux group.}
+  \item{gid}{integer or name of linux group. See
+  \code{\link{setgid}}.}
 
-  \item{priority}{priority. Value between -20 and 20.}
+  \item{priority}{priority. Value between -20 and 20. See
+  \code{\link{setpriority}}.}
 
   \item{profile}{AppArmor security profile. Has to be
-  preloaded by Linux.}
+  preloaded by Linux. See \code{\link{aa_change_profile}}.}
 
   \item{timeout}{timeout in seconds.}
 
   \item{silent}{suppress output on stdout. See
-  mcparallel().}
+  \code{\link{mcparallel}}.}
 
   \item{verbose}{print some C output (TRUE/FALSE)}
 
-  \item{affinity}{which cpu(s) to use. See setaffinity.}
+  \item{affinity}{which cpu(s) to use. See
+  \code{\link{setaffinity}}.}
 
-  \item{RLIMIT_AS}{hard limit passed on to rlimit_as()}
+  \item{closeAllConnections}{closes (and destroys) all user
+  connections. See \code{\link{closeAllConnections}}.}
 
-  \item{RLIMIT_CORE}{hard limit passed on to rlimit_core()}
+  \item{RLIMIT_AS}{hard limit passed on to
+  \code{\link{rlimit_as}}.}
 
-  \item{RLIMIT_CPU}{hard limit passed on to rlimit_cpu()}
+  \item{RLIMIT_CORE}{hard limit passed on to
+  \code{\link{rlimit_core}}.}
 
-  \item{RLIMIT_DATA}{hard limit passed on to rlimit_data()}
+  \item{RLIMIT_CPU}{hard limit passed on to
+  \code{\link{rlimit_cpu}}.}
+
+  \item{RLIMIT_DATA}{hard limit passed on to
+  \code{\link{rlimit_data}}.}
 
   \item{RLIMIT_FSIZE}{hard limit passed on to
-  rlimit_fsize()}
+  \code{\link{rlimit_fsize}}.}
 
   \item{RLIMIT_MEMLOCK}{hard limit passed on to
-  rlimit_memlock()}
+  \code{\link{rlimit_memlock}}.}
 
   \item{RLIMIT_MSGQUEUE}{hard limit passed on to
-  rlimit_msgqueue()}
+  \code{\link{rlimit_msgqueue}}.}
 
-  \item{RLIMIT_NICE}{hard limit passed on to rlimit_nice()}
+  \item{RLIMIT_NICE}{hard limit passed on to
+  \code{\link{rlimit_nice}}.}
 
   \item{RLIMIT_NOFILE}{hard limit passed on to
-  rlimit_nofile()}
+  \code{\link{rlimit_nofile}}.}
 
   \item{RLIMIT_NPROC}{hard limit passed on to
-  rlimit_nproc()}
+  \code{\link{rlimit_nproc}}.}
 
   \item{RLIMIT_RTPRIO}{hard limit passed on to
-  rlimit_rtprio()}
+  \code{\link{rlimit_rtprio}}.}
 
   \item{RLIMIT_RTTIME}{hard limit passed on to
-  rlimit_rttime()}
+  \code{\link{rlimit_rttime}}.}
 
   \item{RLIMIT_SIGPENDING}{hard limit passed on to
-  rlimit_sigpending()}
+  \code{\link{rlimit_sigpending}}.}
 
   \item{RLIMIT_STACK}{hard limit passed on to
-  rlimit_stack()}
+  \code{\link{rlimit_stack}}.}
 }
 \description{
   Evaluate in a sandboxed environment.
 }
 \details{
-  This function creates a fork, and then sets any rlimits,
-  uid, gid, priority, apparmor profile where specified, and
-  then evaluates the expression inside the fork. After
-  evaluation returns, the fork is killed. If the timeout is
-  reached the fork is also killed and an error is thrown.
+  This function creates a fork, then sets rlimits, uid,
+  gid, priority, apparmor profile where specified, and then
+  evaluates the expression inside the fork. The return
+  object of the evaluation is copied to the parent process
+  and returned by \code{\link{eval.secure}}. After
+  evaluation is done, the fork is immediately killed. If
+  the timeout is reached the fork is also killed and an
+  error is raised.
 
-  Evaluation of an expression through secure.eval should
-  never have any side effects on the current R session.
-  This also means that if the code does e.g. assignments to
-  the global environment, sets options(), these will get
-  lost, as we explicitly want to prevent this. However, if
-  the expression saves any files (where allowed by
-  apparmor), these will still be available after the
-  evaluation finishes.
+  Evaluation of an expression using
+  \code{\link{eval.secure}} has no side effects on the
+  current R session. Any assignments to the global
+  environment, changes in options, or library loadings done
+  by the evaluation will get lost, as we explicitly want to
+  prevent this. Only the return value of the expression
+  will be copied to the main process. Also, if the
+  sandboxed evaluation expression saves any files to disk
+  (where allowed by apparmor profile, etc), these will
+  persist after the evaluation finishes.
 
   Note that if the initial process does not have superuser
   rights, rlimits can only be decreased and setuid/setgid
