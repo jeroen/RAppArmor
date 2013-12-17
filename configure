@@ -4,7 +4,7 @@ then
   exit 1
 fi
 
-LIBFILE=$(ldconfig -p | egrep -oh " [a-zA-Z0-9/]*/libapparmor.so(.1)?$")
+LIBFILE=$(ldconfig -p | egrep -oh " [a-zA-Z0-9_-/]*/libapparmor.so(.1)?$")
 
 if [ -z "$LIBFILE" ]
 then
