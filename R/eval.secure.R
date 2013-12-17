@@ -2,20 +2,21 @@
 #' 
 #' Evaluate in a sandboxed environment.
 #' 
-#' This function creates a fork, and then sets any rlimits, uid, gid,
-#' priority, apparmor profile where specified, and then evaluates the
-#' expression inside the fork. After evaluation returns, the fork is 
-#' killed. If the timeout is reached the fork is also killed and an
-#' error is thrown.   
+#' This function creates a fork, then sets rlimits, uid, gid, priority, 
+#' apparmor profile where specified, and then evaluates the expression
+#' inside the fork. The return object of the evaluation is copied to 
+#' the parent process and returned by \code{\link{eval.secure}}. After
+#' evaluation is done, the fork is immediately killed. If the timeout is 
+#' reached the fork is also killed and an error is raised.   
 #' 
-#' Evaluation of an expression through \code{\link{eval.secure}} has no
-#' side effects on the current R session. This also means that if any
-#' assignments to the global environment, options, or library loadings done
-#' inside the evaluation will get lost, as we explicitly want to prevent 
-#' this. Only the return value of the expression will be copied to the 
+#' Evaluation of an expression using \code{\link{eval.secure}} has no
+#' side effects on the current R session. Any assignments to the global
+#' environment, changes in options, or library loadings done by the 
+#' evaluation will get lost, as we explicitly want to prevent this. 
+#' Only the return value of the expression will be copied to the 
 #' main process. Also, if the sandboxed evaluation expression saves any 
-#' files to disk (where allowed by apparmor), these will be available
-#' after the evaluation finishes.  
+#' files to disk (where allowed by apparmor profile, etc), these will
+#' persist after the evaluation finishes.  
 #' 
 #' Note that if the initial process does not have superuser rights, 
 #' rlimits can only be decreased and setuid/setgid might not work. In 
