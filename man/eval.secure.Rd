@@ -99,10 +99,9 @@
   environment, changes in options, or library loadings done
   by the evaluation will get lost, as we explicitly want to
   prevent this. Only the return value of the expression
-  will be copied to the main process. Also, if the
-  sandboxed evaluation expression saves any files to disk
-  (where allowed by apparmor profile, etc), these will
-  persist after the evaluation finishes.
+  will be copied to the main process. Files saved to disk
+  by the sandboxed evaluation (where allowed by apparmor
+  profile, etc) will also persist.
 
   Note that if the initial process does not have superuser
   rights, rlimits can only be decreased and setuid/setgid
