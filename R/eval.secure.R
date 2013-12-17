@@ -22,30 +22,30 @@
 #' of the apparmor profile. When a rlimit is set both in the profile and
 #' through R, the more restrictive one will be effective. 
 #' 
-#' @param ... arguments passed on to eval(...)
-#' @param uid integer or name of linux user.
-#' @param gid integer or name of linux group.
-#' @param priority priority. Value between -20 and 20. 
-#' @param profile AppArmor security profile. Has to be preloaded by Linux.
+#' @param ... arguments passed on to \code{\link{eval}}.
+#' @param uid integer or name of linux user. See \code{\link{setuid}}.
+#' @param gid integer or name of linux group. See \code{\link{setgid}}.
+#' @param priority priority. Value between -20 and 20. See \code{\link{setpriority}}. 
+#' @param profile AppArmor security profile. Has to be preloaded by Linux. See \code{\link{aa_change_profile}}.
 #' @param timeout timeout in seconds.
-#' @param silent suppress output on stdout. See mcparallel().
+#' @param silent suppress output on stdout. See \code{\link{mcparallel}}.
 #' @param verbose print some C output (TRUE/FALSE)
-#' @param affinity which cpu(s) to use. See setaffinity.
-#' @param closeAllConnections closes (and destroys) all user connections. See ?closeAllConnections.
-#' @param RLIMIT_AS hard limit passed on to rlimit_as()
-#' @param RLIMIT_CORE hard limit passed on to rlimit_core()
-#' @param RLIMIT_CPU hard limit passed on to rlimit_cpu()
-#' @param RLIMIT_DATA hard limit passed on to rlimit_data()
-#' @param RLIMIT_FSIZE hard limit passed on to rlimit_fsize()
-#' @param RLIMIT_MEMLOCK hard limit passed on to rlimit_memlock()
-#' @param RLIMIT_MSGQUEUE hard limit passed on to rlimit_msgqueue()
-#' @param RLIMIT_NICE hard limit passed on to rlimit_nice()
-#' @param RLIMIT_NOFILE hard limit passed on to rlimit_nofile()
-#' @param RLIMIT_NPROC hard limit passed on to rlimit_nproc()
-#' @param RLIMIT_RTPRIO hard limit passed on to rlimit_rtprio()
-#' @param RLIMIT_RTTIME hard limit passed on to rlimit_rttime()
-#' @param RLIMIT_SIGPENDING hard limit passed on to rlimit_sigpending()
-#' @param RLIMIT_STACK hard limit passed on to rlimit_stack()
+#' @param affinity which cpu(s) to use. See \code{\link{setaffinity}}.
+#' @param closeAllConnections closes (and destroys) all user connections. See \code{\link{closeAllConnections}}.
+#' @param RLIMIT_AS hard limit passed on to \code{\link{rlimit_as}}.
+#' @param RLIMIT_CORE hard limit passed on to \code{\link{rlimit_core}}.
+#' @param RLIMIT_CPU hard limit passed on to \code{\link{rlimit_cpu}}.
+#' @param RLIMIT_DATA hard limit passed on to \code{\link{rlimit_data}}.
+#' @param RLIMIT_FSIZE hard limit passed on to \code{\link{rlimit_fsize}}.
+#' @param RLIMIT_MEMLOCK hard limit passed on to \code{\link{rlimit_memlock}}.
+#' @param RLIMIT_MSGQUEUE hard limit passed on to \code{\link{rlimit_msgqueue}}.
+#' @param RLIMIT_NICE hard limit passed on to \code{\link{rlimit_nice}}.
+#' @param RLIMIT_NOFILE hard limit passed on to \code{\link{rlimit_nofile}}.
+#' @param RLIMIT_NPROC hard limit passed on to \code{\link{rlimit_nproc}}.
+#' @param RLIMIT_RTPRIO hard limit passed on to \code{\link{rlimit_rtprio}}.
+#' @param RLIMIT_RTTIME hard limit passed on to \code{\link{rlimit_rttime}}.
+#' @param RLIMIT_SIGPENDING hard limit passed on to \code{\link{rlimit_sigpending}}.
+#' @param RLIMIT_STACK hard limit passed on to \code{\link{rlimit_stack}}.
 #' @import parallel tools methods
 #' @export
 #' @useDynLib RAppArmor
