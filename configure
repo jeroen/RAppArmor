@@ -1,4 +1,4 @@
-if[ ! -e /usr/include/sys/apparmor.h ]
+if [ ! -e /usr/include/sys/apparmor.h ]
 then
   echo "sys/apparmor.h not found. Make sure libapparmor-dev is installed."
   exit 1
