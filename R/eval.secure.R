@@ -31,6 +31,7 @@
 #' @param silent suppress output on stdout. See mcparallel().
 #' @param verbose print some C output (TRUE/FALSE)
 #' @param affinity which cpu(s) to use. See setaffinity.
+#' @param closeAllConnections closes (and destroys) all user connections. See ?closeAllConnections.
 #' @param RLIMIT_AS hard limit passed on to rlimit_as()
 #' @param RLIMIT_CORE hard limit passed on to rlimit_core()
 #' @param RLIMIT_CPU hard limit passed on to rlimit_cpu()
@@ -87,7 +88,7 @@
 #'}
 
 eval.secure <- function(..., uid, gid, priority, profile, timeout=60, 
-	silent=FALSE, verbose=FALSE, affinity,
+	silent=FALSE, verbose=FALSE, affinity, closeAllConnections=TRUE,
 	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
 	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, 
 	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){	
@@ -108,7 +109,11 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 		#set the process group
 		#to do: somehow prevent forks from modifying process group.
 		setpgid(verbose=FALSE);
+
+		#close connections
+		if(isTRUE(closeAllConnections)) closeAllConnections();
 		
+		#linux stuff
 		if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS, verbose=verbose);
 		if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE, verbose=verbose);
 		if(!missing(RLIMIT_CPU)) rlimit_cpu(RLIMIT_CPU, verbose=verbose);
