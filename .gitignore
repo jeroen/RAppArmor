@@ -10,7 +10,6 @@ src/Makevars
 .Rproj.user
 RAppArmor.Rproj
 vignettes/*.bbl
-vignettes/*.bib
 vignettes/*.log
 vignettes/*.gz
 vignettes/*.tex
