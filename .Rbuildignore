@@ -5,7 +5,7 @@ Makefile
 .travis.yml
 src/Makevars
 examples
-Debian-Wheezy.txt
+Debian.txt
 OpenSuse.txt
 Tutorials.txt
 ^vignettes/.*.bbl$
