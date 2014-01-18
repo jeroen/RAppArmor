@@ -29,7 +29,7 @@ OS Support
 The package has been successfully build on the following Linux distributions:
 
 * Ubuntu 12.04  and up *(recommended)*
-* Debian 7 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian-Wheezy.txt)
+* Debian 7 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian.txt)
 * OpenSuse 12.1 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
 
 For Ubuntu there is a convenient installation package available through launchpad (see below). 
