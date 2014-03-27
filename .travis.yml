@@ -7,7 +7,7 @@
 language: c
 
 before_install:
-  - sudo apt-get r-base-dev libapparmor-dev apparmor-utils
+  - sudo apt-get install r-base-dev libapparmor-dev apparmor-utils
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
