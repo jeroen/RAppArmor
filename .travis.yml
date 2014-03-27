@@ -1,43 +1,24 @@
-# it is not really python, but there is no R support on Travis CI yet
-language: python
+# Sample .travis.yml for R projects.
+#
+# See README.md for instructions, or for more configuration options,
+# see the wiki:
+#   https://github.com/craigcitro/r-travis/wiki
 
-# environment variables
-env:
-  - R_LIBS_USER=~/R
+language: c
 
-# install dependencies
+before_install:
+  - sudo apt-get r-base-dev libapparmor-dev apparmor-utils
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
 install:
-  - echo "deb http://cran.rstudio.com/bin/linux/ubuntu `lsb_release -cs`/"
-      | sudo tee /etc/apt/sources.list.d/cran.list
-  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-  - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/cran.list"
-      -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
-  - sudo apt-add-repository -y ppa:marutter/c2d4u
-  - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/marutter-c2d4u-precise.list"
-      -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
-  - sudo apt-get install --no-install-recommends r-base-dev apparmor-utils libapparmor-dev debhelper devscripts cdbs libapparmor-dev libapparmor1 apparmor apparmor-utils
-      qpdf texinfo texlive-latex-recommended texlive-latex-extra lmodern texlive-fonts-recommended texlive-fonts-extra
-  - "[ ! -d ~/R ] && mkdir ~/R"
-  - R --version
-  - R -e '.libPaths(); sessionInfo()'
-  - Rscript -e 'install.packages("testthat", repos = "http://cran.rstudio.org")'
+  - ./travis-tool.sh install_deps
+script: ./travis-tool.sh run_tests
 
-# try to install on stock R
-script:
-  - R CMD build .
-  - mv RAppArmor*.tar.gz ..
-  - R CMD check ../RAppArmor*.tar.gz
-  - debuild --no-tgz-check -us -uc
-  - sudo dpkg -i ../r-cran-rapparmor*.deb
+after_failure:
+  - ./travis-tool.sh dump_logs
 
-# run check against R-devel
-after_script:
-  - sudo add-apt-repository -y ppa:marutter/rdev
-  - sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/marutter-rdev-precise.list"
-      -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
-  - sudo apt-get upgrade
-  - rm ../*.deb
-  - R CMD check ../RAppArmor_*.tar.gz
-  - debuild clean
-  - debuild --no-tgz-check -us -uc
-  - sudo dpkg -i ../r-cran-rapparmor*.deb
+notifications:
+  email:
+    on_success: change
+    on_failure: change
