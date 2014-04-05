@@ -1,0 +1,93 @@
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{aa_getcon}\hlstd{()}\hlopt{$}\hlstd{con}
+\end{alltt}
+\begin{verbatim}
+## Getting task confinement information...
+## [1] "unconfined"
+\end{verbatim}
+\begin{alltt}
+\hlstd{result} \hlkwb{<-} \hlkwd{read.table}\hlstd{(}\hlstr{"/etc/passwd"}\hlstd{)}
+
+\hlcom{# load the profile}
+\hlkwd{aa_change_profile}\hlstd{(}\hlstr{"testprofile"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Switching profiles...
+\end{verbatim}
+\begin{alltt}
+\hlkwd{aa_getcon}\hlstd{()}\hlopt{$}\hlstd{con}
+\end{alltt}
+\begin{verbatim}
+## Getting task confinement information...
+## [1] "testprofile"
+\end{verbatim}
+\begin{alltt}
+\hlstd{passwd} \hlkwb{<-} \hlkwd{read.table}\hlstd{(}\hlstr{"/etc/passwd"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file '/etc/passwd': Permission denied}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}\begin{alltt}
+\hlstd{group} \hlkwb{<-} \hlkwd{read.table}\hlstd{(}\hlstr{"/etc/group"}\hlstd{)}
+
+\hlcom{# switch into the 'hat'}
+\hlstd{mytoken} \hlkwb{<-} \hlnum{13337}
+\hlkwd{aa_change_hat}\hlstd{(}\hlstr{"testhat"}\hlstd{, mytoken)}
+\end{alltt}
+\begin{verbatim}
+## Setting AppArmor Hat...
+\end{verbatim}
+\begin{alltt}
+\hlkwd{aa_getcon}\hlstd{()}\hlopt{$}\hlstd{con}
+\end{alltt}
+\begin{verbatim}
+## Getting task confinement information...
+## [1] "testprofile//testhat"
+\end{verbatim}
+\begin{alltt}
+\hlstd{passwd} \hlkwb{<-} \hlkwd{read.table}\hlstd{(}\hlstr{"/etc/passwd"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file '/etc/passwd': Permission denied}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}\begin{alltt}
+\hlstd{group} \hlkwb{<-} \hlkwd{read.table}\hlstd{(}\hlstr{"/etc/group"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file '/etc/group': Permission denied}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}\begin{alltt}
+\hlcom{# revert the 'hat'}
+\hlkwd{aa_revert_hat}\hlstd{(mytoken)}
+\end{alltt}
+\begin{verbatim}
+## Reverting AppArmor Hat...
+\end{verbatim}
+\begin{alltt}
+\hlkwd{aa_getcon}\hlstd{()}\hlopt{$}\hlstd{con}
+\end{alltt}
+\begin{verbatim}
+## Getting task confinement information...
+## [1] "testprofile"
+\end{verbatim}
+\begin{alltt}
+\hlstd{passwd} \hlkwb{<-} \hlkwd{read.table}\hlstd{(}\hlstr{"/etc/passwd"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file '/etc/passwd': Permission denied}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}\begin{alltt}
+\hlstd{group} \hlkwb{<-} \hlkwd{read.table}\hlstd{(}\hlstr{"/etc/group"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+

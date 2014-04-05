@@ -1,0 +1,4 @@
+<<eval=TRUE>>=
+library("RAppArmor")
+aa_change_profile("r-base")
+@

@@ -1,0 +1,10 @@
+<<echo=FALSE>>=
+suppressPackageStartupMessages(library(RAppArmor))
+@
+
+<<>>=
+#run as root
+eval(system('whoami', intern=TRUE))
+eval.secure(system('whoami', intern=TRUE), uid=1000)
+eval(system('whoami', intern=TRUE))
+@

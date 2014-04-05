@@ -1,0 +1,22 @@
+%Run with usr.bin.r profile enabled!
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(RAppArmor)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# AppArmor LSM is enabled.\\\#\# Current profile: /usr/bin/R (enforce mode)}}\begin{alltt}
+\hlkwd{aa_change_profile}\hlstd{(}\hlstr{"r-user"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Switching profiles...
+## Getting task confinement information...
+\end{verbatim}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: The standard profile in usr.bin.r is already being enforced!\\\#\#\ \  Run sudo aa-disable usr.bin.r to disable this.}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: Failed to change profile from: /usr/bin/R to: r-user.}}\end{kframe}
+\end{knitrout}
+

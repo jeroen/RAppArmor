@@ -1,0 +1,27 @@
+<<echo=FALSE>>=
+suppressPackageStartupMessages(library(RAppArmor))
+@
+
+<<>>=
+aa_getcon()$con
+result <- read.table("/etc/passwd")
+
+#load the profile
+aa_change_profile("testprofile")
+aa_getcon()$con
+passwd <- read.table("/etc/passwd")
+group <- read.table("/etc/group")
+
+#switch into the 'hat'
+mytoken <- 13337;
+aa_change_hat("testhat", mytoken)
+aa_getcon()$con
+passwd <- read.table("/etc/passwd")
+group <- read.table("/etc/group")
+
+#revert the 'hat'
+aa_revert_hat(mytoken);
+aa_getcon()$con
+passwd <- read.table("/etc/passwd")
+group <- read.table("/etc/group")
+@

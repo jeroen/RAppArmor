@@ -1,0 +1,82 @@
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# base profile}
+\hlkwd{aa_change_profile}\hlstd{(}\hlstr{"r-base"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Switching profiles...
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+This profile denies access to most systems files and the home directory:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# stuff that is not allowed}
+\hlkwd{list.files}\hlstd{(}\hlstr{"/"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## character(0)
+\end{verbatim}
+\begin{alltt}
+\hlkwd{list.files}\hlstd{(}\hlstr{"~"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## character(0)
+\end{verbatim}
+\begin{alltt}
+\hlkwd{file.create}\hlstd{(}\hlstr{"~/test"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot create file '\textasciitilde{}/test', reason 'Permission denied'}}\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+\begin{alltt}
+\hlkwd{list.files}\hlstd{(}\hlstr{"/tmp"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## character(0)
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+However the profile does grant access to the global library and temporary directory:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# stuff that is allowed}
+\hlkwd{library}\hlstd{(MASS)}
+\hlkwd{setwd}\hlstd{(}\hlkwd{tempdir}\hlstd{())}
+\hlkwd{pdf}\hlstd{(}\hlstr{"test.pdf"}\hlstd{)}
+\hlkwd{plot}\hlstd{(speed} \hlopt{~} \hlstd{dist,} \hlkwc{data} \hlstd{= cars)}
+\hlkwd{dev.off}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## pdf 
+##   2
+\end{verbatim}
+\begin{alltt}
+\hlkwd{list.files}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] "test.pdf"
+\end{verbatim}
+\begin{alltt}
+\hlkwd{file.remove}\hlstd{(}\hlstr{"test.pdf"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+

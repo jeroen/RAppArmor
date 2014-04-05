@@ -1,0 +1,24 @@
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{A} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(}\hlnum{1e+07}\hlstd{)}
+\hlkwd{rm}\hlstd{(A)}
+\hlkwd{gc}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+##          used (Mb) gc trigger (Mb) max used (Mb)
+## Ncells 377297 20.2     667722 35.7   597831 32.0
+## Vcells 548431  4.2    9056788 69.1 10562454 80.6
+\end{verbatim}
+\begin{alltt}
+\hlkwd{rlimit_as}\hlstd{(}\hlnum{10} \hlopt{*} \hlnum{1024} \hlopt{*} \hlnum{1024}\hlstd{)}
+\hlstd{A} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(}\hlnum{1e+07}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot allocate vector of size 76.3 Mb}}\end{kframe}
+\end{knitrout}
+

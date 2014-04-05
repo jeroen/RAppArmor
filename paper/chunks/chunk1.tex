@@ -1,0 +1,16 @@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(}\hlstr{"RAppArmor"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# AppArmor LSM is enabled.\\\#\# Current profile: none (unconfined).\\\#\# See ?aa\_change\_profile on how switch profiles.}}\begin{alltt}
+\hlkwd{aa_change_profile}\hlstd{(}\hlstr{"r-base"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Switching profiles...
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+

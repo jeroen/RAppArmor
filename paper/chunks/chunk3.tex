@@ -1,0 +1,27 @@
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# run as root}
+\hlkwd{eval}\hlstd{(}\hlkwd{system}\hlstd{(}\hlstr{"whoami"}\hlstd{,} \hlkwc{intern} \hlstd{=} \hlnum{TRUE}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] "root"
+\end{verbatim}
+\begin{alltt}
+\hlkwd{eval.secure}\hlstd{(}\hlkwd{system}\hlstd{(}\hlstr{"whoami"}\hlstd{,} \hlkwc{intern} \hlstd{=} \hlnum{TRUE}\hlstd{),} \hlkwc{uid} \hlstd{=} \hlnum{1000}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] "jeroen"
+\end{verbatim}
+\begin{alltt}
+\hlkwd{eval}\hlstd{(}\hlkwd{system}\hlstd{(}\hlstr{"whoami"}\hlstd{,} \hlkwc{intern} \hlstd{=} \hlnum{TRUE}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] "root"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+

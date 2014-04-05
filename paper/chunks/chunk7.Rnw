@@ -1,0 +1,31 @@
+<<echo=FALSE>>=
+suppressPackageStartupMessages(library(RAppArmor))
+@
+
+<<>>=
+#base profile
+aa_change_profile("r-base")
+@
+
+This profile denies access to most systems files and the home directory:
+
+<<>>=
+#stuff that is not allowed
+list.files("/")
+list.files("~")
+file.create("~/test")
+list.files("/tmp")
+@
+
+However the profile does grant access to the global library and temporary directory:
+
+<<>>=
+#stuff that is allowed
+library(MASS)
+setwd(tempdir())
+pdf("test.pdf")
+plot(speed~dist, data=cars)
+dev.off()
+list.files()
+file.remove("test.pdf")
+@

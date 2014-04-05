@@ -1,0 +1,15 @@
+<<echo=FALSE>>=
+suppressPackageStartupMessages(library(RAppArmor))
+@
+
+<<>>=
+#run as root
+system("whoami", intern=TRUE)
+getuid()
+getgid()
+setgid(1000)
+setuid(1000)
+getgid()
+getuid()
+system("whoami", intern=TRUE)
+@

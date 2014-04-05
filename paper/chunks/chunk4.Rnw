@@ -1,0 +1,11 @@
+<<echo=FALSE>>=
+suppressPackageStartupMessages(library(RAppArmor))
+@
+
+<<>>=
+A <- rnorm(1e7)
+rm(A)
+gc()
+rlimit_as(10*1024*1024)
+A <- rnorm(1e7)
+@

@@ -1,0 +1,5 @@
+%Run with usr.bin.r profile enabled!
+<<>>=
+library(RAppArmor)
+aa_change_profile("r-user")
+@

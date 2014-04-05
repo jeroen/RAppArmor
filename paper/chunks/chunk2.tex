@@ -1,0 +1,47 @@
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# run as root}
+\hlkwd{system}\hlstd{(}\hlstr{"whoami"}\hlstd{,} \hlkwc{intern} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] "root"
+\end{verbatim}
+\begin{alltt}
+\hlkwd{getuid}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+\begin{alltt}
+\hlkwd{getgid}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+\begin{alltt}
+\hlkwd{setgid}\hlstd{(}\hlnum{1000}\hlstd{)}
+\hlkwd{setuid}\hlstd{(}\hlnum{1000}\hlstd{)}
+\hlkwd{getgid}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] 1000
+\end{verbatim}
+\begin{alltt}
+\hlkwd{getuid}\hlstd{()}
+\end{alltt}
+\begin{verbatim}
+## [1] 1000
+\end{verbatim}
+\begin{alltt}
+\hlkwd{system}\hlstd{(}\hlstr{"whoami"}\hlstd{,} \hlkwc{intern} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] "jeroen"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
