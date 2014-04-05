@@ -1,8 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-README.md
-Makefile
-.travis.yml
+^README.md
+^Makefile
+^.travis.yml
+^paper
 src/Makevars
 examples
 Debian.txt
