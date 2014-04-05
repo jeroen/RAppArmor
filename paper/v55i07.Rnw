@@ -20,6 +20,20 @@
 \newcommand{\ULIMIT}{\texttt{ULIMIT}\xspace}
 \newcommand{\RLIMIT}{\texttt{ULIMIT}\xspace}
 
+\newenvironment{codeblock}{
+  \VerbatimEnvironment
+  %\begin{knitrout}
+  \definecolor{shadecolor}{rgb}{0.95, 0.95, 0.95}\color{fgcolor}
+  \color{black}
+  \begin{kframe}
+  \begin{BVerbatim}
+}{
+  \end{BVerbatim}%
+  \end{kframe}
+  %\end{knitrout}
+}
+
+
 %standard class
 \documentclass{article}
 \author{Jeroen Ooms\\UCLA Department of Statistics} 
@@ -666,11 +680,11 @@ The \RAppArmor package consists of \R software and a number of example security
 profiles. On Ubuntu it is easiest installed using binary builds provided
 through launchpad:
 
-\begin{Verbatim}[frame=single]
+\begin{codeblock}
 sudo add-apt-repository ppa:opencpu/rapparmor
 sudo apt-get update
 sudo apt-get install r-cran-rapparmor
-\end{Verbatim}
+\end{codeblock}
 
 Binaries in this repository are build for the version of \R that ships with the
 operating system. To get builds for \R version 3.0 and up, use repository
@@ -678,7 +692,7 @@ operating system. To get builds for \R version 3.0 and up, use repository
 package can also be build from source using something along the lines of the
 following:
 
-\begin{Verbatim}[frame=single]
+\begin{codeblock}
 sudo apt-get install libapparmor-dev devscripts
 wget http://cran.r-project.org/src/contrib/Archive/RAppArmor/RAppArmor_1.0.0.tar.gz
 tar xzvf RAppArmor_1.0.0.tar.gz
@@ -686,7 +700,7 @@ cd RAppArmor/
 debuild -uc -us
 cd ..
 sudo dpkg -i r-cran-rapparmor_*.deb
-\end{Verbatim}
+\end{codeblock}
 
 The \texttt{r-cran-rapparmor} package will automatically install required
 dependencies and security profiles. The security profiles are installed in
@@ -697,35 +711,35 @@ dependencies and security profiles. The security profiles are installed in
 On distributions for which no system installation package is available, manual
 installation is required. Start with installing required dependencies:
 
-\begin{Verbatim}[frame=single]
+\begin{codeblock}
 sudo apt-get install r-base-dev libapparmor-dev apparmor apparmor-utils
-\end{Verbatim}
+\end{codeblock}
 
 Note that \R version 2.14 or higher is required. Also the system needs to have
 an \AppArmor enabled \Linux kernel. After dependencies have been installed,
 install \RAppArmor from CRAN:
 
-\begin{Verbatim}[frame=single]
+\begin{codeblock}
 wget http://cran.r-project.org/src/contrib/RAppArmor_1.0.0.tar.gz
 sudo R CMD INSTALL RAppArmor_1.0.0.tar.gz
-\end{Verbatim}
+\end{codeblock}
 
 This will compile the \proglang{C} code and install the \R package. After the
 package has been installed successfully, the security profiles need to be
 copied to the \texttt{apparmor.d} directory:
 
-\begin{Verbatim}[frame=single]
+\begin{codeblock}
 cd /usr/local/lib/R/site-library/RAppArmor/
 sudo cp -Rf profiles/debian/* /etc/apparmor.d/
-\end{Verbatim}
+\end{codeblock}
 
 Finally, the \AppArmor service needs to be restarted to load the new profiles.
 Also we do not want to enforce the global \R profile at this point:
 
-\begin{Verbatim}[frame=single]
+\begin{codeblock}
 sudo service apparmor restart
 sudo aa-disable usr.bin.r
-\end{Verbatim}
+\end{codeblock}
 
 This should complete the installation. To verify if everything is working, start
 \R and run the following code:
@@ -982,14 +996,14 @@ time the file \texttt{/usr/bin/R} is executed (which is the script that runs
 when \R is started from the shell). This way we can set some default security
 restrictions for our daily work. Profiles tied to a specific program can be
 activated only by the administrator using:
-\begin{verbatim}
-  sudo aa-enforce usr.bin.r
-\end{verbatim}
+\begin{codeblock}
+sudo aa-enforce usr.bin.r
+\end{codeblock}
 This will enforce the security restrictions on every new \R process that is
 started. To stop enforcing the restrictions, the administrator can run:
-\begin{verbatim}
-  sudo aa-disable usr.bin.r
-\end{verbatim}
+\begin{codeblock}
+sudo aa-disable usr.bin.r
+\end{codeblock}
 After disabling the profile, the \R program can be started without any
 restrictions.
 Note that the \texttt{usr.bin.r} profile does \textbf{not} grant permission to
@@ -1004,9 +1018,9 @@ would be a security hole:
 
 Finally \AppArmor allows the administrator to set profiles in \emph{complain
 mode}, which is also called \emph{learning mode}.
-\begin{verbatim}
-  sudo aa-complain usr.bin.r
-\end{verbatim}
+\begin{codeblock}
+sudo aa-complain usr.bin.r
+\end{codeblock}
 This is useful for developing new profiles. When a profile is set in complain
 mode, security restrictions are not actually enforced; instead all violations
 of the security policy are logged to the \texttt{syslog} and \texttt{kern.log}
@@ -1501,9 +1515,9 @@ processes. The \texttt{eval.secure} arguments \texttt{uid} and \texttt{gid}
 can be used to switch Linux users before evaluating the call. E.g to add a
 system user in \Linux, run:
 
-\begin{Verbatim}[frame=single]
+\begin{codeblock}
 sudo useradd testuser --system -U -d/tmp -c"RAppArmor Test User"
-\end{Verbatim}
+\end{codeblock}
 
 If the main \R process has superuser privileges, incoming call can be
 evaluated as follows:
