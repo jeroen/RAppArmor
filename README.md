@@ -136,4 +136,3 @@ Problems / Questions / Etc
 
 For any problems, questions, suggestions, please get in touch!
 Technical questions can be posted on [Stack Overflow](http://stackoverflow.com/questions/tagged/rapparmor). Make sure to add the following tags: `rapparmor`, `r`, `apparmor`. Bugs and feature requests can be posted on the [github issue page](https://github.com/jeroenooms/RAppArmor/issues). Or you can send an email to [the maintainer](https://github.com/jeroenooms/RAppArmor/blob/master/DESCRIPTION).
-
