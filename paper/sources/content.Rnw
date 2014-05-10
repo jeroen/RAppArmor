@@ -2,24 +2,8 @@
 % !Rnw weave = knitr
 % !TeX program = pdfLaTeX
 
-%shortcuts
-\newcommand{\Java}{\texttt{Java}\xspace}
-\newcommand{\C}{\texttt{C}\xspace}
-\newcommand{\Cpp}{\texttt{C++}\xspace}
-\newcommand{\Fortran}{\texttt{Fortran}\xspace}
-\newcommand{\Python}{\texttt{Python}\xspace}
-\newcommand{\Ruby}{\texttt{Ruby}\xspace}
-\newcommand{\AppArmor}{\texttt{AppArmor}\xspace}
-\newcommand{\RAppArmor}{\texttt{RAppArmor}\xspace}
-\newcommand{\ULIMIT}{\texttt{ULIMIT}\xspace}
-\newcommand{\RLIMIT}{\texttt{ULIMIT}\xspace}
-\newcommand{\R}{\texttt{R}\xspace}
-\newcommand{\Linux}{\texttt{Linux}\xspace}
-
-
 \maintitle{The \RAppArmor Package: Enforcing Security Policies in \R Using Dynamic
 Sandboxing on Linux}
-
 
 <<echo=FALSE>>=
 #Global options
