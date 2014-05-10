@@ -17,10 +17,9 @@
 \newcommand{\Linux}{\texttt{Linux}\xspace}
 
 
-\title{The \RAppArmor Package: Enforcing Security Policies in \R Using Dynamic
+\maintitle{The \RAppArmor Package: Enforcing Security Policies in \R Using Dynamic
 Sandboxing on Linux}
 
-\maketitle
 
 <<echo=FALSE>>=
 #Global options
