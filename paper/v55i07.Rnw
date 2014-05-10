@@ -59,7 +59,7 @@
 \begin{document}
 
 %include content
-<<child-content, child='content.Rnw'>>=
+<<child-content, child='sources/content.Rnw'>>=
 @
 
 %references

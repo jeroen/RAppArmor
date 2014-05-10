@@ -1,4 +1,4 @@
-% !TeX root = v55i07.Rnw
+% !TeX root = ../v55i07.Rnw
 % !Rnw weave = knitr
 % !TeX program = pdfLaTeX
 
@@ -702,8 +702,8 @@ sudo aa-disable usr.bin.r
 This should complete the installation. To verify if everything is working, start
 \R and run the following code:
 
-%chunks/chunk1.Rnw
-\input{chunks/chunk1}
+%sources/chunk1.Rnw
+\input{sources/chunk1}
 
 If the code runs without any errors, the package has successfully been
 installed. 
@@ -750,13 +750,13 @@ functions \texttt{getuid, setuid, getgid, setgid}, which call out to the
 respective \Linux system calls. Users and groups can either be specified
 by their name, or as integer values as defined in the \texttt{/etc/passwd} file.
 
-\input{chunks/chunk2}
+\input{sources/chunk2}
 
 The user/group ID can also be set inside the \texttt{eval.secure} function. In
 this case it will not affect the main process; the UID is only set for the time
 of the secure evaluation.
 
-\input{chunks/chunk3}
+\input{sources/chunk3}
 
 Note that in order for \texttt{setgid} and \texttt{setuid} to work, the user
 must have the appropriate capabilities in \Linux, which are usually
@@ -844,7 +844,7 @@ hard limit, and (irreversibly) lower its hard limit. A  privileged process
 (under  \Linux:  one  with  the \texttt{CAP\_SYS\_RESOURCE} capability) may make
 arbitrary changes to either limit value.  \citep{linuxrlimit}
 
-\input{chunks/chunk4}
+\input{sources/chunk4}
 
 Note that a process owned by a user without superuser privileges can only modify
 \texttt{RLIMIT} to more restrictive values. However, using \texttt{eval.secure},
@@ -911,7 +911,7 @@ allows access to \texttt{/etc/group} but denies access to \texttt{/etc/passwd}.
 The \emph{testhat} denies access to both \texttt{/etc/passwd} and
 \texttt{/etc/group}.
 
-\input{chunks/chunk5}
+\input{sources/chunk5}
 
 Just like for \texttt{setuid} and \texttt{rlimit} functions,
 \texttt{eval.secure} can be used to enforce an \AppArmor security profile on a
@@ -970,7 +970,7 @@ we cannot use the \texttt{eval.secure} or \texttt{aa\_change\_profile} functions
 from the \RAppArmor package to change into a different profile, as this
 would be a security hole:
 
-\input{chunks/chunk6}
+\input{sources/chunk6}
 
 \subsection{Learning using complain mode}
 
@@ -1065,7 +1065,7 @@ write access inside \texttt{/tmp}, not in e.g.\ the home directory. Furthermore,
 or \texttt{/usr/bin} for which the program will inherit the current
 restrictions.
 
-\input{chunks/chunk7}
+\input{sources/chunk7}
 
 The \texttt{r-base} profile effectively protects \R from most malicious
 activity, while still allowing access to all of the libraries, fonts, icons,
