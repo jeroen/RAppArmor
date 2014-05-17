@@ -104,6 +104,9 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 	if(!missing(uid) && is.character(uid)){
 		uid <- userinfo(uid)$uid;
 	}
+  
+  #This prevents some weird errors
+  Sys.sleep(0.01)
 	
 	#Do everything in a fork
 	myfork <- mcparallel({

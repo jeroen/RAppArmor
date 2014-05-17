@@ -3,16 +3,16 @@
 #
 context("memory limits")
 test_that("Memory limits apply and do not have side effects", {
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4)), is_a("matrix"))
-	expect_that(eval.secure(matrix(rnorm(5e6), 1e4), RLIMIT_AS = 10*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
 });
 
 test_that("Raising memory limit by non-root users", {

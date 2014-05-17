@@ -1,7 +1,6 @@
 #these tests are only for root
-
+context("root user tests")
 if(getuid() == 0){
-	context("root user tests")
 	test_that("setuid, setgid", {
 		#test getuid
 		expect_that(eval.secure(getuid(), uid=1000), equals(1000));
@@ -14,5 +13,5 @@ if(getuid() == 0){
 		
 	});
 } else {
-	cat("Skipping root user tests.")
+	cat("skip.")
 }

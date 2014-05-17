@@ -23,7 +23,9 @@ kill <- function(pid, signal=SIGTERM, verbose=TRUE){
 			ermsg
 		);
 		#we throw a warning, not an error
-		warning(ermsg);
+    if(verbose){
+      warning(ermsg);      
+    }
 	}
 	invisible();	
 }
