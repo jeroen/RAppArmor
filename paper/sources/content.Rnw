@@ -1371,7 +1371,6 @@ When \R tries to allocate more memory than allowed, it will throw an error:
 
 <<eval=TRUE>>=
 A <- eval.secure(memtest(), RLIMIT_AS = 50*1024*1024)
-A <- eval.secure(memtest(), RLIMIT_AS = 500*1024*1024)
 @
 
 
