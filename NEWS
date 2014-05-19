@@ -1,3 +1,8 @@
+1.0.2
+ - Add timer to eval.secure for better error messages
+ - Add 0.01s of pause in eval.secure
+ - Fix some unit tests
+
 1.0.1
  - changed method to find libapparmor.so in configure file to work on recent distributions.
  - adding closeAllConnections argument to eval.secure
