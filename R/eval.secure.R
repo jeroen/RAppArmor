@@ -148,8 +148,11 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 	}, silent=silent);	
 
 	#collect result
+  starttime <- Sys.time();
 	myresult <- mccollect(myfork, wait=FALSE, timeout=timeout);
-	
+	enddtime <- Sys.time();
+  totaltime <- as.numeric(enddtime - starttime, units="secs")
+  
 	#kill fork
 	kill(myfork$pid, SIGKILL, verbose=verbose);
 	
@@ -161,7 +164,11 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 	
 	#timeout?
 	if(is.null(myresult)){
-		stop("R call did not return within ", timeout, " seconds. Terminating process.", call.=FALSE);		
+    if(totaltime > timeout){
+		  stop("R call did not return within ", timeout, " seconds. Terminating process.", call.=FALSE);
+    } else {
+      stop("R call failed: process died.", call.=FALSE);
+    }
 	}
 	
 	output <- myresult[[1]]
