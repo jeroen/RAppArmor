@@ -4,7 +4,7 @@
 \usage{
   eval.secure(..., uid, gid, priority, profile,
     timeout = 60, silent = FALSE, verbose = FALSE,
-    affinity, closeAllConnections = TRUE, RLIMIT_AS,
+    affinity, closeAllConnections = FALSE, RLIMIT_AS,
     RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE,
     RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE, RLIMIT_NICE,
     RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO,

@@ -90,7 +90,7 @@
 #'}
 
 eval.secure <- function(..., uid, gid, priority, profile, timeout=60, 
-	silent=FALSE, verbose=FALSE, affinity, closeAllConnections=TRUE,
+	silent=FALSE, verbose=FALSE, affinity, closeAllConnections=FALSE,
 	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
 	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, 
 	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){	
