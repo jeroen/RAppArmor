@@ -1,3 +1,16 @@
+if [ ! -z "$NO_APPARMOR" ]; then
+    echo "Installing RAppArmor without AppArmor support!"
+    rm src/aa_*
+    rm man/aa_*
+    rm R/aa_*
+    rm R/onAttach.R
+    rm inst/tests/test-apparmor.R
+    rm inst/tests/helper-pretest.R
+    sed -i '/aa_/d' NAMESPACE
+    echo "aa_change_profile <- function(...){message('aa_change_profile not supported on this system')}" > R/aa_sub.R
+    exit 0
+fi
+
 if [ ! -e /usr/include/sys/apparmor.h ]
 then
   echo "sys/apparmor.h not found. Make sure libapparmor-dev is installed."
