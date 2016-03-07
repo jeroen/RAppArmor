@@ -1,218 +1,63 @@
 #define _GNU_SOURCE
 #define _FILE_OFFSET_BITS 64
-#include <R.h>
 #include <Rinternals.h>
-#include <Rinterface.h>
-#include <R_ext/Rdynload.h>
-#include <sys/time.h>
 #include <sys/resource.h>
 #include <errno.h>
-#include <stdbool.h>
 
-//declare main function
-void rlimit_wrapper(int, int*, double*, double*, int*, bool*);
+SEXP R_rlimit(int resource, SEXP hardlim, SEXP softlim, SEXP pid, SEXP verbose);
+SEXP R_rlimit_as(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_AS, a, b, c, d);}
+SEXP R_rlimit_core(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_CORE, a, b, c, d);}
+SEXP R_rlimit_cpu(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_CPU, a, b, c, d);}
+SEXP R_rlimit_data(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_DATA, a, b, c, d);}
+SEXP R_rlimit_fsize(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_FSIZE, a, b, c, d);}
+SEXP R_rlimit_memlock(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_MEMLOCK, a, b, c, d);}
+SEXP R_rlimit_msgqueue(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_MSGQUEUE, a, b, c, d);}
+SEXP R_rlimit_nice(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_NICE, a, b, c, d);}
+SEXP R_rlimit_nofile(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_NOFILE, a, b, c, d);}
+SEXP R_rlimit_nproc(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_NPROC, a, b, c, d);}
+SEXP R_rlimit_rtprio(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_RTPRIO, a, b, c, d);}
+SEXP R_rlimit_rttime(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_RTTIME, a, b, c, d);}
+SEXP R_rlimit_sigpending(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_SIGPENDING, a, b, c, d);}
+SEXP R_rlimit_stack(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_STACK, a, b, c, d);}
 
-//declare wrappers for R functions
-void rlimit_as(int*, double*, double*, int*, bool*);
-void rlimit_core(int*, double*, double*, int*, bool*);
-void rlimit_cpu(int*, double*, double*, int*, bool*);
-void rlimit_data(int*, double*, double*, int*, bool*);
-void rlimit_fsize(int*, double*, double*, int*, bool*);
-void rlimit_memlock(int*, double*, double*, int*, bool*);
-void rlimit_msgqueue(int*, double*, double*, int*, bool*);
-void rlimit_nice(int*, double*, double*, int*, bool*);
-void rlimit_nofile(int*, double*, double*, int*, bool*);
-void rlimit_nproc(int*, double*, double*, int*, bool*);
-void rlimit_rtprio(int*, double*, double*, int*, bool*);
-void rlimit_rttime(int*, double*, double*, int*, bool*);
-void rlimit_sigpending(int*, double*, double*, int*, bool*);
-void rlimit_stack(int*, double*, double*, int*, bool*);
-
-
-//wrappers for R functions:
-void rlimit_as (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-    if(*verbose) {
-    	Rprintf("RLIMIT_AS:\n");
-    }
-	rlimit_wrapper(RLIMIT_AS, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_core (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-    if(*verbose){
-    	Rprintf("RLIMIT_CORE:\n");
-    }
-	rlimit_wrapper(RLIMIT_CORE, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_cpu (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_CPU:\n");
-	}
-	rlimit_wrapper(RLIMIT_CPU, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_data (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_DATA:\n");
-	}
-	rlimit_wrapper(RLIMIT_DATA, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_fsize (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_FSIZE:\n");
-	}
-	rlimit_wrapper(RLIMIT_FSIZE, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_memlock (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_MEMLOCK:\n");
-	}
-	rlimit_wrapper(RLIMIT_MEMLOCK, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_msgqueue (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_MSGQUEUE:\n");
-	}
-	rlimit_wrapper(RLIMIT_MSGQUEUE, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_nice (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_NICE:\n");
-	}
-	rlimit_wrapper(RLIMIT_NICE, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_nofile (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_NOFILE:\n");
-	}
-	rlimit_wrapper(RLIMIT_NOFILE, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_nproc (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_NPROC:\n");
-	}
-	rlimit_wrapper(RLIMIT_NPROC, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_rtprio (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_RTPRIO:\n");
-	}
-	rlimit_wrapper(RLIMIT_RTPRIO, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_rttime (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_RTTIME:\n");
-	}
-	rlimit_wrapper(RLIMIT_RTTIME, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_sigpending (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_SIGPENDING:\n");
-	}
-	rlimit_wrapper(RLIMIT_SIGPENDING, ret, hardlim, softlim, pid, verbose);
-}
-
-void rlimit_stack (int *ret, double *hardlim, double *softlim, int *pid, bool *verbose) {
-	if(*verbose){
-		Rprintf("RLIMIT_STACK:\n");
-	}
-	rlimit_wrapper(RLIMIT_STACK, ret, hardlim, softlim, pid, verbose);
-}
-
-//main function that calls out to Linux Kernel.
-void rlimit_wrapper(int resource, int *ret, double *hardlim_double, double *softlim_double, int *pid, bool *verbose){
-
-  //create (long) integers and pointers
-  //note: no point in making this long long. See man getrlimit under RLIMIT_AS
-  long hardlim_int = (long) *hardlim_double;
-  long softlim_int = (long) *softlim_double;
-  
-  long *hardlim = &hardlim_int;
-  long *softlim = &softlim_int;
-
-  // target process
-  pid_t mypid;
-  mypid = *pid;
-  
+SEXP R_rlimit(int resource, SEXP hardlim, SEXP softlim, SEXP pid, SEXP verbose){
   // to store new limit
-  struct rlimit new;
-  new.rlim_max = *hardlim;
-  new.rlim_cur = *softlim;
-  
-  // create a pointer
-  struct rlimit *newp;
-  newp = &new;
-  
+  int update = (softlim != R_NilValue);
+  struct rlimit new_limits;
+  struct rlimit *ptr = &new_limits;
+  if(update){
+    new_limits.rlim_max = asReal(hardlim);
+    new_limits.rlim_cur = asReal(softlim);
+  } else {
+    ptr = NULL;
+  }
+
   // to store old limits
-  struct rlimit old;
-
-  if(*hardlim != -999){
-	  // set the new limit
-	  // if no soft limit was set, we set it equal to the hard limit.
-	  if(*softlim == -999){
-		  *softlim = *hardlim;
-	  }
-	  // call out to linux
-	  *ret = prlimit(mypid, resource, newp, &old);
-	  if(*ret != 0){
-		if(*verbose){
-			Rprintf("Failed to set limit...\n");
-		}
-		*ret = errno;
-		return;
-	  }
-
-	  //print old limit
-	  if(*verbose){
-		  Rprintf("Previous limits: soft=%lld; hard=%lld\n", (long long) old.rlim_cur, (long long) old.rlim_max);
-	  }
-  } else if(*softlim != -999) {
-	  //this is the case where only a soft limit was set
-	  //we need to actually lookup the current hard limit.
-	  getrlimit(resource, &old);
-	  new.rlim_max = old.rlim_max;
-
-	  // call out to linux
-	  *ret = prlimit(mypid, resource, newp, &old);
-	  if(*ret != 0){
-		if(*verbose){
-			Rprintf("Failed to set limit...\n");
-		}
-		*ret = errno;
-		return;
-	  }
-
-	  //print old limit
-	  if(*verbose){
-		  Rprintf("Previous limits: soft=%lld; hard=%lld\n", (long long) old.rlim_cur, (long long) old.rlim_max);
-	  }
-  }
-  // get the new values
-  *ret = prlimit(mypid, resource, NULL, &old); 
-  if(*ret != 0){
-    if(*verbose){
-    	Rprintf("Limit couldn't be read?\n");
+  struct rlimit old_limits;
+  if(prlimit(asInteger(pid), resource, ptr, &old_limits)){
+    if(asLogical(verbose)) Rprintf("Failed to set limit...\n");
+    switch(errno){
+      case EFAULT: Rf_error("A pointer argument points to a location outside the accessible address space.");
+      case EINVAL: Rf_error("The value specified in resource is not valid; or, for setrlimit() or prlimit(): rlim->rlim_cur was greater than rlim->rlim_max.");
+      case EPERM: Rf_error("An unprivileged process tried to raise the hard limit");
+      case ESRCH: Rf_error("Could not find a process with the ID specified in pid");
+      default: Rf_error("prlimit() failed with unknown reason");
     }
-    *ret = errno;
-    return;
-  }  
-
-  //return current limits
-  *softlim_double = old.rlim_cur;
-  *hardlim_double = old.rlim_max;
-
-  
-  //print new limits
-  if(*verbose){
-    Rprintf("Current limits: soft=%lld; hard=%lld\n", (long long) old.rlim_cur, (long long) old.rlim_max);
   }
+
+  //print old limit
+  if(asLogical(verbose)){
+    Rprintf("Previous limits: soft=%lld; hard=%lld\n", (long long) old_limits.rlim_cur, (long long) old_limits.rlim_max);
+    Rprintf("New limits: soft=%lld; hard=%lld\n", (long long) new_limits.rlim_cur, (long long) new_limits.rlim_max);
+  }
+
+  SEXP out = PROTECT(allocVector(VECSXP, 2));
+  SET_VECTOR_ELT(out, 0, ScalarReal((double) update ? new_limits.rlim_max : old_limits.rlim_max));
+  SET_VECTOR_ELT(out, 1, ScalarReal((double) update ? new_limits.rlim_cur : old_limits.rlim_cur));
+  SEXP names = PROTECT(allocVector(STRSXP, 2));
+  SET_STRING_ELT(names, 0, mkChar("hardlim"));
+  SET_STRING_ELT(names, 1, mkChar("softlim"));
+  setAttrib(out, R_NamesSymbol, names);
+  UNPROTECT(2);
+  return out;
 }

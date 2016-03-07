@@ -1,28 +1,35 @@
-if [ ! -z "$NO_APPARMOR" ]; then
-    echo "Installing RAppArmor without AppArmor support!"
-    rm src/aa_*
-    rm man/aa_*
-    rm R/aa_*
-    rm R/onAttach.R
-    rm inst/tests/test-apparmor.R
-    rm inst/tests/helper-pretest.R
-    sed -i '/aa_/d' NAMESPACE
-    echo "aa_change_profile <- function(...){message('aa_change_profile not supported on this system')}" > R/aa_sub.R
-    exit 0
+# Library settings
+PKG_CONFIG_NAME="libapparmor"
+PKG_DEB_NAME="libapparmor-dev"
+PKG_TEST_HEADER="<sys/apparmor.h>"
+PKG_LIBS="-lapparmor"
+
+#Try pkg-config
+pkg-config --exists libapparmor
+if [ $? -eq 0 ]; then
+  echo "Found pkg-config cflags/libs!"
+  PKG_CFLAGS=$(pkg-config --cflags libapparmor)
+  PKG_LIBS=$(pkg-config --libs libapparmor)
 fi
 
-if [ ! -e /usr/include/sys/apparmor.h ]
-then
-  echo "sys/apparmor.h not found. Make sure libapparmor-dev is installed."
+# For debugging
+echo "Using PKG_CFLAGS=$PKG_CFLAGS"
+echo "Using PKG_LIBS=$PKG_LIBS"
+
+# Find compiler
+CPP=$(${R_HOME}/bin/R CMD config CPP)
+CFLAGS=$(${R_HOME}/bin/R CMD config CFLAGS)
+CPPFLAGS=$(${R_HOME}/bin/R CMD config CPPFLAGS)
+
+# Test for header
+echo "#include $PKG_TEST_HEADER" | ${CPP} ${CPPFLAGS} ${PKG_CFLAGS} ${CFLAGS} -xc - >/dev/null 2>&1
+
+# Customize the error
+if [ $? -ne 0 ]; then
+  echo "Could not find AppArmor headers. Please install $PKG_DEB_NAME."
   exit 1
 fi
 
-LIBFILE=$(/sbin/ldconfig -p | egrep -oh " [-_a-zA-Z0-9/]*/libapparmor.so(.1)?$")
-
-if [ -z "$LIBFILE" ]
-then
-  echo "libapparmor.so not found. Make sure libapparmor-dev is installed."
-  exit 1
-fi 
-
-echo "PKG_LIBS="$LIBFILE > src/Makevars
+# Write to Makevars
+sed -e "s|@cflags@|$PKG_CFLAGS|" -e "s|@libs@|$PKG_LIBS|" src/Makevars.in > src/Makevars
+exit 0

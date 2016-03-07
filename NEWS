@@ -1,3 +1,6 @@
+2.0.0
+ - Rewrite using .Call instead of .C interface
+
 1.0.2
  - Add timer to eval.secure for better error messages
  - Add 0.01s of pause in eval.secure
@@ -18,9 +21,9 @@
  - wrapped rlimit examples in \dontrun{} blocks.
  - wrapped setaffinity example in \dontrun() block.
  - updated and renamed vignette.
- 
-0.8.2: 
- - modified license. 
+
+0.8.2:
+ - modified license.
  - turned JSS paper into vignette
 
 0.8.1:

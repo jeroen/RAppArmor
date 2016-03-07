@@ -4,7 +4,7 @@
 ^Makefile
 ^.travis.yml
 ^paper
-src/Makevars
+^src/Makevars$
 examples
 Debian.txt
 OpenSuse.txt

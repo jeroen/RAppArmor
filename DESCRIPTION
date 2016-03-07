@@ -1,20 +1,27 @@
 Package: RAppArmor
 Type: Package
-Title: Interfaces to Linux and AppArmor security methods.
-Version: 1.0.1.99
-Date: 2013-12-16
+Title: Bindings to AppArmor and Security Related Linux Tools
+Version: 1.9000
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
-License: GPL | Apache License (== 2.0)
+License: Apache License (== 2.0)
 URL: http://www.jstatsoft.org/v55/i07/
     http://github.com/jeroenooms/RAppArmor#readme
 BugReports: http://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
 SystemRequirements: libapparmor-dev, linux (>= 3.0)
-Description: This package implements R functions that interface to various methods in the Linux kernel related to enforcing security restrictions on a certain task (process). The package can apply mandatory access control (MAC) policies by loading an apparmor profile, and set hardware limits (rlimit), uid, gid, affinity and priority of the current process, directly from within R. The high level function eval.secure builds on these foundations to support dynamic sandboxing: it evaluates a single expression in a temporary fork with hard security restrictions and hardware limits without any side effects on the main R session.
+Description: Bindings to various methods in the kernel for enforcing security
+    restrictions on a given task (process). AppArmor can apply mandatory access
+    control (MAC) policies by loading a profile, setting hardware limits (rlimit),
+    uid, gid, affinity and priority of the current process, directly from within
+    R. The high level function eval.secure builds on these foundations to support
+    dynamic sandboxing: it evaluates a single expression in a temporary fork with
+    hard security restrictions and hardware limits without any side effects on the
+    main R session.
 Suggests:
     testthat
+Depends:
+    tools
 Imports:
-    parallel,
-    tools,
-    methods
+    parallel
+RoxygenNote: 5.0.1
