@@ -35,6 +35,10 @@ getpriority()
 
 \item{signal}{kill signal}
 
+\item{verbose}{emit some debugging output in C}
+
+\item{uid}{user ID}
+
 \item{gid}{group ID}
 
 \item{prio}{priority value}

@@ -28,12 +28,14 @@
 #' @param uid integer or name of linux user. See \code{\link{setuid}}.
 #' @param gid integer or name of linux group. See \code{\link{setgid}}.
 #' @param priority priority. Value between -20 and 20. See \code{\link{setpriority}}.
-#' @param profile AppArmor security profile. Has to be preloaded by Linux. See \code{\link{aa_change_profile}}.
+#' @param profile AppArmor security profile. Has to be preloaded by Linux.
+#' See \code{\link{aa_change_profile}}.
 #' @param timeout timeout in seconds.
 #' @param silent suppress output on stdout. See \code{\link{mcparallel}}.
 #' @param verbose print some C output (TRUE/FALSE)
 #' @param affinity which cpu(s) to use. See \code{\link{setaffinity}}.
-#' @param closeAllConnections closes (and destroys) all user connections. See \code{\link{closeAllConnections}}.
+#' @param closeAllConnections closes (and destroys) all user connections.
+#' See \code{\link{closeAllConnections}}.
 #' @param RLIMIT_AS hard limit passed on to \code{\link{rlimit_as}}.
 #' @param RLIMIT_CORE hard limit passed on to \code{\link{rlimit_core}}.
 #' @param RLIMIT_CPU hard limit passed on to \code{\link{rlimit_cpu}}.
@@ -48,10 +50,13 @@
 #' @param RLIMIT_RTTIME hard limit passed on to \code{\link{rlimit_rttime}}.
 #' @param RLIMIT_SIGPENDING hard limit passed on to \code{\link{rlimit_sigpending}}.
 #' @param RLIMIT_STACK hard limit passed on to \code{\link{rlimit_stack}}.
-#' @import parallel tools methods
+#' @importFrom parallel mcparallel mccollect
+#' @importFrom tools SIGTERM SIGKILL
 #' @export
 #' @useDynLib RAppArmor
-#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+#' @references Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security
+#' Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software},
+#' 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
 #' @examples \dontrun{
 #'## Restricting file access ##
 #'eval.secure(list.files("/"))
@@ -173,7 +178,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 
 	output <- myresult[[1]]
 	#forks don't throw errors themselves
-	if(is(output, "try-error")){
+	if(inherits(output, "try-error")){
 		#stop(myresult, call.=FALSE);
 		stop(attr(output, "condition"));
 	}

@@ -12,5 +12,5 @@
 #'
 #' @export
 unittests <- function(){
-	testthat::test_check("RAppArmor");
+	testthat::test_package("RAppArmor");
 }

@@ -4,6 +4,8 @@
 #'
 #' @rdname process
 #' @param pid process ID
+#' @param uid user ID
+#' @param verbose emit some debugging output in C
 #' @param gid group ID
 #' @param prio priority value
 #' @param signal kill signal

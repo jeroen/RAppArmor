@@ -19,7 +19,8 @@ eval.secure(..., uid, gid, priority, profile, timeout = 60, silent = FALSE,
 
 \item{priority}{priority. Value between -20 and 20. See \code{\link{setpriority}}.}
 
-\item{profile}{AppArmor security profile. Has to be preloaded by Linux. See \code{\link{aa_change_profile}}.}
+\item{profile}{AppArmor security profile. Has to be preloaded by Linux.
+See \code{\link{aa_change_profile}}.}
 
 \item{timeout}{timeout in seconds.}
 
@@ -29,7 +30,8 @@ eval.secure(..., uid, gid, priority, profile, timeout = 60, silent = FALSE,
 
 \item{affinity}{which cpu(s) to use. See \code{\link{setaffinity}}.}
 
-\item{closeAllConnections}{closes (and destroys) all user connections. See \code{\link{closeAllConnections}}.}
+\item{closeAllConnections}{closes (and destroys) all user connections.
+See \code{\link{closeAllConnections}}.}
 
 \item{RLIMIT_AS}{hard limit passed on to \code{\link{rlimit_as}}.}
 
@@ -124,6 +126,8 @@ eval.secure(forkbomb(), RLIMIT_NPROC=10)
 }
 }
 \references{
-Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software}, 55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
+Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security
+Policies in {R} Using Dynamic Sandboxing on Linux. \emph{Journal of Statistical Software},
+55(7), 1-34. \url{http://www.jstatsoft.org/v55/i07/}.
 }
 
