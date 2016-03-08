@@ -158,6 +158,13 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 	enddtime <- Sys.time();
   totaltime <- as.numeric(enddtime - starttime, units="secs")
 
+	#try to avoid bug/race condition where mccollect returns null without waiting full timeout.
+	#see https://github.com/jeroenooms/opencpu/issues/131
+	if(is.null(myresult) && (totaltime+1) < timeout) {
+	  Sys.sleep(.1)
+	  myresult <- parallel::mccollect(myfork, wait = FALSE, timeout = timeout);
+	}
+
 	#kill fork
 	kill(myfork$pid, SIGKILL, verbose = verbose);
 
