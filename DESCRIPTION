@@ -11,14 +11,14 @@ BugReports: http://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
 SystemRequirements: linux (>= 3.0), libapparmor-dev (optional)
 Description: Bindings to various methods in the kernel for enforcing security
-    restrictions on a given task (process). AppArmor can apply mandatory access
-    control (MAC) policies via security profiles which contain detailed access
-    control definitions. In addition this package supports setting hardware
-    limits (rlimit), uid, gid, affinity and priority of the process, directly
-    from within R. The high level function 'eval.secure' builds on these methods
-    to support dynamic sandboxing: it evaluates an R expression within a temporary
-    fork which acts as a sandbox by enforcing fine grained security restrictions
-    and hardware limits, yet without side effects on the main R session.
+    restrictions. AppArmor can apply mandatory access control (MAC) policies on
+    a given task (process) via security profiles with detailed ACL definitions. 
+    In addition the package has kernel bindings for setting the process hardware
+    resource limits (rlimit), uid, gid, affinity and priority. The high level R
+    function 'eval.secure' builds on these methods to do dynamic sandboxing:
+    it evaluates a single R expression within a temporary fork which acts as a 
+    sandbox by enforcing fine grained restrictions without affecting the main R 
+    process.
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
 Depends: tools
