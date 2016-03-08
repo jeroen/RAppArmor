@@ -1,5 +1,7 @@
 2.0.0
- - Rewrite using .Call instead of .C interface
+ - Complete rewrite using .Call instead of .C interface
+ - Use configure-vars='NO_APPARMOR=1' to build on Fedora / CentOS 7
+ - Workaround for race condition in parallel::mccollect()
 
 1.0.2
  - Add timer to eval.secure for better error messages
