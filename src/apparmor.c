@@ -1,6 +1,9 @@
 #include <Rinternals.h>
-#include <sys/apparmor.h>
 #include <errno.h>
+
+#ifndef NO_APPARMOR
+#include <sys/apparmor.h>
+#endif
 
 void rapparmor_error(){
   switch(errno){
@@ -26,41 +29,60 @@ void rapparmor_warning(){
 }
 
 SEXP R_aa_change_hat(SEXP subprofile, SEXP magic_token, SEXP verbose) {
+#ifdef NO_APPARMOR
+  Rf_error("AppArmor not supported on this system");
+#else
   if(asLogical(verbose))
     Rprintf("Setting AppArmor Hat...\n");
   int token = (unsigned long) asReal(magic_token);
   if(aa_change_hat(CHAR(STRING_ELT(subprofile, 0)), token))
     rapparmor_error();
   return ScalarLogical(TRUE);
+#endif //NO_APPARMOR
 }
 
 SEXP R_aa_revert_hat(SEXP magic_token, SEXP verbose) {
+#ifdef NO_APPARMOR
+  Rf_error("AppArmor not supported on this system");
+#else
   if(asLogical(verbose))
     Rprintf("Reverting AppArmor Hat...\n");
   int token = (unsigned long) asReal(magic_token);
   if(aa_change_hat(NULL,  token))
     rapparmor_error();
   return ScalarLogical(TRUE);
+#endif //NO_APPARMOR
 }
 
 SEXP R_aa_change_profile(SEXP profile, SEXP verbose) {
+#ifdef NO_APPARMOR
+  Rf_error("AppArmor not supported on this system");
+#else
   if(asLogical(verbose))
     Rprintf("Switching profiles...\n");
   if(aa_change_profile (CHAR(STRING_ELT(profile, 0))))
     rapparmor_error();
   return ScalarLogical(TRUE);
+#endif //NO_APPARMOR
 }
 
 SEXP R_aa_find_mountpoint(SEXP verbose) {
+#ifdef NO_APPARMOR
+  Rf_error("AppArmor not supported on this system");
+#else
   if(asLogical(verbose))
     Rprintf("Finding mountpoint...\n");
   char *mnt;
   if(aa_find_mountpoint (&mnt))
     rapparmor_error();
   return mkString(mnt);
+#endif //NO_APPARMOR
 }
 
 SEXP R_aa_getcon(SEXP verbose){
+#ifdef NO_APPARMOR
+  Rf_error("AppArmor not supported on this system");
+#else
   if(asLogical(verbose))
     Rprintf("Getting task confinement information...\n");
 
@@ -75,13 +97,18 @@ SEXP R_aa_getcon(SEXP verbose){
     SET_STRING_ELT(out, 1, mkChar(newmode));
   UNPROTECT(1);
   return out;
+#endif //NO_APPARMOR
 }
 
 SEXP R_aa_is_enabled(SEXP verbose){
+#ifdef NO_APPARMOR
+  return ScalarLogical(FALSE);
+#else
   if(asLogical(verbose))
     Rprintf("Checking Apparmor Status...\n");
   int enabled = aa_is_enabled();
   if(!enabled)
     rapparmor_warning();
   return ScalarLogical(enabled);
+#endif //NO_APPARMOR
 }
