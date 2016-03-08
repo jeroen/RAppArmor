@@ -1,5 +1,5 @@
 # To build on Linux Systems without AppArmor use:
-# R CMD INSTALL RAppArmor_2.0.0.tar.gz --configure-vars='NO_APPARMOR=1'
+# NO_APPARMOR=1
 
 # Library settings
 PKG_CONFIG_NAME="libapparmor"
@@ -36,6 +36,8 @@ echo "#include $PKG_TEST_HEADER" | ${CPP} ${CPPFLAGS} ${PKG_CFLAGS} ${CFLAGS} -x
 # Customize the error
 if [ $? -ne 0 ]; then
   echo "Could not find AppArmor headers. Please install $PKG_DEB_NAME."
+  echo "To build on Linux Systems without AppArmor use:"
+  echo "R CMD INSTALL RAppArmor_2.0.0.tar.gz --configure-vars='NO_APPARMOR=1'"
   exit 1
 fi
 

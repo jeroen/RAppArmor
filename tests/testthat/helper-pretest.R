@@ -1,5 +1,5 @@
 skip_if_no_apparmor <- function(){
-  if (!aa_is_enabled())
+  if (!aa_is_enabled(verbose = FALSE))
     skip("AppArmor not enabled")
 }
 

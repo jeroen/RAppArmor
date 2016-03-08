@@ -9,7 +9,7 @@ URL: http://www.jstatsoft.org/v55/i07/
     http://github.com/jeroenooms/RAppArmor#readme
 BugReports: http://github.com/jeroenooms/RAppArmor/issues
 OS_type: unix
-SystemRequirements: libapparmor-dev, linux (>= 3.0)
+SystemRequirements: linux (>= 3.0), libapparmor-dev (optional)
 Description: Bindings to various methods in the kernel for enforcing security
     restrictions on a given task (process). AppArmor can apply mandatory access
     control (MAC) policies by loading a profile, setting hardware limits (rlimit),

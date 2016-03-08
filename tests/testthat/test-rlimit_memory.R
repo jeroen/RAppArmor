@@ -1,5 +1,5 @@
-# Note: keep in mind that RLIMIT_AS is not effective when set to less than what 
-# has already been allocated in the current process. These tests will fail if 
+# Note: keep in mind that RLIMIT_AS is not effective when set to less than what
+# has already been allocated in the current process. These tests will fail if
 #
 context("memory limits")
 test_that("Memory limits apply and do not have side effects", {
@@ -19,8 +19,8 @@ test_that("Raising memory limit by non-root users", {
 
 	#force non-root
 	me <- ifelse(getuid() == 0, 1000, getuid());
-	
-	#test with different limits. 
+
+	#test with different limits.
 	#Make sure to not test a value lower than current un-use memory
 	gc();
 	for(mylim in c(5e7, 1e8, 5e8, 1e9)){
