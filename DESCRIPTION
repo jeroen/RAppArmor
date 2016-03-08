@@ -18,10 +18,8 @@ Description: Bindings to various methods in the kernel for enforcing security
     dynamic sandboxing: it evaluates a single expression in a temporary fork with
     hard security restrictions and hardware limits without any side effects on the
     main R session.
-Suggests:
-    testthat
-Depends:
-    tools
-Imports:
-    parallel
+VignetteBuilder: R.rsp
+Suggests: testthat, R.rsp
+Depends: tools
+Imports: parallel
 RoxygenNote: 5.0.1
