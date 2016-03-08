@@ -10,7 +10,7 @@
 #' @references Ubuntu Manpage: \code{passwd} - \emph{the password file}. \url{http://manpages.ubuntu.com/manpages/precise/man5/passwd.5.html}.
 #' @export
 userinfo <- function(username, uid, gid){
-	allusers <- try(read.table("/etc/passwd", sep=":"));
+	allusers <- try(utils::read.table("/etc/passwd", sep=":"));
 	if(inherits(allusers, "try-error")){
 		stop("Failed to read /etc/passwd. Probably permission denied.")
 	}

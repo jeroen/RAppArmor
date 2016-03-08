@@ -145,7 +145,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 		if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
 
 		#Set the child proc in batch mode to avoid problems when it gets killed:
-		options(device=pdf);
+		options(device = grDevices::pdf);
 		options(menu.graphics=FALSE);
 
 		#evaluate expression
