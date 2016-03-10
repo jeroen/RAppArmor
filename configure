@@ -1,11 +1,14 @@
 # To build on Linux Systems without AppArmor use:
-# NO_APPARMOR=1
 
 # Library settings
 PKG_CONFIG_NAME="libapparmor"
 PKG_DEB_NAME="libapparmor-dev"
 PKG_TEST_HEADER="<sys/apparmor.h>"
 PKG_LIBS="-lapparmor"
+
+if [ ! -f "/sys/module/apparmor" ]; then
+  NO_APPARMOR=1
+fi
 
 #Configuration without AppArmor support
 if [ ! -z "$NO_APPARMOR" ]; then
