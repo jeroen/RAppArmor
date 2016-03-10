@@ -6,7 +6,7 @@ PKG_DEB_NAME="libapparmor-dev"
 PKG_TEST_HEADER="<sys/apparmor.h>"
 PKG_LIBS="-lapparmor"
 
-if [ ! -f "/sys/module/apparmor" ]; then
+if [ ! -e "/sys/module/apparmor" ]; then
   NO_APPARMOR=1
 fi
 
