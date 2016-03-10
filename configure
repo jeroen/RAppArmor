@@ -6,7 +6,8 @@ PKG_DEB_NAME="libapparmor-dev"
 PKG_TEST_HEADER="<sys/apparmor.h>"
 PKG_LIBS="-lapparmor"
 
-if [ ! -e "/sys/module/apparmor" ]; then
+# Linux Kernel without AppArmor
+if [ -e "/sys/module" ] && [ ! -e "/sys/module/apparmor" ]; then
   NO_APPARMOR=1
 fi
 
