@@ -1,5 +1,6 @@
 2.0.1
  - Configure script automatically sets NO_APPARMOR if kernel was built without AppArmor
+ - Disable unit tests for CMD check due to CRAN issues
  
 2.0.0
  - Complete rewrite using .Call instead of .C interface
