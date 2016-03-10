@@ -18,7 +18,7 @@ if [ ! -z "$NO_APPARMOR" ]; then
 fi
 
 #Try pkg-config
-pkg-config --exists libapparmor
+pkg-config --exists libapparmor 2> /dev/null
 if [ $? -eq 0 ]; then
   echo "Found pkg-config cflags/libs!"
   PKG_CFLAGS=$(pkg-config --cflags libapparmor)
