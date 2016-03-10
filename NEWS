@@ -1,3 +1,6 @@
+2.0.1
+ - Configure script automatically sets NO_APPARMOR if kernel was built without AppArmor
+ 
 2.0.0
  - Complete rewrite using .Call instead of .C interface
  - Use configure-vars='NO_APPARMOR=1' to build on Fedora / CentOS 7
