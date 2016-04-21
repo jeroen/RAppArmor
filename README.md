@@ -61,7 +61,7 @@ sudo apt-get install -y libapparmor-dev apparmor-utils
 
 One this is installed we can install the R package:
 
-```
+```r
 install.packages("RAppArmor")
 ```
 
