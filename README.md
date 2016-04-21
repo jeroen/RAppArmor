@@ -55,7 +55,7 @@ The AppArmor linux module is available on the following distributions:
 
 Installing the R package requires [libapparmor-dev](http://packages.ubuntu.com/xenial/libapparmor-dev). The [apparmor-utils](http://packages.ubuntu.com/xenial/apparmor-utils) package is also recommended.
 
-```
+```sh
 sudo apt-get install -y libapparmor-dev apparmor-utils
 ```
 
@@ -67,7 +67,7 @@ install.packages("RAppArmor")
 
 The R package comes with some handly AppArmor profiles that you need to install manually:
 
-```
+```sh
 #Install the profiles
 cd /usr/local/lib/R/site-library/RAppArmor/
 sudo cp -Rf profiles/debian/* /etc/apparmor.d/
@@ -81,13 +81,13 @@ sudo aa-disable usr.bin.r
 
 To start enforcing the standard R policy:
 
-```
+```sh
 sudo aa-enforce usr.bin.r
 ```
     
 To stop enforcing of the standard policy:
 
-```
+```sh
 sudo aa-disable usr.bin.r
 ```
 
