@@ -1,5 +1,13 @@
-RAppArmor
-=========
+# RAppArmor
+
+##### *A Modern and Flexible Web Client for R*
+
+[![Build Status](https://travis-ci.org/jeroenooms/RAppArmor.svg?branch=master)](https://travis-ci.org/jeroenooms/RAppArmor)
+[![Coverage Status](https://codecov.io/github/jeroenooms/RAppArmor/coverage.svg?branch=master)](https://codecov.io/github/jeroenooms/RAppArmor?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RAppArmor)](http://cran.r-project.org/package=RAppArmor)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/RAppArmor)](http://cran.r-project.org/web/packages/RAppArmor/index.html)
+[![Research software impact](http://depsy.org/api/package/cran/RAppArmor/badge.svg)](http://depsy.org/package/r/RAppArmor)
+[![Github Stars](https://img.shields.io/github/stars/jeroenooms/RAppArmor.svg?style=social&label=Github)](https://github.com/jeroenooms/RAppArmor)
 
 The R package RAppArmor interfaces to a number of security related methods in the Linux kernel. It supports the following functionality:
 
@@ -13,104 +21,79 @@ The R package RAppArmor interfaces to a number of security related methods in th
  
 This can be useful for example if to host a public service for users to run R code, or if you are paranoid about running contributed code on your machine. 
 
+## Documentation
 
-Documentation / Tutorials
--------------------------
+About the R package:
 
-The best sources to learn about RAppArmor:
-
- * [JSS paper](http://www.jstatsoft.org/v55/i07/) *(recommended)* - High level introduction to most important concepts and features
- * [PDF manual](http://cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) - Auto generated PDF documentation.
+ * JSS paper: [Enforcing Security Policies in R Using Dynamic Sandboxing on Linux](http://www.jstatsoft.org/v55/i07/)
  * [Video Tutorials](http://www.youtube.com/playlist?list=PL3ZKTMqqbMktzcWjXuQCWOYc-fMROs3cf&feature=view_all) 3 short (10min) tutorials demonstrating core functionality.
+ * [PDF manual](http://cran.r-project.org/web/packages/RAppArmor/RAppArmor.pdf) - Auto generated PDF documentation.
 
-OS Support
-----------
-
-The package has been successfully build on the following Linux distributions:
-
-* Ubuntu 12.04  and up *(recommended)*
-* Debian 7 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian.txt)
-* OpenSuse 12.1 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
-
-For Ubuntu there is a convenient installation package available through launchpad (see below). 
-For Debian/OpenSuse the package needs to be built from source (see install notes).
-
-Installation on Ubuntu
-----------------------
-
-On Ubuntu the package is easily installed through launchpad (recommended). There are two repositories: 
-
- * [opencpu/rapparmor](https://launchpad.net/~opencpu/+archive/rapparmor) - build for version of R that ships with Ubuntu.
- * [opencpu/rapparmor-dev](https://launchpad.net/~opencpu/+archive/rapparmor-dev) - build for R 3.0.0.
- 
-To install, run: 
-
-    sudo add-apt-repository ppa:opencpu/rapparmor-dev
-    sudo apt-get update
-    sudo apt-get install r-cran-rapparmor
-    
-To uninstall the r-cran-rapparmor package (also recommended before upgrading):
-
-    sudo apt-get purge r-cran-rapparmor
-    sudo ppa-purge ppa:opencpu/rapparmor-dev  
-    
-Alternatively, to manually install RAppArmor on Ubuntu:
-
-    #Install dependencies:
-    sudo apt-get install r-base-dev libapparmor-dev apparmor-utils
-
-    #Download and install the package:
-    sudo R -e 'install.packages("RAppArmor", repos="http://cran.r-project.org")'
-    
-    #Install the profiles
-    cd /usr/local/lib/R/site-library/RAppArmor/
-    sudo cp -Rf profiles/debian/* /etc/apparmor.d/
-    
-    #Load the profiles into the kernel
-    sudo service apparmor restart
-    
-    #To disable enforcing the global R profile
-    sudo aa-disable usr.bin.r
-    
-Enforce/Disable
----------------
-
-To enforce the standard policy run
-
-    sudo aa-enforce usr.bin.r
-    
-Do disable enforcing of the standard policy run:
-
-    sudo aa-disable usr.bin.r
-
-Please have a look at the [JSS paper](http://www.jstatsoft.org/v55/i07/) to understand how to use the software. 
-
-
-Quick start guide
------------------
+## Hello World
 
 Use the [`eval.secure`](http://www.inside-r.org/packages/cran/RAppArmor/docs/eval.secure) function to dynamically evaluate a call with a certain AppArmor profile or hardware limits:
 
-    list.files("/")
-    eval.secure(list.files("/"), profile="r-user")
-    
+```r
+list.files("/")
+eval.secure(list.files("/"), profile="r-user")
+```
+
 To set hardware limits, use the `RLIMIT_XXX` arguments:
 
-    A <- matrix(rnorm(1e7), 1e4);
-    B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 100*1024*1024);
+```r
+A <- matrix(rnorm(1e7), 1e4);
+B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 100*1024*1024);
+```
+
+## Installation
+
+The AppArmor linux module is available on the following distributions:
+
+* Ubuntu 12.04 and up
+* Debian 7 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian.txt)
+* OpenSuse 12.1 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
+
+Installing the R package requires [libapparmor-dev](http://packages.ubuntu.com/xenial/libapparmor-dev). The [apparmor-utils](http://packages.ubuntu.com/xenial/apparmor-utils) package is also recommended.
+
+```
+sudo apt-get install -y libapparmor-dev apparmor-utils
+```
+
+One this is installed we can install the R package:
+
+```
+install.packages("RAppArmor")
+```
+
+The R package comes with some handly AppArmor profiles that you need to install manually:
+
+```
+#Install the profiles
+cd /usr/local/lib/R/site-library/RAppArmor/
+sudo cp -Rf profiles/debian/* /etc/apparmor.d/
+
+#Load the profiles into the kernel
+sudo service apparmor restart
+
+#To disable enforcing the global R profile
+sudo aa-disable usr.bin.r
+```
+
+To start enforcing the standard R policy:
+
+```
+sudo aa-enforce usr.bin.r
+```
     
-Unit Testing
-------------
+To stop enforcing of the standard policy:
 
-The RAppArmor package ships with some unit tests that can be used to check if things are working properly:
+```
+sudo aa-disable usr.bin.r
+```
 
-    library(RAppArmor)
-    unittests();        
-    
-See the `?unittests` help page for more info.
+Please have a look at the [JSS paper](http://www.jstatsoft.org/v55/i07/) to understand how to use the software. 
 
-How to Cite
------------
+## Citing
 
 To cite RAppArmor in publications use:
   
@@ -130,9 +113,3 @@ A BibTeX entry for LaTeX users is
       url = {http://www.jstatsoft.org/v55/i07/},
     }
 
-
-Problems / Questions / Etc
---------------------------
-
-For any problems, questions, suggestions, please get in touch!
-Technical questions can be posted on [Stack Overflow](http://stackoverflow.com/questions/tagged/rapparmor). Make sure to add the following tags: `rapparmor`, `r`, `apparmor`. Bugs and feature requests can be posted on the [github issue page](https://github.com/jeroenooms/RAppArmor/issues). Or you can send an email to [the maintainer](https://github.com/jeroenooms/RAppArmor/blob/master/DESCRIPTION).
