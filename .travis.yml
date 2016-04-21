@@ -1,11 +1,9 @@
 language: r
-sudo: false
+sudo: required
 cache: packages
 
-addons:
-  apt:
-    packages:
-      - libapparmor-dev
+apt_packages:
+  - libapparmor-dev
 
 r_github_packages:
   - jimhester/covr
