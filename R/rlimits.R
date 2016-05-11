@@ -14,8 +14,6 @@
 #' @useDynLib RAppArmor R_rlimit_as
 #' @export
 rlimit_as <- function(hardlim = NULL, softlim = hardlim, pid = 0, verbose = FALSE){
-	if(!is.null(hardlim) && hardlim >= 2*1024*1024*1024)
-		warning("RLIMIT_AS can never be set higher than 2GB. See ?rlimit_as.")
 	.Call(R_rlimit_as, hardlim, softlim, pid, verbose);
 }
 
