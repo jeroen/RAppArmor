@@ -112,3 +112,11 @@ SEXP R_aa_is_enabled(SEXP verbose){
   return ScalarLogical(enabled);
 #endif //NO_APPARMOR
 }
+
+SEXP R_aa_is_compiled(){
+#ifdef NO_APPARMOR
+  return ScalarLogical(FALSE);
+#else
+  return ScalarLogical(TRUE);
+#endif
+}

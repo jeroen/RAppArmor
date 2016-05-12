@@ -121,3 +121,7 @@ aa_is_enabled <- function(verbose = TRUE){
   .Call(R_aa_is_enabled)
 }
 
+#' @useDynLib RAppArmor R_aa_is_compiled
+aa_is_compiled <- function(){
+  .Call(R_aa_is_compiled)
+}
