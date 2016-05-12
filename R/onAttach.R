@@ -1,6 +1,7 @@
 .onAttach <- function(libname, pkgname){
   if(!aa_is_compiled()){
-    packageStartupMessage("RAppArmor has been built without apparmor support.\n The other functions will still work.")
+    packageStartupMessage("RAppArmor has been built without apparmor support.")
+    packageStartupMessage("Other functions (rlimit, setuid, priority) still work.")
     return()
   }
 	#note: aa_is_enabled requires more privileges than aa_getcon.
