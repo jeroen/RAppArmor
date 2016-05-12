@@ -18,7 +18,8 @@ Description: Bindings to various methods in the kernel for enforcing security
     function 'eval.secure' builds on these methods to do dynamic sandboxing:
     it evaluates a single R expression within a temporary fork which acts as a 
     sandbox by enforcing fine grained restrictions without affecting the main R 
-    process.
+    process. Recent versions on this package can also be installed on systems
+    without libapparmor, in which case some features are automatically be disabled.
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
 Depends: tools
