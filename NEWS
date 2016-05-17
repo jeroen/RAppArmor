@@ -1,3 +1,7 @@
+2.0.2
+ - Advertise that package can be installed on non-apparmor systems
+ - Improve onAttach message on non-apparmor systems
+ 
 2.0.1
  - Configure script automatically sets NO_APPARMOR if kernel was built without AppArmor
  - Disable unit tests for CMD check due to CRAN issues

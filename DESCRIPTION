@@ -1,7 +1,7 @@
 Package: RAppArmor
 Type: Package
 Title: Bindings to AppArmor and Security Related Linux Tools
-Version: 2.0.1.9000
+Version: 2.0.2
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
 License: Apache License (== 2.0)
