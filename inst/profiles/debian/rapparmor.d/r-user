@@ -37,4 +37,5 @@ profile r-user {
 	/usr/local/share/** mr,
 	/usr/share/** mr,
 	/usr/share/ca-certificates/** r,
+	/usr/lib/rstudio/bin/pandoc/* rix,
 }
