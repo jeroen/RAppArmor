@@ -179,7 +179,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 
 	#timeout?
 	if(is.null(myresult)){
-    if(isTRUE(timeout > 0 && totaltime >= timeout)){
+    if(isTRUE(timeout > 0 && totaltime + 0.1 >= timeout)){
 		  stop("R call did not return within ", timeout, " seconds. Terminating process.", call.=FALSE);
     } else {
       stop("R call failed: process died.", call.=FALSE);
