@@ -2,12 +2,12 @@
 
 ##### *A Modern and Flexible Web Client for R*
 
-[![Build Status](https://travis-ci.org/jeroenooms/RAppArmor.svg?branch=master)](https://travis-ci.org/jeroenooms/RAppArmor)
-[![Coverage Status](https://codecov.io/github/jeroenooms/RAppArmor/coverage.svg?branch=master)](https://codecov.io/github/jeroenooms/RAppArmor?branch=master)
+[![Build Status](https://travis-ci.org/jeroen/RAppArmor.svg?branch=master)](https://travis-ci.org/jeroen/RAppArmor)
+[![Coverage Status](https://codecov.io/github/jeroen/RAppArmor/coverage.svg?branch=master)](https://codecov.io/github/jeroen/RAppArmor?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RAppArmor)](http://cran.r-project.org/package=RAppArmor)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/RAppArmor)](http://cran.r-project.org/web/packages/RAppArmor/index.html)
 [![Research software impact](http://depsy.org/api/package/cran/RAppArmor/badge.svg)](http://depsy.org/package/r/RAppArmor)
-[![Github Stars](https://img.shields.io/github/stars/jeroenooms/RAppArmor.svg?style=social&label=Github)](https://github.com/jeroenooms/RAppArmor)
+[![Github Stars](https://img.shields.io/github/stars/jeroen/RAppArmor.svg?style=social&label=Github)](https://github.com/jeroen/RAppArmor)
 
 The R package RAppArmor interfaces to a number of security related methods in the Linux kernel. It supports the following functionality:
 
@@ -50,8 +50,8 @@ B <- eval.secure(matrix(rnorm(1e7), 1e4), RLIMIT_AS = 100*1024*1024);
 The AppArmor linux module is available on the following distributions:
 
 * Ubuntu 12.04 and up
-* Debian 7 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/Debian.txt)
-* OpenSuse 12.1 and up - [install notes](https://github.com/jeroenooms/RAppArmor/blob/master/OpenSuse.txt)
+* Debian 7 and up - [install notes](https://github.com/jeroen/RAppArmor/blob/master/Debian.txt)
+* OpenSuse 12.1 and up - [install notes](https://github.com/jeroen/RAppArmor/blob/master/OpenSuse.txt)
 
 Installing the R package requires [libapparmor-dev](http://packages.ubuntu.com/xenial/libapparmor-dev). The [apparmor-utils](http://packages.ubuntu.com/xenial/apparmor-utils) package is also recommended.
 
