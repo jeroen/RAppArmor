@@ -2,14 +2,21 @@ language: r
 sudo: required
 cache: packages
 
-apt_packages:
-  - libapparmor-dev
+matrix:
+  include:
+    - dist: precise
+    - dist: trusty
+      env: R_CODECOV=true
+
+addons:
+  apt:
+    packages:
+      - libapparmor-dev
 
 r_github_packages:
   - jimhester/covr
 
 warnings_are_errors: true
-#r_check_revdep: true
 
 notifications:
   email:
