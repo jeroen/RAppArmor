@@ -2,6 +2,7 @@
 #define _FILE_OFFSET_BITS 64
 #include <Rinternals.h>
 #include <sys/resource.h>
+#include <string.h>
 #include <errno.h>
 
 SEXP R_rlimit(int resource, SEXP hardlim, SEXP softlim, SEXP pid, SEXP verbose);
@@ -22,26 +23,26 @@ SEXP R_rlimit_stack(SEXP a, SEXP b, SEXP c, SEXP d) {return R_rlimit(RLIMIT_STAC
 
 SEXP R_rlimit(int resource, SEXP hardlim, SEXP softlim, SEXP pid, SEXP verbose){
   // to store new limit
-  int update = (softlim != R_NilValue);
+  int update = Rf_length(softlim);
   struct rlimit new_limits;
-  struct rlimit *ptr = &new_limits;
+  struct rlimit * ptr = NULL;
   if(update){
     new_limits.rlim_max = asReal(hardlim);
     new_limits.rlim_cur = asReal(softlim);
-  } else {
-    ptr = NULL;
+    ptr = &new_limits;
   }
 
   // to store old limits
   struct rlimit old_limits;
   if(prlimit(asInteger(pid), resource, ptr, &old_limits)){
-    if(asLogical(verbose)) Rprintf("Failed to set limit...\n");
+    if(asLogical(verbose)) 
+      Rprintf("Failed to set limit...\n");
     switch(errno){
       case EFAULT: Rf_error("A pointer argument points to a location outside the accessible address space.");
       case EINVAL: Rf_error("The value specified in resource is not valid; or, for setrlimit() or prlimit(): rlim->rlim_cur was greater than rlim->rlim_max.");
       case EPERM: Rf_error("An unprivileged process tried to raise the hard limit");
       case ESRCH: Rf_error("Could not find a process with the ID specified in pid");
-      default: Rf_error("prlimit() failed with unknown reason");
+      default: Rf_error(strerror(errno));
     }
   }
 
