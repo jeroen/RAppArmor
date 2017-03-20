@@ -1,4 +1,5 @@
 #include <Rinternals.h>
+#include <string.h>
 #include <errno.h>
 
 #ifndef NO_APPARMOR
@@ -7,24 +8,50 @@
 
 void rapparmor_error(){
   switch(errno){
-    case EINVAL: Rf_error("The apparmor kernel module is not loaded");
-    case ENOMEM: Rf_error("Insufficient kernel memory was available");
-    case EPERM: Rf_error("The calling application is not confined by apparmor or the specified subprofile is not a hat profile");
-    case ECHILD: Rf_error("The application's profile has no hats defined for it");
-    case ENOENT: Rf_error("The specified profile or hat does not exist");
-    case EACCES: Rf_error("Permissions to change to the specified profile has been denied");
-    case ERANGE: Rf_error("The confinement data is to large to fit in the supplied buffer");
-    default: Rf_error("Unknown AppArmor error");
+    case EINVAL: 
+      Rf_error("The apparmor kernel module is not loaded"); 
+      break;
+    case ENOMEM: 
+      Rf_error("Insufficient kernel memory was available"); 
+      break;
+    case EPERM: 
+      Rf_error("The calling application is not confined by apparmor or the specified subprofile is not a hat profile");
+      break;
+    case ECHILD: 
+      Rf_error("The application's profile has no hats defined for it");
+      break;
+    case ENOENT: 
+      Rf_error("The specified profile or hat does not exist");
+      break;
+    case EACCES: 
+      Rf_error("Permissions to change to the specified profile has been denied");
+      break;
+    case ERANGE: 
+      Rf_error("The confinement data is to large to fit in the supplied buffer");
+      break;
+    default: Rf_error(strerror(errno));
   };
 }
 
 void rapparmor_warning(){
   switch(errno){
-    case ENOSYS: Rf_warning(" ppArmor extensions to the system are not available.");
-    case ECANCELED: Rf_warning("AppArmor is available on the system but has been disabled at boot.");
-    case ENOENT: Rf_warning("AppArmor is available but the interface is not available.");
-    case EACCES: Rf_warning("Did not have sufficient permissions to determine if AppArmor is enabled.");
-    case EPERM: Rf_warning("Did not have sufficient permissions to determine if AppArmor is enabled.");
+    case ENOSYS: 
+      Rf_warning("AppArmor extensions to the system are not available.");
+      break;
+    case ECANCELED: 
+      Rf_warning("AppArmor is available on the system but has been disabled at boot.");
+      break;
+    case ENOENT: 
+      Rf_warning("AppArmor is available but the interface is not available.");
+      break;
+    case EACCES: 
+      Rf_warning("Did not have sufficient permissions to determine if AppArmor is enabled.");
+      break;
+    case EPERM: 
+      Rf_warning("Did not have sufficient permissions to determine if AppArmor is enabled.");
+      break;
+    default:
+      Rf_warning(strerror(errno));
   };
 }
 
