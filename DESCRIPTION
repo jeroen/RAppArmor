@@ -23,5 +23,7 @@ Description: Bindings to various methods in the kernel for enforcing security
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
 Depends: tools
-Imports: sys
+Imports: sys (> 1.1)
+Remotes: jeroen/sys
 RoxygenNote: 6.0.1
+
