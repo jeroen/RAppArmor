@@ -118,7 +118,7 @@ aa_getcon <- function(verbose = TRUE){
 #' @useDynLib RAppArmor R_aa_is_enabled
 #' @export
 aa_is_enabled <- function(verbose = TRUE){
-  .Call(R_aa_is_enabled)
+  .Call(R_aa_is_enabled, verbose)
 }
 
 #' @useDynLib RAppArmor R_aa_is_compiled

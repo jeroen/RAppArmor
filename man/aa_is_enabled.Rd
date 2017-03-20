@@ -24,4 +24,3 @@ Other apparmor: \code{\link{aa_change_hat}},
   \code{\link{aa_change_profile}},
   \code{\link{aa_find_mountpoint}}
 }
-

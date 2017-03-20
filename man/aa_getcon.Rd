@@ -26,4 +26,3 @@ Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Us
 
 Ubuntu Manpage: \code{aa_getcon} - \emph{get task confinement information}. \url{http://manpages.ubuntu.com/manpages/precise/man2/aa_getcon.2.html}.
 }
-

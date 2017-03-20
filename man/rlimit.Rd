@@ -115,4 +115,3 @@ Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Us
 
 Ubuntu Manpage: \code{getrlimit, setrlimit} - \emph{get/set resource limits}. \url{http://manpages.ubuntu.com/manpages/precise/man2/getrlimit.2.html}.
 }
-

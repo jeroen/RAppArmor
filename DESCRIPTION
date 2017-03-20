@@ -1,7 +1,7 @@
 Package: RAppArmor
 Type: Package
 Title: Bindings to AppArmor and Security Related Linux Tools
-Version: 2.0.2
+Version: 2.9000
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 License: Apache License (== 2.0)
@@ -23,5 +23,5 @@ Description: Bindings to various methods in the kernel for enforcing security
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
 Depends: tools
-Imports: parallel
-RoxygenNote: 5.0.1
+Imports: sys
+RoxygenNote: 6.0.1
