@@ -29,9 +29,10 @@ test_that("Raising memory limit by non-root users", {
 		expect_that(eval.secure(rlimit_as(mylim/2), RLIMIT_AS = mylim, uid=me), equals(output));
 		rm(output);
 	}
-});
+})
 
+# Recent linux now supports wide rlim_t
 test_that("warnings", {
-	expect_that(rlimit_as(1e10), gives_warning());
-	#expect_that(eval.secure(123, RLIMIT_AS=1e10), gives_warning())
-});
+	#expect_that(rlimit_as(1e12), gives_warning())
+	#expect_that(eval.secure(123, RLIMIT_AS=1e12), gives_warning())
+})

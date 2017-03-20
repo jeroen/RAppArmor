@@ -1,3 +1,6 @@
+3.0
+ - Replace 'parallel' with the new 'sys::eval_fork()' for eval.secure
+ 
 2.0.2
  - Advertise that package can be installed on non-apparmor systems
  - Improve onAttach message on non-apparmor systems

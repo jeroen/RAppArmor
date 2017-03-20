@@ -24,4 +24,3 @@ Jeroen Ooms (2013). The RAppArmor Package: Enforcing Security Policies in {R} Us
 
 Ubuntu Manpage: \code{passwd} - \emph{the password file}. \url{http://manpages.ubuntu.com/manpages/precise/man5/passwd.5.html}.
 }
-

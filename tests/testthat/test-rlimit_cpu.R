@@ -15,7 +15,7 @@ test_that("Timeout terminates process timely.", {
 });
 
 test_that("Timeout throws error", {
-	expect_that(eval.secure(testfun(), timeout=1), throws_error("Terminating process"))
+	expect_that(eval.secure(testfun(), timeout=1), throws_error("timeout"))
 });
 
 #rlimit_cpu does not count idle time, but after 5 sec it should be done usually

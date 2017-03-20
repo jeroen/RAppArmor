@@ -50,7 +50,7 @@
 #' @param RLIMIT_RTTIME hard limit passed on to \code{\link{rlimit_rttime}}.
 #' @param RLIMIT_SIGPENDING hard limit passed on to \code{\link{rlimit_sigpending}}.
 #' @param RLIMIT_STACK hard limit passed on to \code{\link{rlimit_stack}}.
-#' @importFrom parallel mcparallel mccollect
+#' @importFrom sys eval_fork
 #' @importFrom tools SIGTERM SIGKILL
 #' @export
 #' @useDynLib RAppArmor
@@ -110,89 +110,38 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 		uid <- userinfo(uid)$uid;
 	}
 
-  #This prevents some weird errors
-  Sys.sleep(0.01)
-
-	#Do everything in a fork
-	myfork <- mcparallel({
-
-		#set the process group
-		#to do: somehow prevent forks from modifying process group.
-		setpgid();
-
-		#close connections
-		if(isTRUE(closeAllConnections)) closeAllConnections();
-
-		#linux stuff
-		if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS, verbose=verbose);
-		if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE, verbose=verbose);
-		if(!missing(RLIMIT_CPU)) rlimit_cpu(RLIMIT_CPU, verbose=verbose);
-		if(!missing(RLIMIT_DATA)) rlimit_data(RLIMIT_DATA, verbose=verbose);
-		if(!missing(RLIMIT_FSIZE)) rlimit_fsize(RLIMIT_FSIZE, verbose=verbose);
-		if(!missing(RLIMIT_MEMLOCK)) rlimit_memlock(RLIMIT_MEMLOCK, verbose=verbose);
-		if(!missing(RLIMIT_MSGQUEUE)) rlimit_msgqueue(RLIMIT_MSGQUEUE, verbose=verbose);
-		if(!missing(RLIMIT_NICE)) rlimit_nice(RLIMIT_NICE, verbose=verbose);
-		if(!missing(RLIMIT_NOFILE)) rlimit_nofile(RLIMIT_NOFILE, verbose=verbose);
-		if(!missing(RLIMIT_NPROC)) rlimit_nproc(RLIMIT_NPROC, verbose=verbose);
-		if(!missing(RLIMIT_RTPRIO)) rlimit_rtprio(RLIMIT_RTPRIO, verbose=verbose);
-		if(!missing(RLIMIT_RTTIME)) rlimit_rttime(RLIMIT_RTTIME, verbose=verbose);
-		if(!missing(RLIMIT_SIGPENDING)) rlimit_sigpending(RLIMIT_SIGPENDING, verbose=verbose);
-		if(!missing(RLIMIT_STACK)) rlimit_stack(RLIMIT_STACK, verbose=verbose);
-		if(!missing(affinity)) setaffinity(affinity, verbose=verbose);
-		if(!missing(priority)) setpriority(priority, verbose=verbose);
-		if(!missing(gid)) setgid(gid, verbose=verbose);
-		if(!missing(uid)) setuid(uid, verbose=verbose);
-		if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
-
-		#Set the child proc in batch mode to avoid problems when it gets killed:
-		options(device = grDevices::pdf);
-		options(menu.graphics=FALSE);
-
-		#evaluate expression
-		eval(...);
-	}, silent=silent);
-
-	#collect result
-  starttime <- Sys.time();
-	myresult <- mccollect(myfork, wait=FALSE, timeout=timeout);
-	enddtime <- Sys.time();
-  totaltime <- as.numeric(enddtime - starttime, units="secs")
-
-	#try to avoid bug/race condition where mccollect returns null without waiting full timeout.
-	#see https://github.com/jeroen/opencpu/issues/131
-	#waits for max another 2 seconds if proc looks dead
-	while(is.null(myresult) && totaltime < timeout && totaltime < 2) {
-	  Sys.sleep(.1)
-	  enddtime <- Sys.time();
-	  totaltime <- as.numeric(enddtime - starttime, units="secs")
-	  myresult <- mccollect(myfork, wait = FALSE, timeout = timeout);
-	}
-
-	#kill fork
-	kill(myfork$pid, SIGKILL, verbose = verbose);
-
-	#kill process group, in case of forks, etc.
-	kill(-1* myfork$pid, SIGKILL, verbose = FALSE);
-
-	#clean up
-	mccollect(wait = FALSE);
-
-	#timeout?
-	if(is.null(myresult)){
-    if(isTRUE(timeout > 0 && totaltime > timeout)){
-		  stop("R call did not return within ", timeout, " seconds. Terminating process.", call.=FALSE);
-    } else {
-      stop("R call failed: process died.", call.=FALSE);
-    }
-	}
-
-	output <- myresult[[1]]
-	#forks don't throw errors themselves
-	if(inherits(output, "try-error")){
-		#stop(myresult, call.=FALSE);
-		stop(attr(output, "condition"));
-	}
-
-	#return
-	return(output);
+  #Do everything in a fork
+  sys::eval_fork({
+    
+    #close connections
+    if(isTRUE(closeAllConnections)) closeAllConnections();
+    
+    #linux stuff
+    if(!missing(RLIMIT_AS)) rlimit_as(RLIMIT_AS, verbose=verbose);
+    if(!missing(RLIMIT_CORE)) rlimit_core(RLIMIT_CORE, verbose=verbose);
+    if(!missing(RLIMIT_CPU)) rlimit_cpu(RLIMIT_CPU, verbose=verbose);
+    if(!missing(RLIMIT_DATA)) rlimit_data(RLIMIT_DATA, verbose=verbose);
+    if(!missing(RLIMIT_FSIZE)) rlimit_fsize(RLIMIT_FSIZE, verbose=verbose);
+    if(!missing(RLIMIT_MEMLOCK)) rlimit_memlock(RLIMIT_MEMLOCK, verbose=verbose);
+    if(!missing(RLIMIT_MSGQUEUE)) rlimit_msgqueue(RLIMIT_MSGQUEUE, verbose=verbose);
+    if(!missing(RLIMIT_NICE)) rlimit_nice(RLIMIT_NICE, verbose=verbose);
+    if(!missing(RLIMIT_NOFILE)) rlimit_nofile(RLIMIT_NOFILE, verbose=verbose);
+    if(!missing(RLIMIT_NPROC)) rlimit_nproc(RLIMIT_NPROC, verbose=verbose);
+    if(!missing(RLIMIT_RTPRIO)) rlimit_rtprio(RLIMIT_RTPRIO, verbose=verbose);
+    if(!missing(RLIMIT_RTTIME)) rlimit_rttime(RLIMIT_RTTIME, verbose=verbose);
+    if(!missing(RLIMIT_SIGPENDING)) rlimit_sigpending(RLIMIT_SIGPENDING, verbose=verbose);
+    if(!missing(RLIMIT_STACK)) rlimit_stack(RLIMIT_STACK, verbose=verbose);
+    if(!missing(affinity)) setaffinity(affinity, verbose=verbose);
+    if(!missing(priority)) setpriority(priority, verbose=verbose);
+    if(!missing(gid)) setgid(gid, verbose=verbose);
+    if(!missing(uid)) setuid(uid, verbose=verbose);
+    if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
+    
+    #Set the child proc in batch mode to avoid problems when it gets killed:
+    options(device = grDevices::pdf);
+    options(menu.graphics=FALSE);
+    
+    #evaluate expression
+    eval(...)
+  }, silent = silent, timeout = timeout)
 }

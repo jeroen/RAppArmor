@@ -41,4 +41,3 @@ Other apparmor: \code{\link{aa_change_profile}},
   \code{\link{aa_find_mountpoint}},
   \code{\link{aa_is_enabled}}
 }
-
