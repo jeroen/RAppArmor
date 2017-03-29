@@ -31,7 +31,8 @@
 #' @param profile AppArmor security profile. Has to be preloaded by Linux.
 #' See \code{\link{aa_change_profile}}.
 #' @param timeout timeout in seconds.
-#' @param silent suppress output on stdout. See \code{\link{mcparallel}}.
+#' @param std_out Passed to \code{\link{eval_fork}}.
+#' @param std_err Passed to \code{\link{eval_fork}}
 #' @param verbose print some C output (TRUE/FALSE)
 #' @param affinity which cpu(s) to use. See \code{\link{setaffinity}}.
 #' @param closeAllConnections closes (and destroys) all user connections.
@@ -94,8 +95,8 @@
 #'eval.secure(forkbomb(), RLIMIT_NPROC=10)
 #'}
 
-eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
-	silent=FALSE, verbose=FALSE, affinity, closeAllConnections=FALSE,
+eval.secure <- function(..., uid, gid, priority, profile, timeout = 60, verbose = FALSE, 
+  affinity, closeAllConnections = FALSE, std_out = stdout(), std_err = stderr(),
 	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
 	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO,
 	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){
@@ -111,7 +112,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
 	}
 
   #Do everything in a fork
-  sys::eval_fork({
+  sys::eval_safe({
     
     #close connections
     if(isTRUE(closeAllConnections)) closeAllConnections();
@@ -137,11 +138,7 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout=60,
     if(!missing(uid)) setuid(uid, verbose=verbose);
     if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
     
-    #Set the child proc in batch mode to avoid problems when it gets killed:
-    options(device = grDevices::pdf);
-    options(menu.graphics=FALSE);
-    
     #evaluate expression
     eval(...)
-  }, silent = silent, timeout = timeout)
+  }, timeout = timeout, std_out = std_out, std_err = std_err)
 }
