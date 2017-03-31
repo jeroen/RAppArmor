@@ -24,15 +24,12 @@
 #' of the apparmor profile. When a rlimit is set both in the profile and
 #' through R, the more restrictive one will be effective.
 #'
-#' @param ... arguments passed on to \code{\link{eval}}.
+#' @param expr passed to \code{\link{eval}}
 #' @param uid integer or name of linux user. See \code{\link{setuid}}.
 #' @param gid integer or name of linux group. See \code{\link{setgid}}.
 #' @param priority priority. Value between -20 and 20. See \code{\link{setpriority}}.
 #' @param profile AppArmor security profile. Has to be preloaded by Linux.
 #' See \code{\link{aa_change_profile}}.
-#' @param timeout timeout in seconds.
-#' @param std_out Passed to \code{\link{eval_fork}}.
-#' @param std_err Passed to \code{\link{eval_fork}}
 #' @param verbose print some C output (TRUE/FALSE)
 #' @param affinity which cpu(s) to use. See \code{\link{setaffinity}}.
 #' @param closeAllConnections closes (and destroys) all user connections.
@@ -51,6 +48,8 @@
 #' @param RLIMIT_RTTIME hard limit passed on to \code{\link{rlimit_rttime}}.
 #' @param RLIMIT_SIGPENDING hard limit passed on to \code{\link{rlimit_sigpending}}.
 #' @param RLIMIT_STACK hard limit passed on to \code{\link{rlimit_stack}}.
+#' @param ... additional args passed to \code{\link{eval_fork}} such as \code{timeout},
+#' \code{std_out}, \code{std_err}, \code{dev}, etc.
 #' @importFrom sys eval_fork
 #' @importFrom tools SIGTERM SIGKILL
 #' @export
@@ -95,11 +94,10 @@
 #'eval.secure(forkbomb(), RLIMIT_NPROC=10)
 #'}
 
-eval.secure <- function(..., uid, gid, priority, profile, timeout = 60, verbose = FALSE, 
-  affinity, closeAllConnections = FALSE, std_out = stdout(), std_err = stderr(),
-	RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK,
-	RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO,
-	RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK){
+eval.secure <- function(expr, uid, gid, priority, profile, verbose = FALSE, 
+  affinity, closeAllConnections = FALSE, RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA, 
+  RLIMIT_FSIZE, RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE, RLIMIT_NPROC,
+  RLIMIT_RTPRIO, RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK, ...){
 
 	#convert linux username to gid
 	if(!missing(gid) && is.character(gid)){
@@ -139,6 +137,6 @@ eval.secure <- function(..., uid, gid, priority, profile, timeout = 60, verbose 
     if(!missing(profile)) aa_change_profile(profile, verbose=verbose);
     
     #evaluate expression
-    eval(...)
-  }, timeout = timeout, std_out = std_out, std_err = std_err)
+    eval(expr)
+  }, ...)
 }

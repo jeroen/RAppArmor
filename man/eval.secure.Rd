@@ -4,14 +4,14 @@
 \alias{eval.secure}
 \title{Secure evaluation}
 \usage{
-eval.secure(..., uid, gid, priority, profile, timeout = 60, verbose = FALSE,
-  affinity, closeAllConnections = FALSE, std_out = stdout(),
-  std_err = stderr(), RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU, RLIMIT_DATA,
-  RLIMIT_FSIZE, RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE, RLIMIT_NICE, RLIMIT_NOFILE,
-  RLIMIT_NPROC, RLIMIT_RTPRIO, RLIMIT_RTTIME, RLIMIT_SIGPENDING, RLIMIT_STACK)
+eval.secure(expr, uid, gid, priority, profile, verbose = FALSE, affinity,
+  closeAllConnections = FALSE, RLIMIT_AS, RLIMIT_CORE, RLIMIT_CPU,
+  RLIMIT_DATA, RLIMIT_FSIZE, RLIMIT_MEMLOCK, RLIMIT_MSGQUEUE, RLIMIT_NICE,
+  RLIMIT_NOFILE, RLIMIT_NPROC, RLIMIT_RTPRIO, RLIMIT_RTTIME, RLIMIT_SIGPENDING,
+  RLIMIT_STACK, ...)
 }
 \arguments{
-\item{...}{arguments passed on to \code{\link{eval}}.}
+\item{expr}{passed to \code{\link{eval}}}
 
 \item{uid}{integer or name of linux user. See \code{\link{setuid}}.}
 
@@ -22,18 +22,12 @@ eval.secure(..., uid, gid, priority, profile, timeout = 60, verbose = FALSE,
 \item{profile}{AppArmor security profile. Has to be preloaded by Linux.
 See \code{\link{aa_change_profile}}.}
 
-\item{timeout}{timeout in seconds.}
-
 \item{verbose}{print some C output (TRUE/FALSE)}
 
 \item{affinity}{which cpu(s) to use. See \code{\link{setaffinity}}.}
 
 \item{closeAllConnections}{closes (and destroys) all user connections.
 See \code{\link{closeAllConnections}}.}
-
-\item{std_out}{Passed to \code{\link{eval_fork}}.}
-
-\item{std_err}{Passed to \code{\link{eval_fork}}}
 
 \item{RLIMIT_AS}{hard limit passed on to \code{\link{rlimit_as}}.}
 
@@ -62,6 +56,9 @@ See \code{\link{closeAllConnections}}.}
 \item{RLIMIT_SIGPENDING}{hard limit passed on to \code{\link{rlimit_sigpending}}.}
 
 \item{RLIMIT_STACK}{hard limit passed on to \code{\link{rlimit_stack}}.}
+
+\item{...}{additional args passed to \code{\link{eval_fork}} such as \code{timeout},
+\code{std_out}, \code{std_err}, \code{dev}, etc.}
 }
 \description{
 Evaluate in a sandboxed environment.
