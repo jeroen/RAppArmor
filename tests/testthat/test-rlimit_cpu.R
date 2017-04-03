@@ -9,24 +9,24 @@ testfun <- function(){
 
 #timeout also counts idle time
 test_that("Timeout terminates process timely.", {
-	out <- system.time(try(eval.secure(testfun(), timeout=2), silent=TRUE));
+	out <- system.time(try(eval_safe(testfun(), timeout=2), silent=TRUE));
 	expect_that(unname(out["elapsed"]) < 2.5, is_true())
 	rm(out)
 });
 
 test_that("Timeout throws error", {
-	expect_that(eval.secure(testfun(), timeout=1), throws_error("timeout"))
+	expect_that(eval_safe(testfun(), timeout=1), throws_error("timeout"))
 });
 
 #rlimit_cpu does not count idle time, but after 5 sec it should be done usually
 test_that("RLIMIT_CPU terminates process timely.", {
-	out <- system.time(try(eval.secure(testfun(), RLIMIT_CPU=2), silent=TRUE));
+	out <- system.time(try(eval_safe(testfun(), rlimits = list(cpu = 2)), silent=TRUE));
 	expect_that(unname(out["elapsed"]) < 5, is_true())
 	rm(out)
 });
 
 test_that("combine limit and cpu.", {
-	out <- system.time(try(eval.secure(testfun(), timeout=2, RLIMIT_CPU=2), silent=TRUE));
+	out <- system.time(try(eval_safe(testfun(), timeout=2, rlimits = list(cpu = 2)), silent=TRUE));
 	expect_that(unname(out["elapsed"]) < 2.5, is_true())
 	rm(out)
 });
@@ -38,9 +38,9 @@ test_that("Raising the limit should not be possible for non-root users", {
 	
 	#test
 	for(mylim in c(2, 2e1, 2e2, 2e3)){
-		output <- list(hardlim = mylim/2, softlim = mylim/2);
-		expect_that(eval.secure(rlimit_cpu(mylim*2), RLIMIT_CPU = mylim, uid=me), throws_error("privilege"));
-		expect_that(eval.secure(rlimit_cpu(mylim/2), RLIMIT_CPU = mylim, uid=me), equals(output));	
+		output <- list(cur = mylim/2, max = mylim);
+		expect_that(eval_safe(rlimit_cpu(mylim*2), rlimits = list(cpu = mylim), uid = me), throws_error("permi"))
+		expect_that(eval_safe(rlimit_cpu(mylim/2), rlimits = list(cpu = mylim), uid = me), equals(output))
 		rm(output)
 	}
 });

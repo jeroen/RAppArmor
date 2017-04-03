@@ -3,16 +3,16 @@
 #
 context("memory limits")
 test_that("Memory limits apply and do not have side effects", {
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024))), equals("numeric"))
-	expect_that(eval.secure(class(rep(pi, 25*1024*1024)), RLIMIT_AS = 200*1024*1024), throws_error("cannot allocate"));
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024)), rlimits = list(as = 200*1024*1024)), throws_error("cannot allocate"));
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024)), rlimits = list(as = 200*1024*1024)), throws_error("cannot allocate"));
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024)), rlimits = list(as = 200*1024*1024)), throws_error("cannot allocate"));
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024)), rlimits = list(as = 200*1024*1024)), throws_error("cannot allocate"));
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024))), equals("numeric"))
+	expect_that(eval_safe(class(rep(pi, 25*1024*1024)), rlimits = list(as = 200*1024*1024)), throws_error("cannot allocate"));
 });
 
 test_that("Raising memory limit by non-root users", {
@@ -24,9 +24,9 @@ test_that("Raising memory limit by non-root users", {
 	#Make sure to not test a value lower than current un-use memory
 	gc();
 	for(mylim in c(5e7, 1e8, 5e8, 1e9)){
-		output <- list(hardlim = mylim/2, softlim = mylim/2);
-		expect_that(eval.secure(rlimit_as(mylim*2), RLIMIT_AS = mylim, uid=me), throws_error("privilege"));
-		expect_that(eval.secure(rlimit_as(mylim/2), RLIMIT_AS = mylim, uid=me), equals(output));
+		output <- list(cur = mylim/2, max = mylim);
+		expect_that(eval_safe(rlimit_as(mylim*2), rlimits = list(as = mylim), uid=me), throws_error("permi"));
+		expect_that(eval_safe(rlimit_as(mylim/2), rlimits = list(as = mylim), uid=me), equals(output));
 		rm(output);
 	}
 })
@@ -34,5 +34,5 @@ test_that("Raising memory limit by non-root users", {
 # Recent linux now supports wide rlim_t
 test_that("warnings", {
 	#expect_that(rlimit_as(1e12), gives_warning())
-	#expect_that(eval.secure(123, RLIMIT_AS=1e12), gives_warning())
+	#expect_that(eval_safe(123, RLIMIT_AS=1e12), gives_warning())
 })

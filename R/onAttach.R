@@ -6,7 +6,7 @@
   }
 	#note: aa_is_enabled requires more privileges than aa_getcon.
 	#so it is safer to rely on aa_getcon to lookup the current situation
-	confinement <- try(aa_getcon(verbose=FALSE), silent=TRUE);
+	confinement <- try(aa_getcon(), silent = TRUE);
 	if(inherits(confinement, "try-error")){
 		#aa_getcon failed. Probably LSM is disabled.
 		errormessage <- attr(confinement, "condition")$message;
@@ -14,7 +14,7 @@
 		packageStartupMessage("Have a look at: sudo aa-status")
 	} else if(confinement$con == "unconfined"){
 		#process seems unconfined. Lets see if apparmor is enabled...
-		enabled <- try(aa_is_enabled(verbose=FALSE));
+		enabled <- try(aa_is_enabled());
 		if(inherits(enabled, "try-error")){
 			#should never happen
 			packageStartupMessage("aa_is_enabled() failed.")
@@ -25,7 +25,7 @@
 		} else {
 			#print some debugging stuff
 			#note that enabled == FALSE might also occus becuase of permission denied at aa_is_enabled
-			aa_is_enabled(verbose=TRUE);
+			aa_is_enabled()
 		}
 	} else {
 		packageStartupMessage("AppArmor LSM is enabled.")

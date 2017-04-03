@@ -20,6 +20,8 @@ test_that("Affinity behavior", {
 
 #We assume at least two cores to test this
 test_that("Affinity works", {
+  
+  skip_if_not(getaffinity_count() > 1)
 
 	testfun <- function(){
 		x <- matrix(rnorm(5e5), 1e3);
@@ -31,10 +33,9 @@ test_that("Affinity works", {
 	}
 
 	#We should see approx 2x speed gain, but lets be conservative and require at least 1.2.
-	setaffinity();
-	if(getaffinity_count() > 1){
-		expect_that(out1 <- system.time(eval.secure(testfun(), affinity=1)), is_a("proc_time"));
-		expect_that(out2 <- system.time(eval.secure(testfun())), is_a("proc_time"));
-		expect_that(unname(out1["elapsed"] > out2["elapsed"]*1.5), is_true());
-	}
+  setaffinity(1)
+	expect_that(out1 <- system.time(testfun()), is_a("proc_time"))
+	setaffinity()
+	expect_that(out2 <- system.time(testfun()), is_a("proc_time"))
+	expect_true(unname(out1["elapsed"] > out2["elapsed"] * 1.2))
 });
