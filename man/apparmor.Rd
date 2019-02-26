@@ -37,20 +37,11 @@ A hat is a subprofile which name starts with a '^'.
 The difference between hats and profiles is that one can escape (revert) from the hat using the token.
 Hence this provides more limited security than a profile.
 
-This function changes the current R process to an AppArmor profile.
-Note that this generally is a one way process: most profiles explicitly prevent switching into another profile, otherwise it would defeat the purpose.
-
-Find the apparmor mountpoint
-
 Note that in order for this function to do its work, it needs
 read access to the attributes of the current process. If aa_getcon
 fails with a permission denied error, it might actually mean
 that the current process is being confined with a very restrictive
 profile.
-
-This function tries to lookup the status of AppArmor in the kernel. However,
-some confined profiles might not have enough privileges to lookup this status.
-Also see aa_getcon().
 }
 \examples{
 \dontrun{
