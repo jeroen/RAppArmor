@@ -22,6 +22,6 @@ Description: Bindings to kernel methods for enforcing security restrictions.
     in which case some features are disabled.
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
-Depends: unix (>= 1.1)
+Imports: unix (>= 1.4)
 Remotes: jeroen/unix
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

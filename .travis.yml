@@ -6,6 +6,7 @@ matrix:
   include:
     - dist: precise
     - dist: trusty
+    - dist: xenial
       env: R_CODECOV=true
 
 addons:
