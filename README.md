@@ -65,7 +65,7 @@ One this is installed we can install the R package:
 install.packages("RAppArmor")
 ```
 
-The R package comes with some handly AppArmor profiles that you need to install manually:
+The R package comes with some AppArmor profiles that you need to install manually:
 
 ```sh
 #Install the profiles

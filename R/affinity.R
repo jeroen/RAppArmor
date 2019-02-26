@@ -4,7 +4,7 @@
 #' specific core(s) within the machine. Not supported on all systems, [has_affinity()]
 #' shows if this is available.
 #'
-#' Setting a process afinity allows for restricting the process to only use certain
+#' Setting a process affinity allows for restricting the process to only use certain
 #' cores in the machine. The cores are indexed by the operating system as 1 to [ncores()].
 #' Calling [setaffinity()] with no arguments resets the process to use any of the 
 #' available cores.
