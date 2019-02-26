@@ -7,6 +7,9 @@
 \usage{
 eval.secure(...)
 }
+\arguments{
+\item{...}{arguments passed to \link[unix:eval_safe]{unix::eval_safe}}
+}
 \description{
 This function has been superseded by the \link[unix:eval_safe]{unix::eval_safe} function.
 }
