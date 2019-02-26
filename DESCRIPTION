@@ -23,4 +23,5 @@ VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
 Imports: unix (>= 1.4)
 RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
 Language: en-US

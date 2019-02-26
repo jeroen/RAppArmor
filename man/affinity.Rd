@@ -20,17 +20,17 @@ has_affinity()
 ncores()
 }
 \arguments{
-\item{cpus}{Which cpu cores to bind to: vector of integers between 1 and [ncores()]}
+\item{cpus}{Which cpu cores to bind to: vector of integers between 1 and \code{\link[=ncores]{ncores()}}}
 }
 \description{
 Get/set the process's CPU affinity mask. The affinity mask binds the process to
-specific core(s) within the machine. Not supported on all systems, [has_affinity()]
+specific core(s) within the machine. Not supported on all systems, \code{\link[=has_affinity]{has_affinity()}}
 shows if this is available.
 }
 \details{
 Setting a process affinity allows for restricting the process to only use certain
-cores in the machine. The cores are indexed by the operating system as 1 to [ncores()].
-Calling [setaffinity()] with no arguments resets the process to use any of the 
+cores in the machine. The cores are indexed by the operating system as 1 to \code{\link[=ncores]{ncores()}}.
+Calling \code{\link[=setaffinity]{setaffinity()}} with no arguments resets the process to use any of the
 available cores.
 
 Note that setaffinity is different from setting r_limit values in the sense that
@@ -55,5 +55,5 @@ getaffinity()
 }
 }
 \references{
-[SCHED_SETAFFINITY(2)](http://man7.org/linux/man-pages/man2/sched_setaffinity.2.html)
+\href{http://man7.org/linux/man-pages/man2/sched_setaffinity.2.html}{SCHED_SETAFFINITY(2)}
 }
