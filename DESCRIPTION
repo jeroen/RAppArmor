@@ -1,15 +1,9 @@
 Package: RAppArmor
 Type: Package
 Title: Bindings to AppArmor and Security Related Linux Tools
-Version: 2.9000
+Version: 3.0
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
-License: Apache License 2.0
-URL: http://www.jstatsoft.org/v55/i07/
-    http://github.com/jeroen/RAppArmor#readme
-BugReports: http://github.com/jeroen/RAppArmor/issues
-OS_type: unix
-SystemRequirements: linux (>= 3.0), libapparmor-dev (optional)
 Description: Bindings to kernel methods for enforcing security restrictions. 
     AppArmor can apply mandatory access control (MAC) policies on a given task 
     (process) via security profiles with detailed ACL definitions. In addition
@@ -17,11 +11,16 @@ Description: Bindings to kernel methods for enforcing security restrictions.
     uid, gid, affinity and priority. The high level R function 'eval.secure' 
     builds on these methods to perform dynamic sandboxing: it evaluates a single
     R expression within a temporary fork which acts as a sandbox by enforcing 
-    fine grained restrictions without affecting the main R process. Recent 
-    versions on this package can also be installed on systems without libapparmor,
-    in which case some features are disabled.
+    fine grained restrictions without affecting the main R process. A portable 
+    version of this function is now available in the 'unix' package.
+License: Apache License 2.0
+URL: http://www.jstatsoft.org/v55/i07/ (paper),
+    http://github.com/jeroen/RAppArmor#readme (devel)
+BugReports: http://github.com/jeroen/RAppArmor/issues
+OS_type: unix
+SystemRequirements: linux (>= 3.0), libapparmor-dev
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
 Imports: unix (>= 1.4)
-Remotes: jeroen/unix
 RoxygenNote: 6.1.1
+Language: en-US
