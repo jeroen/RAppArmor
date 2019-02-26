@@ -46,6 +46,14 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+# Check unix package
+${R_HOME}/bin/Rscript -e 'stopifnot(unix::aa_config()$compiled)'
+if [ $? -ne 0 ]; then
+ echo "The unix package was built without apparmor. Please reinstall:"
+ echo "install.packages('unix')"
+ exit 1
+fi
+
 # Write to Makevars
 sed -e "s|@cflags@|$PKG_CFLAGS|" -e "s|@libs@|$PKG_LIBS|" src/Makevars.in > src/Makevars
 exit 0
