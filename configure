@@ -1,3 +1,4 @@
+#!/bin/sh
 # To build on Linux Systems without AppArmor use:
 # NO_APPARMOR=1
 
