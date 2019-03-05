@@ -1,3 +1,8 @@
+3.1
+ - Build (mostly dummy) on MacOS so that other packages can depend on RAppArmor 
+   and use it on supported systems. Neither apparmor nor affinity works on MacOS
+   but rlimit and priority does work.
+ 
 3.0
  - The non-apparmor functions have been split out into a separate 'unix' package
  - Replace 'parallel' with the new 'sys::eval_fork()' for eval.secure

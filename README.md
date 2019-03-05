@@ -3,7 +3,6 @@
 ##### *A Modern and Flexible Web Client for R*
 
 [![Build Status](https://travis-ci.org/jeroen/RAppArmor.svg?branch=master)](https://travis-ci.org/jeroen/RAppArmor)
-[![Coverage Status](https://codecov.io/github/jeroen/RAppArmor/coverage.svg?branch=master)](https://codecov.io/github/jeroen/RAppArmor?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RAppArmor)](http://cran.r-project.org/package=RAppArmor)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/RAppArmor)](http://cran.r-project.org/web/packages/RAppArmor/index.html)
 [![Research software impact](http://depsy.org/api/package/cran/RAppArmor/badge.svg)](http://depsy.org/package/r/RAppArmor)

@@ -1,6 +1,7 @@
 language: r
-sudo: required
-cache: packages
+fortran: false
+pandoc: false
+latex: false
 
 matrix:
   include:
@@ -8,21 +9,9 @@ matrix:
     - dist: trusty
     - dist: xenial
       env: R_CODECOV=true
+    - os: osx
 
 addons:
   apt:
     packages:
       - libapparmor-dev
-
-r_github_packages:
-  - jimhester/covr
-
-warnings_are_errors: true
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-
-after_success:
-  - Rscript -e 'covr::codecov(type = "all")'
