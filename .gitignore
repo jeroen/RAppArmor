@@ -8,7 +8,6 @@
 */tmp/*
 src/Makevars
 .Rproj.user
-RAppArmor.Rproj
 vignettes/*.bbl
 vignettes/*.log
 vignettes/*.gz
