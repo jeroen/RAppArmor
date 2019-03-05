@@ -2,8 +2,8 @@ Package: RAppArmor
 Type: Package
 Title: Bindings to AppArmor and Security Related Linux Tools
 Version: 3.1
-Author: Jeroen Ooms
-Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
+Authors@R: person("Jeroen", "Ooms", role = c("aut", "cre"), 
+    email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289"))
 Description: Bindings to kernel methods for enforcing security restrictions. 
     AppArmor can apply mandatory access control (MAC) policies on a given task 
     (process) via security profiles with detailed ACL definitions. In addition
