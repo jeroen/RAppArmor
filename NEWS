@@ -1,3 +1,7 @@
+3.2
+ - Move unix from Imports to Depends because many old examples from the paper
+   assume that the rlimit_ functions are attached when using RAppArmor.
+
 3.1
  - Build (mostly dummy) on MacOS so that other packages can depend on RAppArmor 
    and use it on supported systems. Neither apparmor nor affinity works on MacOS

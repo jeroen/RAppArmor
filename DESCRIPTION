@@ -1,7 +1,7 @@
 Package: RAppArmor
 Type: Package
 Title: Bindings to AppArmor and Security Related Linux Tools
-Version: 3.1
+Version: 3.2
 Authors@R: person("Jeroen", "Ooms", role = c("aut", "cre"), 
     email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289"))
 Description: Bindings to kernel methods for enforcing security restrictions. 
@@ -21,7 +21,7 @@ OS_type: unix
 SystemRequirements: linux (>= 3.0), libapparmor-dev
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
-Imports: unix (>= 1.4)
+Depends: unix (>= 1.4)
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Language: en-US
