@@ -1,7 +1,7 @@
 Package: RAppArmor
 Type: Package
 Title: Bindings to AppArmor and Security Related Linux Tools
-Version: 3.2
+Version: 3.2.1
 Authors@R: person("Jeroen", "Ooms", role = c("aut", "cre"), 
     email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289"))
 Description: Bindings to kernel methods for enforcing security restrictions. 
