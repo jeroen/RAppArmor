@@ -1,3 +1,7 @@
+3.2.2
+ - Make eval.secure an alias of unix::eval_safe (it was a wrapper before)
+ - Manual makes it even more clear that eval.secure is now unix::eval_safe
+ 
 3.2.1
  - Fix for CRAN: do not use CPP in configure
 
