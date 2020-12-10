@@ -10,7 +10,6 @@
 #' @name apparmor
 #' @useDynLib RAppArmor R_aa_change_hat
 #' @export
-#' @aliases eval.secure
 #' @examples \dontrun{
 #' aa_change_profile("testprofile");
 #' aa_getcon();
