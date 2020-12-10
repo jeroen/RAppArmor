@@ -5,11 +5,10 @@ latex: false
 
 matrix:
   include:
-    - dist: precise
-    - dist: trusty
     - dist: xenial
-      env: R_CODECOV=true
+    - dist: bionic
     - os: osx
+      osx_image: xcode12.2
 
 addons:
   apt:
