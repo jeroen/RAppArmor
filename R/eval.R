@@ -6,6 +6,4 @@
 #' @name sandboxing
 #' @param ... arguments passed to [unix::eval_safe]
 #' @importFrom unix eval_safe
-eval.secure <- function(...){
-  unix::eval_safe(...)
-}
+eval.secure <- unix::eval_safe
