@@ -8,7 +8,7 @@ citEntry(entry = "Article",
   volume       = "55",
   number       = "7",
   pages        = "1--34",
-  url          = "http://www.jstatsoft.org/v55/i07/",
+  url          = "https://www.jstatsoft.org/v55/i07/",
 
   textVersion  =
   paste("Jeroen Ooms (2013).",

@@ -17,7 +17,7 @@
 #' @name affinity
 #' @rdname affinity
 #' @param cpus Which cpu cores to bind to: vector of integers between 1 and [ncores()]
-#' @references [SCHED_SETAFFINITY(2)](http://man7.org/linux/man-pages/man2/sched_setaffinity.2.html)
+#' @references [SCHED_SETAFFINITY(2)](https://man7.org/linux/man-pages/man2/sched_setaffinity.2.html)
 #' @examples \dontrun{
 #' # Current affinity
 #' ncores()

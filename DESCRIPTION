@@ -14,9 +14,9 @@ Description: Bindings to kernel methods for enforcing security restrictions.
     fine grained restrictions without affecting the main R process. A portable 
     version of this function is now available in the 'unix' package.
 License: Apache License 2.0
-URL: http://www.jstatsoft.org/v55/i07/ (paper),
-    http://github.com/jeroen/RAppArmor#readme (devel)
-BugReports: http://github.com/jeroen/RAppArmor/issues
+URL: https://www.jstatsoft.org/v55/i07/ (paper),
+    https://github.com/jeroen/RAppArmor#readme (devel)
+BugReports: https://github.com/jeroen/RAppArmor/issues
 OS_type: unix
 SystemRequirements: linux (>= 3.0), libapparmor-dev
 VignetteBuilder: R.rsp
