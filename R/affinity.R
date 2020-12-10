@@ -33,7 +33,6 @@
 #' getaffinity()
 #' }
 #' @useDynLib RAppArmor R_setaffinity
-#' @rdname affinity
 #' @export
 setaffinity <- function(cpus = 1:ncores()){
   cpus <- as.integer(cpus)

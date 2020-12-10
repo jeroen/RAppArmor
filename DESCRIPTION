@@ -22,6 +22,7 @@ SystemRequirements: linux (>= 3.0), libapparmor-dev
 VignetteBuilder: R.rsp
 Suggests: testthat, R.rsp
 Depends: unix (>= 1.4)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Language: en-US
+Encoding: UTF-8

@@ -3,6 +3,7 @@
 \name{apparmor}
 \alias{apparmor}
 \alias{aa_change_hat}
+\alias{eval.secure}
 \alias{aa_revert_hat}
 \alias{aa_change_profile}
 \alias{aa_find_mountpoint}
