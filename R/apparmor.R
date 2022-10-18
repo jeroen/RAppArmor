@@ -55,7 +55,7 @@ aa_change_profile <- function(profile){
   tryCatch(.Call(R_aa_change_profile, profile), error = function(errmsg){
     if(grepl("permission", errmsg, ignore.case = TRUE)){
       out <- try(aa_getcon());
-      if(class(out) != "try-error" && out$con != "unconfined"){
+      if(!inherits(out, "try-error") && out$con != "unconfined"){
         if(out$con == "/usr/bin/R")
           warning("The standard profile in usr.bin.r is already being enforced!\n  Run sudo aa-disable usr.bin.r to disable this.", call. = FALSE);
         stop("Failed to change profile from: ", out$con, " to: ", profile, ".\n  Note that this is only allowed if the current profile has a 'change_profile -> ",profile,"' directive.", call. = FALSE);
