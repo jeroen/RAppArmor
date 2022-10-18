@@ -10,7 +10,7 @@
 
 void bail_if(int err, const char * what);
 
-SEXP R_has_affinity(){
+SEXP R_has_affinity(void){
 #ifdef HAS_AFFINITY
   return ScalarLogical(TRUE);
 #else
@@ -18,7 +18,7 @@ SEXP R_has_affinity(){
 #endif
 }
 
-SEXP R_getaffinity_count() {
+SEXP R_getaffinity_count(void) {
 #ifdef HAS_AFFINITY
   //init the cpu mask
   cpu_set_t mask;
@@ -32,7 +32,7 @@ SEXP R_getaffinity_count() {
 #endif //HAS_AFFINITY
 }
 
-SEXP R_getaffinity() {
+SEXP R_getaffinity(void) {
 #ifdef HAS_AFFINITY
   //init the cpu mask
   cpu_set_t mask;
@@ -67,6 +67,6 @@ SEXP R_setaffinity(SEXP cpus) {
 #endif //HAS_AFFINITY  
 }
 
-SEXP R_ncores() {
+SEXP R_ncores(void) {
   return ScalarInteger(sysconf( _SC_NPROCESSORS_ONLN ));
 }

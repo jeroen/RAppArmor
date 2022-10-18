@@ -10,15 +10,15 @@
 /* .Call calls */
 extern SEXP R_aa_change_hat(SEXP, SEXP);
 extern SEXP R_aa_change_profile(SEXP);
-extern SEXP R_aa_find_mountpoint();
-extern SEXP R_aa_getcon();
-extern SEXP R_aa_is_compiled();
-extern SEXP R_aa_is_enabled();
+extern SEXP R_aa_find_mountpoint(void);
+extern SEXP R_aa_getcon(void);
+extern SEXP R_aa_is_compiled(void);
+extern SEXP R_aa_is_enabled(void);
 extern SEXP R_aa_revert_hat(SEXP);
-extern SEXP R_getaffinity();
-extern SEXP R_getaffinity_count();
-extern SEXP R_has_affinity();
-extern SEXP R_ncores();
+extern SEXP R_getaffinity(void);
+extern SEXP R_getaffinity_count(void);
+extern SEXP R_has_affinity(void);
+extern SEXP R_ncores(void);
 extern SEXP R_setaffinity(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
