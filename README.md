@@ -2,11 +2,8 @@
 
 ##### *A Modern and Flexible Web Client for R*
 
-[![Build Status](https://travis-ci.org/jeroen/RAppArmor.svg?branch=master)](https://travis-ci.org/jeroen/RAppArmor)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RAppArmor)](http://cran.r-project.org/package=RAppArmor)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/RAppArmor)](http://cran.r-project.org/web/packages/RAppArmor/index.html)
-[![Research software impact](http://depsy.org/api/package/cran/RAppArmor/badge.svg)](http://depsy.org/package/r/RAppArmor)
-[![Github Stars](https://img.shields.io/github/stars/jeroen/RAppArmor.svg?style=social&label=Github)](https://github.com/jeroen/RAppArmor)
 
 The R package RAppArmor interfaces to a number of security related methods in the Linux kernel. It supports the following functionality:
 
