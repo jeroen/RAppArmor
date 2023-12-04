@@ -1,7 +1,7 @@
 Package: RAppArmor
 Type: Package
 Title: Bindings to AppArmor and Security Related Linux Tools
-Version: 3.2.3
+Version: 3.2.4
 Authors@R: person("Jeroen", "Ooms", role = c("aut", "cre"), 
     email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289"))
 Description: Bindings to kernel methods for enforcing security restrictions. 
@@ -14,8 +14,8 @@ Description: Bindings to kernel methods for enforcing security restrictions.
     fine grained restrictions without affecting the main R process. A portable 
     version of this function is now available in the 'unix' package.
 License: Apache License 2.0
-URL: https://www.jstatsoft.org/v55/i07/ (paper),
-    https://github.com/jeroen/RAppArmor (devel)
+URL: https://www.jstatsoft.org/v55/i07/
+    https://jeroen.r-universe.dev/RAppArmor
 BugReports: https://github.com/jeroen/RAppArmor/issues
 OS_type: unix
 SystemRequirements: linux (>= 3.0), libapparmor-dev

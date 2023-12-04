@@ -1,3 +1,6 @@
+3.2.4
+ - Fix a printf warning for CRAN
+
 3.2.3
  - Fix strict-prototypes warnings
  

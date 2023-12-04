@@ -54,7 +54,7 @@ void rapparmor_warning(void){
       Rf_warning("Did not have sufficient permissions to determine if AppArmor is enabled.");
       break;
     default:
-      Rf_warning(strerror(errno));
+      Rf_warning("%s", strerror(errno));
   };
 }
 
