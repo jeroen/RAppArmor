@@ -1,18 +1,12 @@
 citHeader("To cite RAppArmor in publications use:")
 
-citEntry(entry = "Article",
+bibentry("Article",
   title        = "The {RAppArmor} Package: Enforcing Security Policies in {R} Using Dynamic Sandboxing on Linux",
-  author       = personList(as.person("Jeroen Ooms")),
+  author       = person("Jeroen", "Ooms"),
   journal      = "Journal of Statistical Software",
   year         = "2013",
   volume       = "55",
   number       = "7",
   pages        = "1--34",
-  url          = "https://www.jstatsoft.org/v55/i07/",
-
-  textVersion  =
-  paste("Jeroen Ooms (2013).",
-        "The RAppArmor Package: Enforcing Security Policies in R Using Dynamic Sandboxing on Linux.",
-        "Journal of Statistical Software, 55(7), 1-34.",
-        "URL http://www.jstatsoft.org/v55/i07/.")
+  url          = "https://www.jstatsoft.org/v55/i07/"
 )
